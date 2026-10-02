@@ -1,0 +1,40 @@
+{
+  "yazar": "Emre Kaya",
+  "haberler": [
+    {
+      "baslik": "Borsa İstanbul haftanın son günü yükselişle kapandı, dolar 49,14 TL'de",
+      "ozet": "BIST 100 endeksi cuma günü yüzde 0,17 artışla 12.270,18 puandan kapandı; gün içindeki en yüksek seviye 12.367,70 oldu. Serbest piyasada dolar 49,14 TL, euro 55,38 TL civarında işlem görürken, ons altın 4.142 dolara, Kapalıçarşı'da gram altın ise 6.550,69 liraya geriledi. Brent petrolün varili 100,87 dolar seviyesindeydi.",
+      "kaynak": "Bloomberg HT",
+      "kaynak_url": "https://www.bloomberght.com/piyasa-ozeti-2-ekim-2026-borsa-doviz-altin-ve-kripto-piyasalarindaki-son-durum-pkh-3790224",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Fon gündemi borsada haftalık kaybı yüzde 4,88'e çıkardı",
+      "ozet": "BIST 100, haftanın son iki gününde toparlanmasına rağmen haftayı yüzde 4,88 düşüşle tamamladı; endeks bir önceki haftayı 12.899,35 puandan kapatmıştı. Hafta boyunca yatırım fonlarına ilişkin soruşturma, tasfiye ve yatırımcı ödemeleri piyasanın ana gündemini oluşturdu. Hazine ve Maliye Bakanı Mehmet Şimşek, sorunlu portföy yönetim şirketleri ile ilgili fonların karantinaya alındığını ve tasfiye sürecinin başladığını açıkladı.",
+      "kaynak": "EKOTÜRK",
+      "kaynak_url": "https://www.ekoturk.com/borsa/fon-gundeminin-one-ciktigi-haftada-borsada-kayiplar-derinlesti/",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "ABD'de istihdam beklentinin altında kaldı, Fed'in Ekim'de faiz artırma ihtimali geriledi",
+      "ozet": "ABD ekonomisi eylülde tarım dışı sektörlerde 29 bin kişilik istihdam artışı kaydetti; Dow Jones anketindeki ekonomistler yaklaşık 84 bin artış bekliyordu. Temmuz ve ağustos verileri toplamda 60 bin aşağı yönlü revize edildi. Zayıf verinin ardından piyasalarda Fed'in ekimde faiz artıracağı ihtimali yaklaşık yüzde 25'e geriledi, aralık toplantısı daha olası bir pencere olarak görülmeye başlandı.",
+      "kaynak": "Invezz",
+      "kaynak_url": "https://invezz.com/tr/haber/2026/10/02/abd-is-raporu-tarim-disi-29000-fedin-ekim-zam-beklentileri-dustu/",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Eylül enflasyonu 5 Ekim'de açıklanacak: Ekonomistler aylık yüzde 2,18 bekliyor",
+      "ozet": "TÜİK eylül ayı enflasyon verisini, ayın üçüncü gününün cumartesiye denk gelmesi nedeniyle 5 Ekim Pazartesi günü saat 10.00'da duyuracak. AA Finans'ın 20 ekonomistle yaptığı ankette aylık TÜFE beklentisinin ortalaması yüzde 2,18 olarak belirlendi. Bu beklenti gerçekleşirse ağustosta yüzde 31,51 olan yıllık enflasyonun yüzde 30,16'ya inmesi bekleniyor; yıl sonu enflasyon beklentisinin ortalaması ise yüzde 29,66.",
+      "kaynak": "Türkiye Gazetesi",
+      "kaynak_url": "https://www.turkiyegazetesi.com.tr/haberler/tuik-eylul-ayi-enflasyon-rakamlari-ne-zaman-aciklanacak-eylul-ayi-enflasyon-beklentis-1819816",
+      "tarih": "01.10.2026"
+    },
+    {
+      "baslik": "Merkez Bankası rezervleri beşinci haftada da geriledi: 171,2 milyar dolar",
+      "ozet": "TCMB'nin toplam rezervleri 25 Eylül haftasında bir önceki haftaya göre yüzde 1,8 azalarak 171,2 milyar dolara indi. Rezervlerin 61,6 milyar doları döviz, 109,6 milyar doları altın cinsinden varlıklardan oluştu. Net rezerv 53,39 milyar dolara, swap hariç net rezerv ise 39,91 milyar dolara düştü.",
+      "kaynak": "CNBC-e",
+      "kaynak_url": "https://www.cnbce.com/veriler/5-haftadir-azaliyor-merkez-bankasi-rezervleri-aciklandi-h38507",
+      "tarih": "01.10.2026"
+    }
+  ]
+}
