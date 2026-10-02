@@ -44,14 +44,17 @@ if yazilar:
     guncel_tarih = yazilar[0]["tarih"]
     guncel = [y for y in yazilar if y["tarih"]==guncel_tarih]
     eski = [y for y in yazilar if y["tarih"]!=guncel_tarih]
+    def kose_kart(y, kok):
+        img = f'<img class="kose-resim" src="{kok}gorseller/{y["slug"]}.jpg" alt="{e(y["baslik"])}">' if os.path.exists(os.path.join(base,"gorseller",y["slug"]+".jpg")) else ""
+        return f'<article class="card kose"><div class="kose-metin"><div class="meta">{e(y["meta"])}</div><h3>{e(y["baslik"])}</h3>{y["govde"]}</div>{img}</article>'
     def sayfa_kose(baslik, icerik, kok):
-        return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a><a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="content"><main class="main-content"><section class="bolum">{icerik}</section></main></div></div></body></html>'''
+        return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a><a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
     os.makedirs(os.path.join(base,"kose"), exist_ok=True)
     for f in glob.glob(os.path.join(base,"kose","*.html")): os.remove(f)
     for y in yazilar:
-        ic = f'<p><a href="../kose.html">← Tüm köşe yazıları</a></p><article class="card kose"><div class="meta">{e(y["meta"])}</div><h3>{e(y["baslik"])}</h3>{y["govde"]}</article>'
+        ic = f'<p><a href="../kose.html">← Tüm köşe yazıları</a></p>' + kose_kart(y, "../")
         open(os.path.join(base,"kose",y["slug"]+".html"),"w",encoding="utf-8").write(sayfa_kose(y["baslik"], ic, "../"))
-    kartlar = "".join(f'<article class="card kose"><div class="meta">{e(y["meta"])}</div><h3>{e(y["baslik"])}</h3>{y["govde"]}</article>' for y in guncel)
+    kartlar = "".join(kose_kart(y, "") for y in guncel)
     liste = "".join(f'<li><a href="kose/{e(y["slug"])}.html">{e(y["baslik"])}</a> <span class="meta">{e(y["meta"])}</span></li>' for y in eski)
     onceki = f'<h2>Önceki Köşe Yazıları</h2><ul class="kose-liste">{liste}</ul>' if eski else ""
     open(os.path.join(base,"kose.html"),"w",encoding="utf-8").write(sayfa_kose("Köşe Yazıları", f'<h2>Köşe Yazıları</h2>{kartlar}{onceki}', ""))

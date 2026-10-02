@@ -14,6 +14,7 @@ for f in glob.glob(os.path.join(base, "haberler", "*.json")):
 ap = os.path.join(hedef, "DiojenNews.html")
 t = open(ap, encoding="utf-8").read().replace('href="arsiv/index.html"', 'href="../index.html"')
 open(ap, "w", encoding="utf-8").write(t)
+if os.path.isdir(os.path.join(base, "gorseller")): shutil.copytree(os.path.join(base, "gorseller"), os.path.join(hedef, "gorseller"), dirs_exist_ok=True)
 kose = os.path.join(base, "koseyazilari")
 if os.path.isdir(kose):
     shutil.copytree(kose, os.path.join(hedef, "koseyazilari"), dirs_exist_ok=True)
