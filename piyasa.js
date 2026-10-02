@@ -10,7 +10,10 @@
     gold: "https://api.gold-api.com/price/XAU",
     cb: "https://api.coinbase.com/v2/prices/BTC-USD/spot",
     bn: "https://data-api.binance.vision/api/v3/ticker/price?symbol=BTCUSDT",
-    cp: "https://api.coinpaprika.com/v1/tickers/btc-bitcoin"
+    cp: "https://api.coinpaprika.com/v1/tickers/btc-bitcoin",
+    brOkx: "https://www.okx.com/api/v5/market/ticker?instId=BZ-USDT-SWAP",
+    brBitget: "https://api.bitget.com/api/v2/mix/market/ticker?symbol=BZUSDT&productType=USDT-FUTURES",
+    brGate: "https://api.gateio.ws/api/v4/futures/usdt/tickers?contract=BZ_USDT"
   };
   var OUNCE_GRAM = 31.1034768;
 
@@ -113,13 +116,38 @@
     });
   };
 
+  // Brent (USD/varil): Brent vadeli (BZ) sürekli kontratları, borsaların anahtarsız ve CORS'a açık uçları.
+  // Yahoo BZ=F tarayıcıda CORS başlığı vermediği için kullanılamaz. Bunlar 7/24 işlem gören kontratlardır:
+  // ICE Brent kapalıyken (hafta sonu) fiyat borsada oluşmaya devam eder; zaman damgası son işlemin/verinin zamanıdır.
+  var brentOkx = function (get) {
+    return get(URL.brOkx).then(function (d) {
+      var o = d && d.code === "0" && d.data && d.data[0], v = o && parseFloat(o.last), a = o && parseFloat(o.open24h), t = o && parseInt(o.ts, 10);
+      if (!gecerli(v)) throw new Error("okx brent");
+      return { deger: v, degisim: gecerli(a) ? (v / a - 1) * 100 : null, zaman: gecerli(t) ? new Date(t) : null, kaynak: "OKX BZ-USDT-SWAP (Brent vadeli, 7/24; değişim 24 sa)" };
+    });
+  };
+  var brentBitget = function (get) {
+    return get(URL.brBitget).then(function (d) {
+      var o = d && d.code === "00000" && d.data && d.data[0], v = o && parseFloat(o.lastPr), a = o && parseFloat(o.open24h), t = o && parseInt(o.ts, 10);
+      if (!gecerli(v)) throw new Error("bitget brent");
+      return { deger: v, degisim: gecerli(a) ? (v / a - 1) * 100 : null, zaman: gecerli(t) ? new Date(t) : null, kaynak: "Bitget BZUSDT (Brent vadeli, 7/24; değişim 24 sa)" };
+    });
+  };
+  var brentGate = function (get) {
+    return get(URL.brGate).then(function (d) {
+      var o = d && d[0], v = o && parseFloat(o.last), c = o && parseFloat(o.change_percentage);
+      if (!gecerli(v)) throw new Error("gate brent");
+      return { deger: v, degisim: sayiVeya(c), zaman: null, kaynak: "Gate.io BZ_USDT (Brent vadeli, 7/24; değişim 24 sa)" };
+    });
+  };
+
   var ENSTRUMANLAR = [
     { id: "usdtry", ad: "USD/TRY", birim: "₺", kaynaklar: [tg4("USD"), tg3("USD"), erUsd], ondalik: 4 },
     { id: "eurtry", ad: "EUR/TRY", birim: "₺", kaynaklar: [tg4("EUR"), tg3("EUR"), erEur], ondalik: 4 },
     { id: "gram", ad: "Gram Altın", birim: "₺", kaynaklar: [tg4("GRA"), tg3("gram-altin"), gramHesap], ondalik: 2 },
     { id: "ons", ad: "Ons Altın", birim: "$", kaynaklar: [goldOns, tg3("ons")], ondalik: 2 },
     { id: "bist", ad: "BIST 100", birim: "", kaynaklar: [tg4("XU100")], ondalik: 2 },
-    { id: "brent", ad: "Brent Petrol", birim: "$", kaynaklar: [tg4("BRENT")], ondalik: 2 },
+    { id: "brent", ad: "Brent Petrol", birim: "$", kaynaklar: [tg4("BRENT"), brentOkx, brentBitget, brentGate], ondalik: 2 },
     { id: "btc", ad: "Bitcoin", birim: "$", kaynaklar: [btcCoinbase, btcBinance, btcPaprika], ondalik: 0 }
   ];
 
