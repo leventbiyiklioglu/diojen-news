@@ -6,8 +6,9 @@ subprocess.run([sys.executable, os.path.join(base, "build.py")], check=True)
 sayi = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
 hedef = os.path.join(base, "arsiv", sayi)
 os.makedirs(os.path.join(hedef, "haberler"), exist_ok=True)
-for d in ("DiojenNews.html", "styles.css"):
-    shutil.copy(os.path.join(base, d), hedef)
+for d in ("DiojenNews.html", "styles.css", "kose.html"):
+    if os.path.exists(os.path.join(base, d)): shutil.copy(os.path.join(base, d), hedef)
+if os.path.isdir(os.path.join(base, "kose")): shutil.copytree(os.path.join(base, "kose"), os.path.join(hedef, "kose"), dirs_exist_ok=True)
 for f in glob.glob(os.path.join(base, "haberler", "*.json")):
     shutil.copy(f, os.path.join(hedef, "haberler"))
 ap = os.path.join(hedef, "DiojenNews.html")
