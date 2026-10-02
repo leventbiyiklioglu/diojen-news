@@ -9,8 +9,10 @@ def yukle(slug):
     try: return json.load(open(p,encoding="utf-8"))
     except Exception: return {"yazar":"","haberler":[]}
 e = html.escape
-nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(a)}</a>' for s,a in KAT) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
-yan = "".join(f'<li><a href="#{s}">{e(a)}</a></li>' for s,a in KAT) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
+kose_dosyalar = sorted(glob.glob(os.path.join(base,"koseyazilari","*.md")), reverse=True)
+KAT_NAV = KAT + ([("kose","Köşe Yazıları")] if kose_dosyalar else [])
+nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
+yan = "".join(f'<li><a href="#{s}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
 bol = []
 manset = []
 for s,ad in KAT:
@@ -26,6 +28,18 @@ for s,ad in KAT:
     if not kart: kart = ['<p class="bos">Bu bölümün yazarı henüz haber girmedi.</p>']
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
     bol.append(f'<section class="bolum" id="{s}"><h2>{e(ad)} {yaz}</h2>{"".join(kart)}</section>')
+kose_html = ""
+if kose_dosyalar:
+    kartlar = []
+    for p in kose_dosyalar:
+        try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
+        except Exception: continue
+        if not satirlar: continue
+        baslik = satirlar[0].lstrip("# ").strip()
+        meta = satirlar[1].replace("**","") if len(satirlar)>1 else ""
+        govde = "".join(f'<p>{e(l.replace("**",""))}</p>' for l in satirlar[2:])
+        kartlar.append(f'<article class="card kose"><div class="meta">{e(meta)}</div><h3>{e(baslik)}</h3>{govde}</article>')
+    if kartlar: kose_html = f'<section class="bolum" id="kose"><h2>Köşe Yazıları</h2>{"".join(kartlar)}</section>'
 man = ""
 if manset:
     man = '<section class="manset"><h2>Manşet</h2>' + "".join(f'<div class="mkart"><div class="meta">{e(a)} · {e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p></div>' for a,h in manset[:3]) + '</section>'
@@ -50,7 +64,7 @@ sayfa = f'''<!DOCTYPE html>
 {piyasa_html}
 <div class="content">
 <aside class="sidebar"><h2>Kategoriler</h2><ul>{yan}</ul></aside>
-<main class="main-content">{man}{"".join(bol)}</main>
+<main class="main-content">{man}{"".join(bol)}{kose_html}</main>
 </div>
 <footer class="footer"><p>&copy; {yil} Diojen News. Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
 </div>
