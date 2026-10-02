@@ -15,6 +15,12 @@ ap = os.path.join(hedef, "DiojenNews.html")
 t = open(ap, encoding="utf-8").read().replace('href="arsiv/index.html"', 'href="../index.html"')
 open(ap, "w", encoding="utf-8").write(t)
 if os.path.isdir(os.path.join(base, "gorseller")): shutil.copytree(os.path.join(base, "gorseller"), os.path.join(hedef, "gorseller"), dirs_exist_ok=True)
+for klasor in ("gorseller", "makaleler"):
+    if os.path.isdir(os.path.join(base, klasor)): shutil.copytree(os.path.join(base, klasor), os.path.join(hedef, klasor), dirs_exist_ok=True)
+# arsivlenmis makale sayfalarinda arsiv baglantisi arsiv/<sayi>/ icinden bir ust arsiv dizinine gitmeli
+for mf in glob.glob(os.path.join(hedef, "makaleler", "*.html")):
+    mt = open(mf, encoding="utf-8").read().replace('href="../arsiv/index.html"', 'href="../../index.html"')
+    open(mf, "w", encoding="utf-8").write(mt)
 kose = os.path.join(base, "koseyazilari")
 if os.path.isdir(kose):
     shutil.copytree(kose, os.path.join(hedef, "koseyazilari"), dirs_exist_ok=True)
