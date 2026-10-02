@@ -10,6 +10,9 @@ for d in ("DiojenNews.html", "styles.css"):
     shutil.copy(os.path.join(base, d), hedef)
 for f in glob.glob(os.path.join(base, "haberler", "*.json")):
     shutil.copy(f, os.path.join(hedef, "haberler"))
+ap = os.path.join(hedef, "DiojenNews.html")
+t = open(ap, encoding="utf-8").read().replace('href="arsiv/index.html"', 'href="../index.html"')
+open(ap, "w", encoding="utf-8").write(t)
 sayilar = sorted([d for d in os.listdir(os.path.join(base, "arsiv")) if os.path.isdir(os.path.join(base, "arsiv", d))], reverse=True)
 satir = "".join(
     f'<li><a href="{html.escape(s)}/DiojenNews.html">{s[8:10]}.{s[5:7]}.{s[0:4]} {s[11:13]}:{s[13:15]} sayısı</a></li>'

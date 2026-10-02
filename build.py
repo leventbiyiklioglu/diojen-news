@@ -9,8 +9,8 @@ def yukle(slug):
     try: return json.load(open(p,encoding="utf-8"))
     except Exception: return {"yazar":"","haberler":[]}
 e = html.escape
-nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(a)}</a>' for s,a in KAT)
-yan = "".join(f'<li><a href="#{s}">{e(a)}</a></li>' for s,a in KAT)
+nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(a)}</a>' for s,a in KAT) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
+yan = "".join(f'<li><a href="#{s}">{e(a)}</a></li>' for s,a in KAT) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
 bol = []
 manset = []
 for s,ad in KAT:
