@@ -82,6 +82,14 @@
       return { deger: d.rates.TRY / d.rates.EUR, degisim: null, zaman: new Date(d.time_last_update_unix * 1000), kaynak: "ExchangeRate-API (open.er-api.com)" };
     });
   };
+  var erCross = function (kod) {
+    return function (get) {
+      return erRates(get).then(function (d) {
+        if (!gecerli(d.rates.TRY) || !gecerli(d.rates[kod])) throw new Error("er " + kod);
+        return { deger: d.rates.TRY / d.rates[kod], degisim: null, zaman: new Date(d.time_last_update_unix * 1000), kaynak: "ExchangeRate-API (open.er-api.com)" };
+      });
+    };
+  };
   var goldOns = function (get) {
     return get(URL.gold).then(function (d) {
       if (!d || !gecerli(d.price)) throw new Error("gold-api");
@@ -144,6 +152,8 @@
   var ENSTRUMANLAR = [
     { id: "usdtry", ad: "USD/TRY", birim: "₺", kaynaklar: [tg4("USD"), tg3("USD"), erUsd], ondalik: 4 },
     { id: "eurtry", ad: "EUR/TRY", birim: "₺", kaynaklar: [tg4("EUR"), tg3("EUR"), erEur], ondalik: 4 },
+    { id: "gbptry", ad: "GBP/TRY", birim: "₺", kaynaklar: [tg4("GBP"), tg3("GBP"), erCross("GBP")], ondalik: 4 },
+    { id: "chftry", ad: "CHF/TRY", birim: "₺", kaynaklar: [tg4("CHF"), tg3("CHF"), erCross("CHF")], ondalik: 4 },
     { id: "gram", ad: "Gram Altın", birim: "₺", kaynaklar: [tg4("GRA"), tg3("gram-altin"), gramHesap], ondalik: 2 },
     { id: "ons", ad: "Ons Altın", birim: "$", kaynaklar: [goldOns, tg3("ons")], ondalik: 2 },
     { id: "bist", ad: "BIST 100", birim: "", kaynaklar: [tg4("XU100")], ondalik: 2 },
