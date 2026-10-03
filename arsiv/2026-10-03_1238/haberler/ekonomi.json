@@ -1,0 +1,47 @@
+{
+  "yazar": "Emre Kaya",
+  "haberler": [
+    {
+      "baslik": "Borsa üçüncü haftayı da düşüşle kapattı; gözler pazartesi enflasyonunda",
+      "ozet": "BIST 100 endeksi haftayı yüzde 4,88 gerilemeyle 12.270 puandan tamamladı ve düşüş serisini üçüncü haftaya taşıdı; hafta içinde 11.926 seviyesini de test etti. Fon tasfiye süreci piyasada öne çıkarken SPK, tasfiyedeki Tera, Pusula, Atlas ve Hedef Portföy fonlarında mutabakatı tamamlanan yatırımcılara ara ödeme kararı aldı. Yeni haftanın ana gündemi 5 Ekim'de açıklanacak eylül TÜFE verisi; AA Finans anketinde ekonomistlerin aylık artış beklentisi yüzde 2,18.",
+      "kaynak": "Türkiye Gazetesi",
+      "kaynak_url": "https://www.turkiyegazetesi.com.tr/ekonomi/borsada-3-haftalik-dusus-serisi-en-cok-bu-hisseler-yukseldi-1820245",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "Cumartesi döviz: Dolar 49,13 TL, euro 55,32 TL civarında",
+      "ozet": "Hafta sonu serbest piyasada dolar/TL alış 49,1263, satış 49,1791 seviyelerinden işlem gördü. Euro ise yaklaşık 55,3190 TL civarında seyretti. Kur tarafında hareketlilik sürerken yatırımcılar iç ve dış gelişmeleri yakından izliyor.",
+      "kaynak": "Dünya Gazetesi",
+      "kaynak_url": "https://www.dunya.com/finans/dolar/dolar-kac-tl-oldu-euro-ne-kadar-3-ekim-cumartesi-doviz-kurlari-haberi-842404",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "Ons altın haftayı yüzde 3,37 kayıpla kapattı; tahvil ve dolar baskı kurdu",
+      "ozet": "Ons altın haftayı yüzde 3,37 değer kaybıyla yaklaşık 4.140 dolardan tamamladı; zayıf ABD istihdam ve PCE verilerine rağmen sarı metal geriledi. Fed'in ekim faiz artırımı ihtimali yüzde 70'lerden yüzde 22 civarına inse de 10 yıllık ABD tahvil getirisi 5,28 seviyesinde kaldı, dolar endeksi güçlendi. Spot gram altın da haftalık yüzde 2,91 düşüşle 6.542 TL civarından kapandı.",
+      "kaynak": "Türkiye Gazetesi",
+      "kaynak_url": "https://www.turkiyegazetesi.com.tr/ekonomi/altinda-sasirtan-dusus-fed-ve-zayif-veriler-de-care-olamadi-1820242",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "SPK'dan tasfiye fonlarına ara ödeme: Kişi ve fon başına en fazla 1 milyon TL",
+      "ozet": "Sermaye Piyasası Kurulu, Tera, Pusula, Atlas ve Hedef Portföy'ün kurucusu olduğu tasfiye sürecindeki fonlarda mutabakatı tamamlanan katılma payı sahiplerine nihai ödemeden mahsup edilmek üzere ara ödeme yapılacağını duyurdu. MKK'nın belirleyeceği net yatırım tutarı 1 milyon TL'nin altındaysa tamamı, üzerindeyse en fazla 1 milyon TL ödenecek; ara ödemede pay iadesi yapılmayacak. Uygulama öncelikle para piyasası fonlarından başlayacak.",
+      "kaynak": "Sermaye Piyasası Kurulu",
+      "kaynak_url": "https://spk.gov.tr/duyurular/basin-duyurulari/2026/tasfiyedeki-fonlara-iliskin-ara-odeme-duyurusu",
+      "tarih": "01.10.2026"
+    },
+    {
+      "baslik": "S&P: Fon soruşturması Türkiye'nin kredi notuna aşağı yönlü baskı yaratmıyor",
+      "ozet": "S&P Global Ratings yetkilileri, Anadolu Ajansı'nın sorularını yanıtlarken fon tasfiye sürecinin şimdilik finansal sisteme yayılmadığını belirtti. S&P'den Karen Vartapetov, süreç izole kalırsa Türkiye'nin kredi notunda aşağı yönlü baskı beklemediklerini söyledi; sürecin değerlendirme komitesinde muhtemelen bir risk olarak vurgulanacağını da ekledi. Vartapetov yetkililerin aldığı düzenlemeleri ve politika tepkisini hızlı ve ikna edici bulduğunu, döviz kuru, dolarizasyon ve bankacılık likiditesinde belirgin bir bozulma görmediklerini kaydetti. Kuruluşun Türkiye için ikinci not değerlendirmesini 16 Ekim'de açıklaması bekleniyor; nisanda not BB-/B, görünüm durağan olarak teyit edilmişti.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/ekonomi/sp-global-ratingse-gore-fon-sorusturmasi-turkiyenin-kredi-notunda-asagi-yonlu-baski-olusturmuyor/4075831",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Ekonomik güven endeksi eylülde 101,3 ile Haziran 2023'ten bu yana en yüksek seviyede",
+      "ozet": "TÜİK verilerine göre ekonomik güven endeksi ağustostaki 100,6'dan eylülde yüzde 0,7 artarak 101,3'e yükseldi. Tüketici güveni yüzde 1,3 ile 91,9'a, perakende ticaret güveni yüzde 1,1 ile 111,3'e çıktı; reel kesim güveni 102,5 oldu. Hizmet sektörü güveni 111,9'da sabit kalırken inşaat sektörü güveni yüzde 0,2 gerileyerek 83,0'a indi.",
+      "kaynak": "CNBC-e",
+      "kaynak_url": "https://www.cnbce.com/veriler/tuik-duyurdu-ekonomik-guven-endeksi-son-3-yilin-zirvesine-ulasti-h38265",
+      "tarih": "29.09.2026"
+    }
+  ]
+}
