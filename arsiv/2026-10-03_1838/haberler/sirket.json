@@ -1,0 +1,47 @@
+{
+  "yazar": "Diojen Derleme (Şirket Haberleri)",
+  "haberler": [
+    {
+      "baslik": "Lilly'nin lösemi ilacı Jaypirca için ABD'de ilk basamak tedavi onayı",
+      "ozet": "ABD Gıda ve İlaç Dairesi (FDA), Eli Lilly'nin Jaypirca (pirtobrutinib) adlı ilacına, daha önce tedavi görmemiş ve 17p delesyonu bulunmayan KLL/SLL hastalarında ilk basamak kullanım onayı verdi. Onay, 282 hastalı BRUIN CLL-313 çalışmasına dayanıyor; çalışmada ilaç, kemoimmünoterapi koluna kıyasla hastalığın ilerlemesini belirgin biçimde geciktirdi. Bildirilen yan etkiler arasında enfeksiyonlar, döküntü ve nötrofil düşüklüğü yer aldı; hastaların yüzde 28'inde ciddi advers etki görüldü.",
+      "kaynak": "AJMC",
+      "kaynak_url": "https://www.ajmc.com/view/fda-approves-pirtobrutinib-for-untreated-cll-sll-without-17p-deletion",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Starbucks, sendikanın marka davasında reddi talep ettiği başvuruda ret aldı",
+      "ozet": "Pennsylvania'daki federal bir hakim, Starbucks'ın Workers United sendikasının açtığı davanın düşürülmesi yönündeki talebini reddetti. Sendika, \"Starbucks Workers United\" adı ile yumruklu logo versiyonunu kullanmasının marka ihlali sayılmadığının tespitini istiyor. Starbucks ise davanın temelinde taraflar arasındaki 2024 tarihli mutabakat zaptı nedeniyle güncel bir uyuşmazlık bulunmadığını savunmuştu. Dava taraflar arasındaki iş uyuşmazlığının sürdüğü bir dönemde ilerliyor; iki taraf da karar hakkında henüz yorum yapmadı.",
+      "kaynak": "Reuters",
+      "kaynak_url": "https://www.reuters.com/legal/litigation/starbucks-loses-bid-dismiss-labor-unions-trademark-case-2026-10-02/",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Emlak Konut'un Ümraniye arsa ihalesinde en yüksek teklif 46,17 milyar TL oldu",
+      "ozet": "Emlak Konut, Türksat ile imzalanan işbirliği protokolü kapsamındaki İstanbul Ümraniye Inkılap 2. Etap gelir paylaşımı ihalesinin ikinci oturumunun 2 Ekim'de yapıldığını KAP'a bildirdi. Gelen en yüksek teklif 46,171 milyar TL toplam satış gelirine karşılık geliyor; şirketin yüzde 40'lık payı 18,468 milyar TL tutarında. Tekliflerin değerlendirmesi sürüyor, ihale sonuçlandığında ayrıca açıklama yapılacak.",
+      "kaynak": "Dünya Gazetesi (KAP Haberleri)",
+      "kaynak_url": "https://www.dunya.com/finans/borsa/kap-haberleri/6787732",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "Tesla'nın üçüncü çeyrek teslimatları beklentiyi aştı; Avrupa toparlanması öne çıktı",
+      "ozet": "Tesla, temmuz-eylül döneminde 486.532 araç teslim etti; Visible Alpha verilerine göre analistlerin ortalama beklentisi 456.896 idi. Avrupa'daki satış artışı, ABD'de 7.500 dolarlık federal vergi kredisinin geçen yıl sona ermesinin etkisini dengeledi. Şirket, art arda iki yıl süren satış düşüşünün ardından yıllık teslimatlarda büyümeye yönelmiş görünüyor; Tesla'nın çeyrek sonuçlarını 21 Ekim'de açıklaması bekleniyor.",
+      "kaynak": "Reuters (740 The FAN üzerinden)",
+      "kaynak_url": "https://740thefan.com/2026/10/02/tesla-posts-stronger-than-expected-quarterly-deliveries/",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "ASELSAN, yurt dışına 488,5 milyon avroluk hava savunma sistemi ihracatı için sözleşme imzaladı",
+      "ozet": "ASELSAN, Kamuyu Aydınlatma Platformu'na (KAP) yaptığı açıklamada yurt dışındaki bir son kullanıcıyla hava savunma sistemlerinin ihracatına ilişkin toplam 488,5 milyon avro tutarında satış sözleşmesi imzaladığını duyurdu. Açıklamada müşterinin kimliği ve teslimat ayrıntıları paylaşılmadı. Şirket, anlaşmanın cirosunu olumlu etkileyeceğini belirtti.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/ekonomi/aselsandan-488-5-milyon-avroluk-hava-savunma-sistemi-ihracat-sozlesmesi/4075728",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "THY ile Sıfır Atık Vakfı arasında sürdürülebilirlik protokolü imzalandı",
+      "ozet": "Türk Hava Yolları ile Sıfır Atık Vakfı, atık oluşumunun azaltılması, kabin ve yolcu kaynaklı atıkların yönetimi, gıda israfının önlenmesi ve karbon ayak izinin düşürülmesini kapsayan bir işbirliği protokolü imzaladı. THY Genel Müdürü Ahmet Olmuştur, kuruluşun 2050 karbon nötr hedefini yinelerken tesislerde yenilenebilir enerji oranının yüzde 18,5'e çıktığını söyledi. İki kurum, Kasım'da Antalya'da düzenlenecek COP31 kapsamında ortak bir havacılık forumu da yapacak.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/gundem/sifir-atik-vakfi-ile-thy-arasinda-isbirligi-protokolu-imzalandi/4075854",
+      "tarih": "02.10.2026"
+    }
+  ]
+}
