@@ -154,6 +154,7 @@
     { id: "eurtry", ad: "EUR/TRY", birim: "₺", kaynaklar: [tg4("EUR"), tg3("EUR"), erEur], ondalik: 4 },
     { id: "gbptry", ad: "GBP/TRY", birim: "₺", kaynaklar: [tg4("GBP"), tg3("GBP"), erCross("GBP")], ondalik: 4 },
     { id: "chftry", ad: "CHF/TRY", birim: "₺", kaynaklar: [tg4("CHF"), tg3("CHF"), erCross("CHF")], ondalik: 4 },
+    { id: "audtry", ad: "AUD/TRY", birim: "₺", kaynaklar: [tg4("AUD"), tg3("AUD"), erCross("AUD")], ondalik: 4 },
     { id: "gram", ad: "Gram Altın", birim: "₺", kaynaklar: [tg4("GRA"), tg3("gram-altin"), gramHesap], ondalik: 2 },
     { id: "ons", ad: "Ons Altın", birim: "$", kaynaklar: [goldOns, tg3("ons")], ondalik: 2 },
     { id: "bist", ad: "BIST 100", birim: "", kaynaklar: [tg4("XU100")], ondalik: 2 },
