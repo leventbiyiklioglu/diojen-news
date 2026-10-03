@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Diojen News: haberler/*.json dosyalarindan DiojenNews.html uretir."""
 import re, json, html, os, glob, datetime
-KAT = [("dunya","Dünya"),("ekonomi","Ekonomi"),("spor","Spor"),("teknoloji","Teknoloji"),("kultur","Kültür & Sanat"),("projectsyndicate","Project Syndicate"),("kimnedi","Kim Ne Dedi"),("sirket","Şirket Haberleri")]
+KAT = [("dunya","Dünya"),("ekonomi","Ekonomi"),("spor","Spor"),("teknoloji","Teknoloji"),("kultur","Kültür & Sanat"),("projectsyndicate","Project Syndicate"),("kimnedi","Kim Ne Dedi"),("sirket","Şirket Haberleri"),("bist30","BIST 30 Şirketleri")]
 base = os.path.dirname(os.path.abspath(__file__))
 def yukle(slug):
     p = os.path.join(base,"haberler",slug+".json")
@@ -17,7 +17,7 @@ KONU = [("askeri",["uçak gemisi","donanma","askeri","savaş gemisi","füze","hu
 ("futbol",["futbol","maç","süper lig","galatasaray","fenerbahçe","beşiktaş","trabzonspor","real madrid","barcelona","gol ","portekiz","milli takım"]),
 ("banka",["merkez banka","faiz","ppk","fed ","rezerv"]),("enflasyon",["enflasyon","tüfe","fiyat artış"]),("borsa",["borsa","bist","hisse","endeks"]),
 ("altin",["altın","dolar","döviz"]),("ucak",["uçak","havayolu","flydubai","havalimanı"]),("diplomasi",["diplomatik","büyükelçi","zirve","müzakere","ateşkes","anlaşma","g7","nato","ilişkiler"])]
-KONU_VARSAYILAN = {"dunya":"diplomasi","ekonomi":"borsa","spor":"futbol","teknoloji":"bilgisayar","kultur":"tiyatro","projectsyndicate":"diplomasi","kimnedi":"diplomasi","sirket":"banka"}
+KONU_VARSAYILAN = {"dunya":"diplomasi","ekonomi":"borsa","spor":"futbol","teknoloji":"bilgisayar","kultur":"tiyatro","projectsyndicate":"diplomasi","kimnedi":"diplomasi","sirket":"banka","bist30":"borsa"}
 def konu_resmi(slug, h):
     for alan in (h.get("baslik",""), h.get("ozet","")):
         t = alan.lower().replace("i̇","i")
@@ -31,7 +31,7 @@ yan = "".join(f'<li><a href="{"kose.html" if s=="kose" else "#"+s}">{e(a)}</a></
 bol = []
 manset = []
 for s,ad in KAT:
-    d = yukle(s); hab = d.get("haberler",[])[:6]
+    d = yukle(s); hab = d.get("haberler",[])[:(30 if s=="bist30" else 6)]
     kart = []
     for i,h in enumerate(hab):
         kaynak = ""
