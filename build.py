@@ -57,9 +57,75 @@ for s,ad in KAT:
     if not kart: kart = ['<p class="bos">Bu bölümün yazarı henüz haber girmedi.</p>']
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
     bol.append(f'<section class="bolum" id="{s}"><h2>{e(ad)} {yaz}</h2>{"".join(kart)}</section>')
+
+# ---- Hisse senedi şeritleri (BIST 30 + ABD): build zamanında Yahoo Finance chart uç noktasından çekilir ----
+# Tarayıcıdan canlı çekim yapılamaz: Yahoo CORS başlığı vermez, ücretsiz CORS proxy'ler anahtar ister/kararsızdır.
+# Bu yüzden değerler her derlemede (yayin.py, 6 saatte bir) gömülür; son veri zamanı şeritte gösterilir. Uydurma/sabit fiyat yoktur.
+# BIST 30: 01.10.2026-31.12.2026 dönemi (Borsa İstanbul KAP duyurusu, 21.09.2026): TRMET girdi, DSTKF çıktı.
+BIST30 = ["AEFES","AKBNK","ASELS","ASTOR","BIMAS","EKGYO","ENKAI","EREGL","FROTO","GARAN","GUBRF","ISCTR","KCHOL","KRDMD","MGROS","PETKM","PGSUS","SAHOL","SASA","SISE","TAVHL","TCELL","THYAO","TOASO","TRALT","TRMET","TTKOM","TUPRS","VAKBN","YKBNK"]
+ABD = ["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","JPM","V","NFLX","AMD","BRK-B","AVGO","WMT","COST"]
+HISSE_ONBELLEK = os.path.join(base,"haberler","hisse_fiyat.cache")
+def _yahoo(sembol):
+    import urllib.request, urllib.parse, time
+    url = "https://query2.finance.yahoo.com/v8/finance/chart/" + urllib.parse.quote(sembol) + "?interval=1d&range=5d"
+    for deneme in range(3):
+        try:
+            r = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
+            d = json.load(urllib.request.urlopen(r, timeout=15))["chart"]["result"][0]
+            m = d["meta"]; fiyat = m.get("regularMarketPrice"); zaman = m.get("regularMarketTime")
+            kap = [c for c in d["indicators"]["quote"][0].get("close",[]) if isinstance(c,(int,float))]
+            onceki = kap[-2] if len(kap) >= 2 else None
+            deg = (fiyat/onceki-1)*100 if (onceki and onceki > 0) else m.get("regularMarketChangePercent")
+            if not isinstance(fiyat,(int,float)) or fiyat <= 0 or not isinstance(deg,(int,float)) or not zaman: return None
+            return {"fiyat":fiyat, "deg":deg, "zaman":int(zaman)}
+        except Exception:
+            time.sleep(1.5*(deneme+1))
+    return None
+def hisseleri_cek():
+    from concurrent.futures import ThreadPoolExecutor
+    try: onbellek = json.load(open(HISSE_ONBELLEK,encoding="utf-8"))
+    except Exception: onbellek = {}
+    istek = [("bist", s, s+".IS") for s in BIST30] + [("abd", s, s) for s in ABD]
+    with ThreadPoolExecutor(max_workers=6) as ex: sonuc = list(ex.map(lambda x: _yahoo(x[2]), istek))
+    simdi = int(datetime.datetime.now().timestamp()); yeni = {}
+    for (grup, ad, ys), r in zip(istek, sonuc):
+        if r: yeni[ys] = r
+        elif ys in onbellek and simdi - onbellek[ys]["zaman"] < 4*86400: yeni[ys] = onbellek[ys]  # geçici hata: en fazla 4 günlük son geçerli değer, kendi zamanıyla
+    json.dump(yeni, open(HISSE_ONBELLEK,"w",encoding="utf-8"))
+    print("hisse verisi:", sum(1 for (g,a,y),r in zip(istek,sonuc) if r), "/", len(istek), "canlı;", len(yeni), "kullanılabilir")
+    return yeni
+def _sayi_tr(v, o=2): return f"{v:,.{o}f}".replace(",","X").replace(".",",").replace("X",".")
+def _tsi(ts, bicim): return datetime.datetime.fromtimestamp(ts, datetime.timezone(datetime.timedelta(hours=3))).strftime(bicim)
+def serit_html(kok):
+    try: veri = hisseleri_cek()
+    except Exception as ex:
+        print("hisse seridi atlandi:", ex); return ""
+    def serit(kimlik, etiket, liste, ek, birim, sure):
+        ogeler = []; zamanlar = []
+        for s in liste:
+            r = veri.get(s+ek)
+            if not r: continue
+            zamanlar.append(r["zaman"]); d = r["deg"]
+            if round(d,2) > 0: sinif, isaret = "ar", "+"
+            elif round(d,2) < 0: sinif, isaret = "az", "−"
+            else: sinif, isaret = "sb", ""
+            ogeler.append(f'<li class="si {sinif}"><b>{e(s)}</b> <span class="sf">{birim}{_sayi_tr(r["fiyat"])}</span> <span class="sd">{isaret}%{_sayi_tr(abs(d))}</span></li>')
+        if len(ogeler) < max(3, len(liste)//2): return "", None
+        ul = "".join(ogeler)
+        return (f'<div class="serit" id="serit-{kimlik}"><span class="serit-etiket">{e(etiket)}</span><div class="serit-pencere"><div class="serit-ray" style="--sure:{sure}s">'
+                f'<ul>{ul}</ul><ul aria-hidden="true">{ul}</ul></div></div></div>'), min(zamanlar)
+    b, bz = serit("bist30", "BIST 30", BIST30, ".IS", "₺", 80)
+    a, az_ = serit("abd", "ABD", ABD, "", "$", 55)
+    if not b and not a: return ""
+    notlar = []
+    if bz: notlar.append("BIST 30: " + _tsi(bz, "%d.%m.%Y %H:%M"))
+    if az_: notlar.append("ABD: " + _tsi(az_, "%d.%m.%Y %H:%M"))
+    return (f'<div class="seritlar" role="region" aria-label="Hisse senedi şeritleri">{b}{a}'
+            f'<div class="serit-not">Gecikmeli veri, yatırım tavsiyesi değildir · Yahoo Finance · son veri (TSİ) — {" · ".join(notlar)} · günlük değişim önceki kapanışa göredir</div></div>')
+SERIT = serit_html("")
 kose_html = ""
 def sayfa_kose(baslik, icerik, kok):
-    return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
+    return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body>{SERIT}<div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
 def kose_oku(p):
     try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
     except Exception: return None
@@ -188,6 +254,7 @@ def makale_sayfasi(y):
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+{SERIT}
 <div class="container">
 <header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
 <nav class="navbar">{nav2}</nav>
@@ -226,6 +293,7 @@ sayfa = f'''<!DOCTYPE html>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+{SERIT}
 <div class="container" id="ust">
 <header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
 <nav class="navbar">{nav}</nav>
