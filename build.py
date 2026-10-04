@@ -64,6 +64,11 @@ for s,ad in KAT:
 # BIST 30: 01.10.2026-31.12.2026 dönemi (Borsa İstanbul KAP duyurusu, 21.09.2026): TRMET girdi, DSTKF çıktı.
 BIST30 = ["AEFES","AKBNK","ASELS","ASTOR","BIMAS","EKGYO","ENKAI","EREGL","FROTO","GARAN","GUBRF","ISCTR","KCHOL","KRDMD","MGROS","PETKM","PGSUS","SAHOL","SASA","SISE","TAVHL","TCELL","THYAO","TOASO","TRALT","TRMET","TTKOM","TUPRS","VAKBN","YKBNK"]
 ABD = ["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","JPM","V","NFLX","AMD","BRK-B","AVGO","WMT","COST"]
+# Canlı güncelleme: Cloudflare Worker adresi TEK yerde burada tanımlıdır (kaynak: worker/, `npx wrangler deploy`).
+# İstemci tarafı: hisse.js (her sayfaya satır içi gömülür); Worker erişilemezse build zamanı değerler kalır.
+HISSE_API = "https://diojen-hisse.diojen.workers.dev"
+try: hisse_js = open(os.path.join(base,"hisse.js"),encoding="utf-8").read().replace("</script","<\\/script")
+except Exception: hisse_js = ""
 HISSE_ONBELLEK = os.path.join(base,"haberler","hisse_fiyat.cache")
 def _yahoo(sembol):
     import urllib.request, urllib.parse, time
@@ -109,7 +114,7 @@ def serit_html(kok):
             if round(d,2) > 0: sinif, isaret = "ar", "+"
             elif round(d,2) < 0: sinif, isaret = "az", "−"
             else: sinif, isaret = "sb", ""
-            ogeler.append(f'<li class="si {sinif}"><b>{e(s)}</b> <span class="sf">{birim}{_sayi_tr(r["fiyat"])}</span> <span class="sd">{isaret}%{_sayi_tr(abs(d))}</span></li>')
+            ogeler.append(f'<li class="si {sinif}" data-s="{e(s+ek)}" data-b="{birim}"><b>{e(s)}</b> <span class="sf">{birim}{_sayi_tr(r["fiyat"])}</span> <span class="sd">{isaret}%{_sayi_tr(abs(d))}</span></li>')
         if len(ogeler) < max(3, len(liste)//2): return "", None
         ul = "".join(ogeler)
         return (f'<div class="serit" id="serit-{kimlik}"><span class="serit-etiket">{e(etiket)}</span><div class="serit-pencere"><div class="serit-ray" style="--sure:{sure}s">'
@@ -120,9 +125,10 @@ def serit_html(kok):
     notlar = []
     if bz: notlar.append("BIST 30: " + _tsi(bz, "%d.%m.%Y %H:%M"))
     if az_: notlar.append("ABD: " + _tsi(az_, "%d.%m.%Y %H:%M"))
-    return (f'<div class="seritlar" role="region" aria-label="Hisse senedi şeritleri">{b}{a}'
+    return (f'<div class="seritlar" role="region" aria-label="Hisse senedi şeritleri" data-api="{e(HISSE_API)}">{b}{a}'
             f'<div class="serit-not">Gecikmeli veri, yatırım tavsiyesi değildir · Yahoo Finance · son veri (TSİ) — {" · ".join(notlar)} · günlük değişim önceki kapanışa göredir</div></div>')
 SERIT = serit_html("")
+if SERIT and hisse_js: SERIT += "<script>" + hisse_js + "</script>"
 kose_html = ""
 def sayfa_kose(baslik, icerik, kok):
     return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body>{SERIT}<div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''

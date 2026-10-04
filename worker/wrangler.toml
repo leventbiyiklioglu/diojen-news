@@ -1,0 +1,7 @@
+# Diojen News - canlı hisse verisi Worker'ı (Cloudflare Workers ücretsiz katman)
+# Dağıtım: CLOUDFLARE_API_TOKEN ve CLOUDFLARE_ACCOUNT_ID ortam değişkenleriyle `npx wrangler deploy`
+# (Token asla dosyaya/commit'e yazılmaz.)
+name = "diojen-hisse"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
