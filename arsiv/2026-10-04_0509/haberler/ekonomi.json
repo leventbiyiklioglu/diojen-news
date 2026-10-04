@@ -1,0 +1,47 @@
+{
+  "yazar": "Emre Kaya",
+  "haberler": [
+    {
+      "baslik": "Fed'in ekim faiz artışı ihtimali zayıf istihdamla yüzde 20 civarına geriledi",
+      "ozet": "ABD'de eylül tarım dışı istihdam yalnızca 29 bin kişi artarak beklentilerin altında kaldı, işsizlik yüzde 4,2'ye yükseldi. CME FedWatch verilerine göre 27–28 Ekim FOMC toplantısında faiz artırımı olasılığı hafta başındaki yaklaşık yüzde 70 seviyesinden verinin ardından yüzde 20 civarına, anlık olarak yüzde 13,8'e kadar düştü. New York Fed Başkanı Williams ve Fed Başkan Yardımcısı Jefferson'ın 'acele yok' mesajları ile yumuşak PCE verisinin ardından piyasalar bir sonraki olası adımı daha çok aralık ayına kaydırdı; kritik test 14 Ekim'deki eylül TÜFE verisi olacak.",
+      "kaynak": "Invezz",
+      "kaynak_url": "https://invezz.com/news/2026/10/03/how-fed-hike-odds-plunged-from-70-to-below-20-in-one-week/",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "Küresel tahvil faizleri zirvede; BIST haftayı yüzde 4,88 düşüşle kapattı",
+      "ozet": "ABD'nin 10 yıllık tahvil faizi yüzde 5,34, 30 yıllığı ise yüzde 5,69 ile 2002'den bu yana en yüksek seviyeleri gördü; dolar endeksi 102,2'ye çıkarken ons altın yüzde 3,4 kayıpla 4.141 dolara geriledi. BIST 100 endeksi küresel satış dalgasıyla haftayı yüzde 4,88 düşüşle 12.270,18 puandan tamamladı, dolar/TL 49,1285 seviyesinde dengelendi. Yurt içinde pazartesi açıklanacak eylül TÜFE verisi öne çıkıyor; ekonomistler aylık yüzde 2,18 artış ve yıllık enflasyonun yüzde 30,16'ya gerilemesini bekliyor.",
+      "kaynak": "Cumhuriyet",
+      "kaynak_url": "https://www.cumhuriyet.com.tr/ekonomi/kuresel-piyasalarda-tahvil-depremi-borsa-istanbul-da-kayip-yuzde-5-i-asarken-gozler-enflasyona-cevrildi-2543393",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "Cumartesi döviz: Dolar 49,13 TL, euro 55,32 TL civarında",
+      "ozet": "Hafta sonu serbest piyasada dolar/TL alış 49,1263, satış 49,1791 seviyelerinden işlem gördü. Euro ise yaklaşık 55,3190 TL civarında seyretti. Kur tarafında hareketlilik sürerken yatırımcılar iç ve dış gelişmeleri yakından izliyor.",
+      "kaynak": "Dünya Gazetesi",
+      "kaynak_url": "https://www.dunya.com/finans/dolar/dolar-kac-tl-oldu-euro-ne-kadar-3-ekim-cumartesi-doviz-kurlari-haberi-842404",
+      "tarih": "03.10.2026"
+    },
+    {
+      "baslik": "G7, rezervlerinden 100 milyon varil petrol ve dizeli piyasaya sürecek",
+      "ozet": "G7 liderleri, Uluslararası Enerji Ajansı koordinasyonunda dizel ve diğer petrol rezervlerinden toplam 100 milyon varilin dört ay içinde serbest bırakılmasına karar verdi; salıma hemen başlanacak. İlk 20 günde önemli miktarda dizel bırakılması planlanırken, kararın ardından Brent petrol varil fiyatı yüzde 2,2 gerileyerek 100 dolara indi. Haftalık kapanışta ise jeopolitik risklerle Brent yüzde 3,5 artarak 102,3 dolardan tamamlanmıştı.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://aa.com.tr/tr/ekonomi/g7-rezervlerinden-100-milyon-varil-petrol-ve-dizeli-piyasaya-surecek/4076373",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "S&P: Fon soruşturması Türkiye'nin kredi notuna aşağı yönlü baskı yaratmıyor",
+      "ozet": "S&P Global Ratings yetkilileri, Anadolu Ajansı'nın sorularını yanıtlarken fon tasfiye sürecinin şimdilik finansal sisteme yayılmadığını belirtti. S&P'den Karen Vartapetov, süreç izole kalırsa Türkiye'nin kredi notunda aşağı yönlü baskı beklemediklerini söyledi; sürecin değerlendirme komitesinde muhtemelen bir risk olarak vurgulanacağını da ekledi. Vartapetov yetkililerin aldığı düzenlemeleri ve politika tepkisini hızlı ve ikna edici bulduğunu, döviz kuru, dolarizasyon ve bankacılık likiditesinde belirgin bir bozulma görmediklerini kaydetti. Kuruluşun Türkiye için ikinci not değerlendirmesini 16 Ekim'de açıklaması bekleniyor; nisanda not BB-/B, görünüm durağan olarak teyit edilmişti.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/ekonomi/sp-global-ratingse-gore-fon-sorusturmasi-turkiyenin-kredi-notunda-asagi-yonlu-baski-olusturmuyor/4075831",
+      "tarih": "02.10.2026"
+    },
+    {
+      "baslik": "TCMB KOBİ kredi büyüme sınırını yüzde 5'e çıkardı",
+      "ozet": "Türkiye Cumhuriyet Merkez Bankası, 1 Ekim tarihli 2026-43 sayılı makroihtiyati çerçeve duyurusunda KOBİ kredileri için aylık büyüme sınırını yüzde 4,5'ten yüzde 5'e yükseltti. Aynı düzenlemede Türk lirası zorunlu karşılıklarda bloke tesis oranları da düşürüldü. Banka, adımların makrofinansal istikrarı ve bankaların likidite yönetimini desteklemek amacıyla atıldığını bildirdi.",
+      "kaynak": "TCMB",
+      "kaynak_url": "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Duyurular/Basin/2026/DUY2026-43",
+      "tarih": "01.10.2026"
+    }
+  ]
+}

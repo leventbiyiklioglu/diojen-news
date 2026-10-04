@@ -26,8 +26,21 @@ def konu_resmi(slug, h):
     return KONU_VARSAYILAN.get(slug)
 kose_dosyalar = sorted(glob.glob(os.path.join(base,"koseyazilari","*.md")), reverse=True)
 KAT_NAV = KAT + ([("kose","Köşe Yazıları")] if kose_dosyalar else [])
-nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="{"kose.html" if s=="kose" else "#"+s}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
-yan = "".join(f'<li><a href="{"kose.html" if s=="kose" else "#"+s}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
+def dk_nav(kok):
+    return f'<a href="{kok}dedekorkut.html">{DK_AD}</a>' if dk_bolumler else ""
+def dk_oku():
+    try: v = json.load(open(os.path.join(base,"dedekorkut","bolumler.json"),encoding="utf-8"))
+    except Exception: return []
+    def anahtar(b):
+        m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", b.get("tarih",""))
+        return ((m.group(3),m.group(2),m.group(1)) if m else ("0000","00","00"), int(b.get("bolum",0) or 0))
+    return sorted([b for b in v if b.get("paneller")], key=anahtar, reverse=True)
+dk_bolumler = dk_oku()
+DK_AD = "Dede Korkut Günlüğü"
+if dk_bolumler: KAT_NAV = KAT_NAV + [("dedekorkut",DK_AD)]
+SAYFA = {"kose":"kose.html","dedekorkut":"dedekorkut.html"}
+nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
+yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
 bol = []
 manset = []
 for s,ad in KAT:
@@ -45,6 +58,8 @@ for s,ad in KAT:
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
     bol.append(f'<section class="bolum" id="{s}"><h2>{e(ad)} {yaz}</h2>{"".join(kart)}</section>')
 kose_html = ""
+def sayfa_kose(baslik, icerik, kok):
+    return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
 def kose_oku(p):
     try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
     except Exception: return None
@@ -63,8 +78,6 @@ if yazilar:
     def kose_kart(y, kok):
         img = f'<img class="kose-resim" src="{kok}gorseller/{y["slug"]}.jpg" alt="{e(y["baslik"])}">' if os.path.exists(os.path.join(base,"gorseller",y["slug"]+".jpg")) else ""
         return f'<article class="card kose"><div class="kose-metin"><div class="meta">{e(y["meta"])}</div><h3>{e(y["baslik"])}</h3>{y["govde"]}</div>{img}</article>'
-    def sayfa_kose(baslik, icerik, kok):
-        return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a><a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
     os.makedirs(os.path.join(base,"kose"), exist_ok=True)
     for f in glob.glob(os.path.join(base,"kose","*.html")): os.remove(f)
     for y in yazilar:
@@ -74,6 +87,13 @@ if yazilar:
     liste = "".join(f'<li><a href="kose/{e(y["slug"])}.html">{e(y["baslik"])}</a> <span class="meta">{e(y["meta"])}</span></li>' for y in eski)
     onceki = f'<h2>Önceki Köşe Yazıları</h2><ul class="kose-liste">{liste}</ul>' if eski else ""
     open(os.path.join(base,"kose.html"),"w",encoding="utf-8").write(sayfa_kose("Köşe Yazıları", f'<h2>Köşe Yazıları</h2>{kartlar}{onceki}', ""))
+# ---- Dede Korkut Günlüğü: dedekorkut/bolumler.json -> dedekorkut.html ----
+if dk_bolumler:
+    bl = []
+    for b in dk_bolumler:
+        pn = "".join(f'<figure class="dk-panel"><img src="{e(p["resim"])}" alt="{e(p.get("altyazi",""))}" loading="lazy"><figcaption>{e(p.get("altyazi",""))}</figcaption></figure>' for p in b["paneller"])
+        bl.append(f'<article class="dk-bolum"><div class="meta">{e(b.get("hikaye",""))} · {e(str(b.get("bolum","")))}. Bölüm · {e(b.get("tarih",""))}</div><h3>{e(b.get("baslik",""))}</h3><div class="dk-izgara">{pn}</div></article>')
+    open(os.path.join(base,"dedekorkut.html"),"w",encoding="utf-8").write(sayfa_kose(DK_AD, f'<h2>{DK_AD}</h2><p class="dk-giris">Dede Korkut hikâyelerinden resimli, günlük bölümler. Her gün yeni bir bölüm.</p>{"".join(bl)}', "").replace('<div class="kose-sayfa">','<div class="kose-sayfa dk-sayfa">',1))
 man = ""
 if manset:
     man = '<section class="manset"><h2>Manşet</h2>' + "".join(f'<div class="mkart"><div class="meta">{e(a)} · {e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p></div>' for a,h in manset[:3]) + '</section>'
@@ -157,7 +177,7 @@ def makale_sayfasi(y):
     kay = ""
     if y["kaynaklar"]:
         kay = '<section class="makale-kaynaklar"><h2>Kaynaklar</h2><ol>' + "".join(f'<li id="k{n}" value="{n}">{kaynak_satiri(s)}</li>' for n,s in y["kaynaklar"]) + '</ol></section>'
-    nav2 = '<a href="../DiojenNews.html">Ana Sayfa</a><a href="../kose.html">Köşe Yazıları</a><a href="../arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
+    nav2 = '<a href="../DiojenNews.html">Ana Sayfa</a><a href="../kose.html">Köşe Yazıları</a>' + dk_nav("../") + '<a href="../arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
     return f'''<!DOCTYPE html>
 <html lang="tr">
 <head>
