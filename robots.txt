@@ -1,0 +1,12 @@
+# build.py tarafindan uretilir
+User-agent: *
+Allow: /
+Disallow: /taslak/
+Disallow: /onizleme/
+Disallow: /koseyazilari/
+Disallow: /worker/
+Disallow: /YONERGE
+# arsiv/ engellenmez: arsiv sayfalarinda <meta name="robots" content="noindex,follow"> var, taranabilmeleri gerekir.
+
+Sitemap: https://diojennews.com/sitemap.xml
+Sitemap: https://diojennews.com/news-sitemap.xml
