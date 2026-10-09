@@ -1,0 +1,21 @@
+# GitHub Pages (Jekyll) ayarlari.
+# Bu dosyalar repoda kalir ama siteye YAYINLANMAZ (ic dosyalar, kaynak .md'ler, betikler).
+# Yeni sayfa eklerken bu listeyi silmeyin/daraltmayin. Gorseller, PDF, html, CNAME,
+# sitemap.xml, news-sitemap.xml ve robots.txt bu listede OLMAMALI.
+exclude:
+  - "*.md"            # YONERGE.md, koseyazilari/*.md, makaleler/*.md, dedekorkut/HIKAYE.md, arsiv/**/*.md (html'leri build.py uretir)
+  - "*.py"            # build.py, yayin.py
+  - YONERGE.md
+  - build.py
+  - yayin.py
+  - koseyazilari/
+  - worker/
+  - taslak/
+  - onizleme/         # Selin'in onizlemesi; Orhan yayina alirken bu satiri kaldirmali
+  - onizleme*.png
+  - o6.png
+  - arsiv-dosyasi/konular.md
+  - arsiv-dosyasi/yayinlananlar.md
+  - arsiv-dosyasi/kaynaklar/
+  - kaynaklar/
+  - .gitignore
