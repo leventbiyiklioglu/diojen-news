@@ -1,0 +1,16 @@
+{
+ "yazar": "Selin",
+ "aciklama": "Sinema ve televizyon bölümü öğrencilerinin yazıları. Her yazı: baslik, ogrenci, okul, tarih (GG.AA.YYYY), ozet, metin VEYA link, gorsel (isteğe bağlı, gorseller/ogrenci-kosesi/ altında).",
+ "yazilar": [
+  {
+   "ornek": true,
+   "baslik": "[ÖRNEK] Yazı başlığı burada yer alacak",
+   "ogrenci": "Öğrenci Adı Soyadı",
+   "okul": "Üniversite, Sinema ve Televizyon Bölümü",
+   "tarih": "GG.AA.YYYY",
+   "ozet": "Bu kart yalnızca sayfa düzenini göstermek için konmuş bir şablondur, gerçek bir yazı değildir. Öğrenci yazıları geldiğinde burada 2-3 cümlelik özet görünecek.",
+   "metin": "Yazının metni ya da dış bağlantısı (link) bu alanda yer alacak.",
+   "gorsel": "gorseller/konu/film.jpg"
+  }
+ ]
+}

@@ -1,0 +1,250 @@
+{
+ "yazar": "Selin",
+ "guncelleme": "09.10.2026",
+ "aciklama": "Haftalık gişe tabloları. Rakamlar kaynaktan olduğu gibi aktarılır; tahmini (estimated) değerler kaynakta düzeltilebilir.",
+ "tablolar": [
+  {
+   "id": "turkiye",
+   "baslik": "Türkiye Hafta Sonu Gişesi",
+   "donem": "2026 40. hafta sonu, 02-04 Ekim 2026",
+   "kaynak": "Box Office Türkiye",
+   "kaynak_url": "https://boxofficeturkiye.com/hafta-sonu/detay/2026-40",
+   "para": "TRY",
+   "not": "Sıralama kaynaktaki gibi hafta sonu seyirci sayısına göredir. İlk 10 film; hafta sonu toplamı 182.141 seyirci, 60.101.592 TL (39 film).",
+   "satirlar": [
+    {
+     "sira": 1,
+     "film": "Resident Evil",
+     "hafta": 3,
+     "hafta_sonu": 9183689,
+     "seyirci_hafta_sonu": 28053,
+     "toplam": 68263196,
+     "seyirci_toplam": 326859
+    },
+    {
+     "sira": 2,
+     "film": "Vahşinin Kalbi",
+     "hafta": 1,
+     "hafta_sonu": 8881747,
+     "seyirci_hafta_sonu": 25308,
+     "toplam": 10592502,
+     "seyirci_toplam": 37187
+    },
+    {
+     "sira": 3,
+     "film": "Üç Harfliler: Mühür",
+     "hafta": 2,
+     "hafta_sonu": 4227658,
+     "seyirci_hafta_sonu": 15085,
+     "toplam": 16041929,
+     "seyirci_toplam": 108830
+    },
+    {
+     "sira": 4,
+     "film": "Avengers: Endgame",
+     "hafta": 13,
+     "hafta_sonu": 5068281,
+     "seyirci_hafta_sonu": 14564,
+     "toplam": 72246107,
+     "seyirci_toplam": 2621034
+    },
+    {
+     "sira": 5,
+     "film": "Örümcek-Adam: Yepyeni Bir Gün",
+     "hafta": 10,
+     "hafta_sonu": 4057856,
+     "seyirci_hafta_sonu": 12459,
+     "toplam": 772780342,
+     "seyirci_toplam": 2820004
+    },
+    {
+     "sira": 6,
+     "film": "Robu 404",
+     "hafta": 1,
+     "hafta_sonu": 3302163,
+     "seyirci_hafta_sonu": 11451,
+     "toplam": 3302163,
+     "seyirci_toplam": 11451
+    },
+    {
+     "sira": 7,
+     "film": "Verity: Gerçeğin Diğer Kıyısı",
+     "hafta": 1,
+     "hafta_sonu": 3821344,
+     "seyirci_hafta_sonu": 9552,
+     "toplam": 3821344,
+     "seyirci_toplam": 9552
+    },
+    {
+     "sira": 8,
+     "film": "İsyan",
+     "hafta": 2,
+     "hafta_sonu": 2865134,
+     "seyirci_hafta_sonu": 9339,
+     "toplam": 12054953,
+     "seyirci_toplam": 83114
+    },
+    {
+     "sira": 9,
+     "film": "Digger",
+     "hafta": 1,
+     "hafta_sonu": 3479276,
+     "seyirci_hafta_sonu": 8420,
+     "toplam": 3479276,
+     "seyirci_toplam": 8420
+    },
+    {
+     "sira": 10,
+     "film": "Unutulmuş Ada",
+     "hafta": 1,
+     "hafta_sonu": 2457871,
+     "seyirci_hafta_sonu": 8078,
+     "toplam": 2457871,
+     "seyirci_toplam": 8078
+    }
+   ]
+  },
+  {
+   "id": "abd",
+   "baslik": "ABD ve Kanada Hafta Sonu Gişesi",
+   "donem": "2026 40. hafta sonu, 2-4 Ekim 2026",
+   "kaynak": "Box Office Mojo",
+   "kaynak_url": "https://www.boxofficemojo.com/weekend/2026W40/",
+   "para": "USD",
+   "not": "Kuzey Amerika (domestic) ilk 10. Primetime ve Drishyam: The Conclusion rakamları kaynakta tahmini olarak işaretli. Seyirci sayısı yayımlanmıyor.",
+   "satirlar": [
+    {
+     "sira": 1,
+     "film": "Verity",
+     "hafta_sonu": 32031011,
+     "toplam": 32031011,
+     "hafta": 1
+    },
+    {
+     "sira": 2,
+     "film": "Resident Evil",
+     "hafta_sonu": 12618839,
+     "toplam": 125013734,
+     "hafta": 3
+    },
+    {
+     "sira": 3,
+     "film": "Heart of the Beast",
+     "hafta_sonu": 10876713,
+     "toplam": 38275824,
+     "hafta": 2
+    },
+    {
+     "sira": 4,
+     "film": "Digger",
+     "hafta_sonu": 8001856,
+     "toplam": 8001856,
+     "hafta": 1
+    },
+    {
+     "sira": 5,
+     "film": "Primetime",
+     "hafta_sonu": 8000085,
+     "toplam": 34085832,
+     "hafta": 2
+    },
+    {
+     "sira": 6,
+     "film": "Forgotten Island",
+     "hafta_sonu": 7201655,
+     "toplam": 23632855,
+     "hafta": 2
+    },
+    {
+     "sira": 7,
+     "film": "Avengers Endgame: Encore 2026 Re-release",
+     "hafta_sonu": 4471524,
+     "toplam": 36298509,
+     "hafta": 2
+    },
+    {
+     "sira": 8,
+     "film": "Practical Magic 2",
+     "hafta_sonu": 2785993,
+     "toplam": 64827319,
+     "hafta": 4
+    },
+    {
+     "sira": 9,
+     "film": "Drishyam: The Conclusion",
+     "hafta_sonu": 2715000,
+     "toplam": 2715000,
+     "hafta": 1
+    },
+    {
+     "sira": 10,
+     "film": "Spider-Man: Brand New Day",
+     "hafta_sonu": 2501553,
+     "toplam": 954528523,
+     "hafta": 10
+    }
+   ]
+  },
+  {
+   "id": "dunya",
+   "baslik": "Dünya Gişesi: 2026'nın En Çok Hasılat Yapanları",
+   "donem": "1 Ocak - 9 Ekim 2026 (kümülatif, 09.10.2026'da alındı)",
+   "kaynak": "Box Office Mojo",
+   "kaynak_url": "https://www.boxofficemojo.com/year/world/2026/",
+   "para": "USD",
+   "not": "Yıl başından bu yana dünya geneli toplam hasılat (ABD + uluslararası). Haftalık değil, kümülatif tablodur.",
+   "satirlar": [
+    {
+     "sira": 1,
+     "film": "Spider-Man: Brand New Day",
+     "toplam": 2506719628
+    },
+    {
+     "sira": 2,
+     "film": "The Odyssey",
+     "toplam": 1771960352
+    },
+    {
+     "sira": 3,
+     "film": "Toy Story 5",
+     "toplam": 1148032461
+    },
+    {
+     "sira": 4,
+     "film": "Michael",
+     "toplam": 1028703388
+    },
+    {
+     "sira": 5,
+     "film": "The Super Mario Galaxy Movie",
+     "toplam": 1012608467
+    },
+    {
+     "sira": 6,
+     "film": "The Devil Wears Prada 2",
+     "toplam": 693255651
+    },
+    {
+     "sira": 7,
+     "film": "Project Hail Mary",
+     "toplam": 684489947
+    },
+    {
+     "sira": 8,
+     "film": "Pegasus 3",
+     "toplam": 656459523
+    },
+    {
+     "sira": 9,
+     "film": "Minions & Monsters",
+     "toplam": 526259745
+    },
+    {
+     "sira": 10,
+     "film": "Obsession",
+     "toplam": 522197701
+    }
+   ]
+  }
+ ]
+}
