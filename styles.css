@@ -217,3 +217,6 @@ html { scroll-behavior:smooth; }
 .ok-metin h3.ok-ara { font-size:1.1rem; color:#1f6f6b; margin:18px 0 4px; }
 .onizleme-bandi { background:#555; color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:.8rem; font-weight:bold; letter-spacing:.5px; padding:6px 10px; margin:6px 0 10px; }
 @media (max-width:700px){ .header .site-adi { font-size:1.8rem; } .ozel-sayfa .bolum > h1 { font-size:1.4rem; } .ozel-sayfa .bolum > h1.makale-baslik { font-size:1.6rem; } }
+.ozel-sayfa .ok-kart h2, .kultur-ozet h2, .kultur-ozet h3 { text-transform:none; letter-spacing:0; border:none; padding:0; }
+.ozel-sayfa .ok-kart h2 { color:#111; }
+.onizleme-bandi, .onizleme-bandi * { color:#fff !important; }
