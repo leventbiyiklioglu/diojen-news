@@ -3,3 +3,7 @@ o6.png
 haberler/hisse_fiyat.cache
 taslak/
 __pycache__/
+# Kaan (Arşiv Dosyası) çalışma dosyaları: repoya ve siteye girmez (_config.yml exclude ile birlikte)
+arsiv-dosyasi/konular.md
+arsiv-dosyasi/yayinlananlar.md
+arsiv-dosyasi/kaynaklar/

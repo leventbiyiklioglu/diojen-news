@@ -1,4 +1,5 @@
 {
+ "hafta_kodu": "2026-40",
  "yazar": "Selin",
  "guncelleme": "09.10.2026",
  "aciklama": "Türkiye tablosu Box Office Türkiye HAFTALIK listesine dayanır (boxofficeturkiye.com/hafta/detay/<yıl>-<hafta>). Satır alanları: sira, film, hafta (vizyondaki hafta sayısı), seyirci_hafta, hasilat_hafta (TL), seyirci_toplam, hasilat_toplam, isteğe bağlı yorum ve yeni_cikanlar_id; isteğe bağlı hafta sonu alanları: seyirci_hafta_sonu, hasilat_hafta_sonu. Boş (null) sütunlar gösterilmez. Her tabloda kaynak, kaynak_url, donem zorunlu. Rakam uydurulmaz; veri yoksa satirlar boş bırakılır ve sayfada 'Veri alınamadı' yazar.",

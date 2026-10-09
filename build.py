@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Diojen News: haberler/*.json dosyalarindan DiojenNews.html uretir."""
 import re, json, html, os, glob, datetime
+import ozel_sayfalar  # Ogrenci Kosesi, Gise & Yeni Cikanlar, Arsiv Dosyasi (bolum/index.html duzeni)
 KAT = [("dunya","Dünya"),("ekonomi","Ekonomi"),("spor","Spor"),("teknoloji","Teknoloji"),("kultur","Kültür & Sanat"),("projectsyndicate","Project Syndicate"),("kimnedi","Kim Ne Dedi"),("sirket","Şirket Haberleri"),("bist30","BIST 30 Şirketleri")]
 base = os.path.dirname(os.path.abspath(__file__))
 def yukle(slug):
@@ -163,8 +164,8 @@ dk_bolumler = dk_oku()
 DK_AD = "Dede Korkut Günlüğü"
 if dk_bolumler: KAT_NAV = KAT_NAV + [("dedekorkut",DK_AD)]
 SAYFA = {"kose":"kose","dedekorkut":"dedekorkut"}
-nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/" class="arsiv-link">📚 Arşiv</a>'
-yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/">📚 Arşiv (eski sayılar)</a></li>'
+nav = '<a href="#ust">Ana Sayfa</a>' + "".join((ozel_sayfalar.kultur_menu("", "#kultur") if s=="kultur" else f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>') for s,a in KAT_NAV) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/" class="arsiv-link">📚 Arşiv</a>'
+yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>{ozel_sayfalar.yan_alt() if s=="kultur" else ""}</li>' for s,a in KAT_NAV) + f'<li>{ozel_sayfalar.arsiv_dosyasi_link()}</li><li><a href="arsiv/">📚 Arşiv (eski sayılar)</a></li>'
 bol = []
 manset = []
 for s,ad in KAT:
@@ -180,13 +181,14 @@ for s,ad in KAT:
         if i==0: manset.append((ad,h))
     if not kart: kart = ['<p class="bos">Bu bölümün yazarı henüz haber girmedi.</p>']
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
+    if s=="kultur": kart.insert(0, ozel_sayfalar.kultur_ozet_html(base))
     bol.append(f'<section class="bolum" id="{s}"><h2>{e(ad)} {yaz}</h2>{"".join(kart)}</section>')
 
 kose_html = ""
 def sayfa_kose(baslik, icerik, kok, yol="", aciklama="", resim=None, jsonld=None, og_tur="website"):
     return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 {seo_head(baslik, aciklama, yol, kok, og_tur, resim, jsonld)}
-<link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="/">Ana Sayfa</a><a href="{kok}kose">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
+<link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar"><a href="/">Ana Sayfa</a><a href="{kok}kose">Köşe Yazıları</a>{dk_nav(kok)}{ozel_sayfalar.nav_linkleri(kok)}<a href="{kok}arsiv/" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
 def kose_oku(p):
     try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
     except Exception: return None
@@ -339,7 +341,7 @@ def makale_sayfasi(y):
     kay = ""
     if y["kaynaklar"]:
         kay = '<section class="makale-kaynaklar"><h2>Kaynaklar</h2><ol>' + "".join(f'<li id="k{n}" value="{n}">{kaynak_satiri(s)}</li>' for n,s in y["kaynaklar"]) + '</ol></section>'
-    nav2 = '<a href="/">Ana Sayfa</a><a href="../kose">Köşe Yazıları</a>' + dk_nav("../") + '<a href="../arsiv/" class="arsiv-link">📚 Arşiv</a>'
+    nav2 = '<a href="/">Ana Sayfa</a><a href="../kose">Köşe Yazıları</a>' + dk_nav("../") + ozel_sayfalar.nav_linkleri("../") + '<a href="../arsiv/" class="arsiv-link">📚 Arşiv</a>'
     myol = "makaleler/" + y["slug"]; miso = y["sirala"] if y["sirala"] != "0000-00-00" else ""
     mres = ("gorseller/" + y["slug"] + ("-900.jpg" if y["resim900_var"] else ".jpg")) if y["resim_var"] else None
     mld = jsonld_haber(y["baslik"], myol, miso, degisme_tarihi(myol + ".md", miso), y["yazar"], kisa_metin(y["spot"], 200), [mres] if mres else None, y["kategori"])
@@ -354,7 +356,7 @@ def makale_sayfasi(y):
 <body>
 <div class="container">
 <header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
-<nav class="navbar">{nav2}</nav>
+{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar">{nav2}</nav>
 <article class="makale-sayfa">
 <p class="makale-geri"><a href="/">← Ana sayfaya dön</a> · <a href="../arsiv/">📚 Arşiv</a></p>
 <div class="meta">{meta}</div>
@@ -370,19 +372,23 @@ def makale_sayfasi(y):
 </body>
 </html>'''
 for y in makaleler:
+    if ozel_sayfalar.arsiv_dosyasi_mi(y): continue  # Arsiv Dosyasi yazilari /arsiv-dosyasi/<slug> adresinde uretilir (ozel_sayfalar)
     open(os.path.join(base,"makaleler",y["slug"]+".html"),"w",encoding="utf-8").write(makale_sayfasi(y))
     _miso = y["sirala"] if y["sirala"] != "0000-00-00" else ""
     sitemap_ekle("makaleler/" + y["slug"], degisme_tarihi("makaleler/" + y["slug"] + ".md", _miso), "makaleler/" + y["slug"] + ".html", y["baslik"], _miso)
 makale_html = ""
 if makaleler:
     kk = []
-    for y in [m for m in makaleler if not m["dosya"]][:3]:
+    for y in [m for m in makaleler if not m["dosya"] and not ozel_sayfalar.arsiv_dosyasi_mi(m)][:3]:
         img = f'<img class="makale-kucuk" src="gorseller/{e(y["slug"])}.jpg" alt="{e(y["baslik"])}">' if y["resim_var"] else ""
         by = f'Yazar: {e(y["yazar"])}' + (f' · {e(y["tarih"])}' if y["tarih"] else "")
         kk.append(f'<article class="makale-kart">{img}<div class="makale-ozet"><div class="meta">{by}</div><h3><a href="makaleler/{e(y["slug"])}">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}">Makaleyi oku →</a></div></article>')
     makale_html = '<section class="makale-bolum" id="makale"><h2>Köşe Yazısı / Makale</h2>' + "".join(kk) + '</section>'
 dosya_html = ""
-dosyalar = [m for m in makaleler if m["dosya"]]
+dosyalar = [m for m in makaleler if m["dosya"] and not ozel_sayfalar.arsiv_dosyasi_mi(m)]
+# Ozel Haber kutusu: yalnizca yayinlanmis (tarihi gelmis) bir Arsiv Dosyasi yazisi varsa gorunur
+_ad = ozel_sayfalar.arsiv_dosyalari(makaleler)
+ozel_haber_html = ozel_sayfalar.ozel_haber_kutusu(_ad[0]) if _ad else ""
 if dosyalar:
     dk = []
     for y in dosyalar[:2]:
@@ -403,11 +409,11 @@ sayfa = f'''<!DOCTYPE html>
 <body>
 <div class="container" id="ust">
 <header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
-<nav class="navbar">{nav}</nav>
+{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar">{nav}</nav>
 {piyasa_html}
 <div class="content">
 <aside class="sidebar"><h2>Kategoriler</h2><ul>{yan}</ul></aside>
-<main class="main-content">{man}{dosya_html}{makale_html}{"".join(bol)}</main>
+<main class="main-content">{ozel_haber_html}{man}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
 <footer class="footer"><p>&copy; {yil} Diojen News. Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
 </div>
@@ -420,5 +426,6 @@ open(os.path.join(base,"DiojenNews.html"),"w",encoding="utf-8").write(sayfa)
 # "/" gercek ana sayfayi sunsun (eskiden meta-refresh idi); DiojenNews.html de calismaya devam eder, ikisinin canonical'i https://diojennews.com/
 open(os.path.join(base,"index.html"),"w",encoding="utf-8").write(sayfa)
 sitemap_ekle("", datetime.date.today().isoformat(), "DiojenNews.html")
+ozel_sayfalar.uret(base, makaleler, globals())
 sitemaplari_yaz()
 print("uretildi")

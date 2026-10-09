@@ -204,3 +204,16 @@ html { scroll-behavior:smooth; }
 .yc-isaret { font-family:Arial, Helvetica, sans-serif; font-size:.62rem; font-weight:bold; color:#fff; background:#3d7a2a; padding:1px 5px; border-radius:3px; vertical-align:middle; }
 .gise-tablo td.film a { color:#111; text-decoration:underline dotted; } .gise-tablo td.yorum { font-size:.85rem; font-style:italic; color:#444; }
 .yc-kart:target { outline:3px solid #3d7a2a; background:#eef5e4; }
+/* Yeni bolum sayfalari: tek h1 (site adi h1 degil) */
+.header .site-adi { font-size:2.8rem; font-weight:900; letter-spacing:2px; font-variant:small-caps; line-height:1.2; }
+.header .site-adi a { color:#111; text-decoration:none; } .header .site-adi span { color:#8b1a1a; }
+.ozel-sayfa .bolum > h1 { font-size:1.9rem; color:#8b1a1a; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid #8b1a1a; margin:4px 0 10px; line-height:1.25; }
+.ozel-sayfa .bolum > h1.makale-baslik { text-transform:none; letter-spacing:0; color:#111; border:none; font-size:2.1rem; }
+.ozel-sayfa .ok-kart h2 { font-size:1.5rem; line-height:1.25; margin-top:6px; } .ozel-sayfa .ok-kart h2 a, .ozel-ad .card h2 a { color:#111; text-decoration:none; }
+.ozel-ad .card h2 { font-size:1.4rem; }
+.gise-tablo h2 { font-size:1.45rem; color:#111; margin-bottom:4px; }
+.yc-kart h2, .yc-kart h3 { font-size:1.2rem; margin:4px 0 2px; }
+.yc-grup { font-size:1.2rem; }
+.ok-metin h3.ok-ara { font-size:1.1rem; color:#1f6f6b; margin:18px 0 4px; }
+.onizleme-bandi { background:#555; color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:.8rem; font-weight:bold; letter-spacing:.5px; padding:6px 10px; margin:6px 0 10px; }
+@media (max-width:700px){ .header .site-adi { font-size:1.8rem; } .ozel-sayfa .bolum > h1 { font-size:1.4rem; } .ozel-sayfa .bolum > h1.makale-baslik { font-size:1.6rem; } }

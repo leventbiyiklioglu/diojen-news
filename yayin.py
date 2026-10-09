@@ -34,6 +34,10 @@ if not KOPYASIZ:
     # alt klasordeki arsivlenmis sayfalarda (makaleler/, kose/) arsiv baglantisi iki ust dizine gitmeli
     for mf in glob.glob(os.path.join(hedef, "makaleler", "*.html")) + glob.glob(os.path.join(hedef, "kose", "*.html")):
         degistir(mf, [('href="../arsiv/index.html"', 'href="../../index.html"'), ('href="../arsiv/"', 'href="../../"')])
+    # yeni bolumler (kultur-sanat/sinema-ogrenci/, gise-hasilatlari/, yeni-cikanlar/, arsiv-dosyasi/) arsive kopyalanmaz; linkleri canli bolume gitsin
+    try:
+        import ozel_sayfalar; ozel_sayfalar.arsiv_kopyasi_linkleri(hedef)
+    except Exception as hata: print("ozel bolum linkleri atlandi:", hata)
     kose = os.path.join(base, "koseyazilari")
     if os.path.isdir(kose):
         shutil.copytree(kose, os.path.join(hedef, "koseyazilari"), dirs_exist_ok=True)
@@ -67,4 +71,8 @@ yaz(os.path.join(base, "arsiv", "index.html"),
     f'<meta name="description" content="Diojen News&#x27;in önceki sayıları.">{ROBOTS}<link rel="canonical" href="{SITE}/arsiv/">{link_betigi}'
     f'<link rel="stylesheet" href="../styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span> Arşiv</h1></header>'
     f'<main class="main-content"><p>Toplam {len(sayilar)} sayı. <a href="/">Güncel sayıya dön</a></p><ul>{satir}</ul></main></div></body></html>')
+# arsiv/index.html -> bolum arsivleri linkleri (sayi listesine karismaz)
+try:
+    import ozel_sayfalar; ozel_sayfalar.ana_arsiv_index_ekle(base)
+except Exception as hata: print("bolum arsivleri linki atlandi:", hata)
 print("yeni sayi:", "(kopya alinmadi, --kopyasiz)" if KOPYASIZ else sayi)
