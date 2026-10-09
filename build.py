@@ -9,6 +9,130 @@ def yukle(slug):
     try: return json.load(open(p,encoding="utf-8"))
     except Exception: return {"yazar":"","haberler":[]}
 e = html.escape
+# ---- SEO yardimcilari (Seda, 09.10.2026) ----
+# Canli sitede adresler uzantisiz: /, /kose, /makaleler/<slug>, /arsiv/ . Eski .html adresleri calismaya devam eder
+# (dosyalar yine .html olarak yazilir; GitHub Pages uzantisiz istegi .html dosyasina eslestirir).
+# PC kopyasi (file://) icin her sayfadaki kucuk betik baglantilara .html ekler; canli sitede ise adres cubugundaki .html'i siler.
+# Yeni bolumler bu fonksiyonlari cagirmali: seo_head(...), jsonld_haber/jsonld_koleksiyon/jsonld_eser_listesi(...), sitemap_ekle(...).
+# URL plani (yeni bolumler): bolum ana sayfasi /bolum/ (bolum/index.html), icerik /bolum/<slug> (bolum/<slug>.html), arsiv /bolum/arsiv/.
+import subprocess
+SITE = "https://diojennews.com"
+YAYIN_ADI = "Diojen News"
+VARSAYILAN_ACIKLAMA = "Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri"
+def mutlak(yol):
+    """Site kokune gore yol ('', 'kose', 'makaleler/x', 'gorseller/a.jpg') -> mutlak URL."""
+    yol = (yol or "").lstrip("/")
+    return SITE + "/" + yol
+def _git_tarih(rel):
+    try:
+        r = subprocess.run(["git", "log", "-1", "--format=%cI", "--", rel], cwd=base, capture_output=True, text=True, timeout=10)
+        return r.stdout.strip()
+    except Exception: return ""
+_takip = None
+def yayinda_mi(rel):
+    """Sitemap'e yalniz git'te takip edilen (yani canliya cikan) sayfalar girer. git yoksa hepsi sayilir."""
+    global _takip
+    if _takip is None:
+        try:
+            r = subprocess.run(["git", "ls-files"], cwd=base, capture_output=True, text=True, timeout=20)
+            _takip = set(r.stdout.split("\n")) if r.returncode == 0 else False
+        except Exception: _takip = False
+    return True if _takip is False else rel in _takip
+def degisme_tarihi(rel, yayin_iso):
+    """dateModified: kaynak dosyanin son commit zamani (yayin tarihinden once degilse); yoksa yayin tarihi. Tarih uydurulmaz."""
+    g = _git_tarih(rel)
+    return g if g and yayin_iso and g[:10] >= yayin_iso[:10] else yayin_iso
+def kisa_metin(s, n=160):
+    s = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s or "").replace("**", "").replace("*", "")).strip()
+    if len(s) <= n: return s
+    return s[:n].rsplit(" ", 1)[0].rstrip(",;:—-") + "…"
+def _ld(veri):
+    return '<script type="application/ld+json">' + json.dumps(veri, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + "</script>"
+def jsonld_yayinci():
+    return {"@type": "NewsMediaOrganization", "name": YAYIN_ADI, "url": SITE + "/"}
+def jsonld_haber(baslik, yol, yayin_iso, degisme_iso, yazar="", aciklama="", resim=None, bolum="", tur="NewsArticle"):
+    """Makale/kose/Arsiv Dosyasi icin NewsArticle. resim: site kokune gore yol listesi."""
+    v = {"@context": "https://schema.org", "@type": tur, "headline": baslik, "inLanguage": "tr",
+         "mainEntityOfPage": {"@type": "WebPage", "@id": mutlak(yol)}, "publisher": jsonld_yayinci()}
+    if aciklama: v["description"] = aciklama
+    if yayin_iso: v["datePublished"] = yayin_iso
+    if degisme_iso: v["dateModified"] = degisme_iso
+    if yazar: v["author"] = [{"@type": "Person", "name": yazar}]
+    if resim: v["image"] = [mutlak(r) for r in resim]
+    if bolum: v["articleSection"] = bolum
+    return v
+def jsonld_koleksiyon(ad, yol, aciklama=""):
+    """Bolum ana sayfasi / bolum arsivi icin CollectionPage."""
+    v = {"@context": "https://schema.org", "@type": "CollectionPage", "name": ad, "url": mutlak(yol), "inLanguage": "tr", "isPartOf": {"@type": "WebSite", "name": YAYIN_ADI, "url": SITE + "/"}}
+    if aciklama: v["description"] = aciklama
+    return v
+def jsonld_eser_listesi(ad, yol, eserler):
+    """Gise / Yeni Cikanlar tablolari icin ItemList. eserler: [{"tur":"Movie"|"TVSeries","ad":..., "url":opsiyonel, ...ek schema alanlari}].
+    Yalniz dogrulanmis alanlari verin; Google'in gise hasilati icin ozel zengin sonucu yoktur, bu isaretleme anlamsal amaclidir."""
+    ogeler = []
+    for i, x in enumerate(eserler, 1):
+        o = {"@type": x.get("tur", "Movie"), "name": x["ad"]}
+        if x.get("url"): o["url"] = x["url"]
+        for k, d in x.items():
+            if k not in ("tur", "ad", "url") and d: o[k] = d
+        ogeler.append({"@type": "ListItem", "position": i, "item": o})
+    return {"@context": "https://schema.org", "@type": "ItemList", "name": ad, "url": mutlak(yol), "numberOfItems": len(ogeler), "itemListElement": ogeler}
+LINK_BETIGI = ('<script>(function(k){var L=location;if(L.protocol==="file:"){document.addEventListener("DOMContentLoaded",function(){'
+  'var a=document.querySelectorAll("a[href]");for(var i=0;i<a.length;i++){var h=a[i].getAttribute("href");'
+  'if(/^([a-z][a-z0-9+.-]*:|#|\\/\\/)/i.test(h))continue;var j=h.search(/[?#]/),p=j<0?h:h.slice(0,j),r=j<0?"":h.slice(j);'
+  'if(p==="/")p=k+"DiojenNews.html";else{if(p.charAt(0)==="/")p=k+p.slice(1);'
+  'if(p===""||p.slice(-1)==="/")p+="index.html";else if(!/\\.[a-z0-9]+$/i.test(p.split("/").pop()))p+=".html";}'
+  'a[i].setAttribute("href",p+r);}});}else if(/^https?:$/.test(L.protocol)&&/\\.html$/.test(L.pathname)&&history.replaceState){'
+  'var p=L.pathname==="/DiojenNews.html"?"/":L.pathname.replace(/\\/index\\.html$/,"/").replace(/\\.html$/,"");'
+  'history.replaceState(null,"",p+L.search+L.hash);}})("{KOK}");</script>')
+def seo_head(baslik, aciklama, yol, kok="", og_tur="website", resim=None, jsonld=None, robots="index,follow,max-image-preview:large", tam_baslik=False):
+    """<head> icine: description, robots, canonical, OG, Twitter, JSON-LD, PC/uzantisiz link betigi.
+    yol: uzantisiz kanonik yol ('' ana sayfa). kok: sayfanin site kokune goreli yolu ('', '../'). resim: kok-goreli yol."""
+    t = baslik if tam_baslik else f"{baslik} - {YAYIN_ADI}"
+    aciklama = kisa_metin(aciklama or VARSAYILAN_ACIKLAMA, 200)
+    can = mutlak(yol)
+    s = [f'<title>{e(t)}</title>', f'<meta name="description" content="{e(aciklama)}">', f'<meta name="robots" content="{robots}">',
+         f'<link rel="canonical" href="{e(can)}">',
+         f'<meta property="og:site_name" content="{YAYIN_ADI}">', '<meta property="og:locale" content="tr_TR">',
+         f'<meta property="og:type" content="{og_tur}">', f'<meta property="og:title" content="{e(baslik)}">',
+         f'<meta property="og:description" content="{e(aciklama)}">', f'<meta property="og:url" content="{e(can)}">']
+    if resim:
+        s += [f'<meta property="og:image" content="{e(mutlak(resim))}">', '<meta name="twitter:card" content="summary_large_image">',
+              f'<meta name="twitter:image" content="{e(mutlak(resim))}">']
+    else: s.append('<meta name="twitter:card" content="summary">')
+    s += [f'<meta name="twitter:title" content="{e(baslik)}">', f'<meta name="twitter:description" content="{e(aciklama)}">']
+    for v in ([jsonld] if isinstance(jsonld, dict) else (jsonld or [])): s.append(_ld(v))
+    s.append(LINK_BETIGI.replace("{KOK}", kok))
+    return "\n".join(s)
+SITEMAP = []   # (yol, lastmod_iso, kaynak_html_rel)
+HABERLER_SM = []  # (yol, baslik, yayin_iso)
+def sitemap_ekle(yol, lastmod, kaynak_rel, haber_baslik=None, yayin_iso=None):
+    if not yayinda_mi(kaynak_rel): print("sitemap: canlida degil, atlandi:", kaynak_rel); return
+    SITEMAP.append((yol, lastmod, kaynak_rel))
+    if haber_baslik and yayin_iso: HABERLER_SM.append((yol, haber_baslik, yayin_iso))
+def iso_tarih(gg_aa_yyyy):
+    m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", gg_aa_yyyy or "")
+    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else ""
+def sitemaplari_yaz():
+    from xml.sax.saxutils import escape as xe
+    u = "".join(f"<url><loc>{xe(mutlak(y))}</loc>" + (f"<lastmod>{xe(l)}</lastmod>" if l else "") + "</url>\n" for y,l,_ in sorted(SITEMAP, key=lambda x:(x[0]!="", x[0].count("/"), x[0])))
+    open(os.path.join(base,"sitemap.xml"),"w",encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + u + "</urlset>\n")
+    # Google News: yalniz son 2 gunde yayimlanan haberler (en fazla 1000)
+    bugun = datetime.date.today()
+    yeni = []
+    for y,b,t in HABERLER_SM:
+        try: d = datetime.date.fromisoformat(t[:10])
+        except ValueError: continue
+        if 0 <= (bugun - d).days <= 2: yeni.append((y,b,t))
+    n = "".join(f"<url><loc>{xe(mutlak(y))}</loc><news:news><news:publication><news:name>{YAYIN_ADI}</news:name><news:language>tr</news:language>"
+                f"</news:publication><news:publication_date>{xe(t)}</news:publication_date><news:title>{xe(b)}</news:title></news:news></url>\n" for y,b,t in yeni[:1000])
+    open(os.path.join(base,"news-sitemap.xml"),"w",encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n' + n + "</urlset>\n")
+    open(os.path.join(base,"robots.txt"),"w",encoding="utf-8").write(
+        "# build.py tarafindan uretilir\nUser-agent: *\nAllow: /\nDisallow: /taslak/\nDisallow: /onizleme/\nDisallow: /koseyazilari/\nDisallow: /worker/\nDisallow: /YONERGE\n"
+        "# arsiv/ engellenmez: arsiv sayfalarinda <meta name=\"robots\" content=\"noindex,follow\"> var, taranabilmeleri gerekir.\n\n"
+        f"Sitemap: {SITE}/sitemap.xml\nSitemap: {SITE}/news-sitemap.xml\n")
 KONU = [("askeri",["uçak gemisi","donanma","askeri","savaş gemisi","füze","husi","saldırı","savaş"]),("petrol",["petrol","dizel","varil","akaryakıt","brent","doğalgaz"]),
 ("yapayzeka",["yapay zek","openai","anthropic","gemini","chatgpt","ajan platformu","modeli","parametre"]),("uzay",["uzay","uydu","veri merkezi","nasa","spacex"]),
 ("bilgisayar",["apple","macos","windows","yazılım","siber","iphone","android","telefon","teknoloji"]),
@@ -27,7 +151,7 @@ def konu_resmi(slug, h):
 kose_dosyalar = sorted(glob.glob(os.path.join(base,"koseyazilari","*.md")), reverse=True)
 KAT_NAV = KAT + ([("kose","Köşe Yazıları")] if kose_dosyalar else [])
 def dk_nav(kok):
-    return f'<a href="{kok}dedekorkut.html">{DK_AD}</a>' if dk_bolumler else ""
+    return f'<a href="{kok}dedekorkut">{DK_AD}</a>' if dk_bolumler else ""
 def dk_oku():
     try: v = json.load(open(os.path.join(base,"dedekorkut","bolumler.json"),encoding="utf-8"))
     except Exception: return []
@@ -38,9 +162,9 @@ def dk_oku():
 dk_bolumler = dk_oku()
 DK_AD = "Dede Korkut Günlüğü"
 if dk_bolumler: KAT_NAV = KAT_NAV + [("dedekorkut",DK_AD)]
-SAYFA = {"kose":"kose.html","dedekorkut":"dedekorkut.html"}
-nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
-yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/index.html">📚 Arşiv (eski sayılar)</a></li>'
+SAYFA = {"kose":"kose","dedekorkut":"dedekorkut"}
+nav = '<a href="#ust">Ana Sayfa</a>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + '<a href="arsiv/" class="arsiv-link">📚 Arşiv</a>'
+yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a></li>' for s,a in KAT_NAV) + '<li><a href="arsiv/">📚 Arşiv (eski sayılar)</a></li>'
 bol = []
 manset = []
 for s,ad in KAT:
@@ -59,8 +183,10 @@ for s,ad in KAT:
     bol.append(f'<section class="bolum" id="{s}"><h2>{e(ad)} {yaz}</h2>{"".join(kart)}</section>')
 
 kose_html = ""
-def sayfa_kose(baslik, icerik, kok):
-    return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{e(baslik)} - Diojen News</title><link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="{kok}DiojenNews.html">Ana Sayfa</a><a href="{kok}kose.html">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/index.html" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
+def sayfa_kose(baslik, icerik, kok, yol="", aciklama="", resim=None, jsonld=None, og_tur="website"):
+    return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+{seo_head(baslik, aciklama, yol, kok, og_tur, resim, jsonld)}
+<link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header><nav class="navbar"><a href="/">Ana Sayfa</a><a href="{kok}kose">Köşe Yazıları</a>{dk_nav(kok)}<a href="{kok}arsiv/" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
 def kose_oku(p):
     try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
     except Exception: return None
@@ -69,6 +195,7 @@ def kose_oku(p):
     m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", meta)
     tarih = f"{m.group(3)}-{m.group(2)}-{m.group(1)}" if m else "0000-00-00"
     return {"slug":os.path.splitext(os.path.basename(p))[0], "baslik":satirlar[0].lstrip("# ").strip(), "meta":meta, "tarih":tarih,
+            "yazar":re.sub(r"^Yazar:\s*", "", meta.split("|")[0].strip()) if "|" in meta else "", "ozet":kisa_metin(satirlar[2] if len(satirlar)>2 else ""),
             "govde":"".join(f'<p>{e(l.replace("**",""))}</p>' for l in satirlar[2:])}
 yazilar = [y for y in (kose_oku(p) for p in kose_dosyalar) if y]
 yazilar.sort(key=lambda y:(y["tarih"], os.path.getmtime(os.path.join(base,"koseyazilari",y["slug"]+".md"))), reverse=True)
@@ -82,19 +209,29 @@ if yazilar:
     os.makedirs(os.path.join(base,"kose"), exist_ok=True)
     for f in glob.glob(os.path.join(base,"kose","*.html")): os.remove(f)
     for y in yazilar:
-        ic = f'<p><a href="../kose.html">← Tüm köşe yazıları</a></p>' + kose_kart(y, "../")
-        open(os.path.join(base,"kose",y["slug"]+".html"),"w",encoding="utf-8").write(sayfa_kose(y["baslik"], ic, "../"))
+        ic = f'<p><a href="../kose">← Tüm köşe yazıları</a></p>' + kose_kart(y, "../")
+        kyol = "kose/" + y["slug"]; kres = f'gorseller/{y["slug"]}.jpg' if os.path.exists(os.path.join(base,"gorseller",y["slug"]+".jpg")) else None
+        kiso = y["tarih"] if y["tarih"] != "0000-00-00" else ""
+        kdeg = degisme_tarihi(f'koseyazilari/{y["slug"]}.md', kiso)
+        kld = jsonld_haber(y["baslik"], kyol, kiso, kdeg, y["yazar"], y["ozet"], [kres] if kres else None, "Köşe Yazısı")
+        open(os.path.join(base,"kose",y["slug"]+".html"),"w",encoding="utf-8").write(sayfa_kose(y["baslik"], ic, "../", kyol, y["ozet"], kres, kld, "article"))
+        sitemap_ekle(kyol, kdeg, kyol + ".html", y["baslik"], kiso)
     kartlar = "".join(kose_kart(y, "") for y in guncel)
-    liste = "".join(f'<li><a href="kose/{e(y["slug"])}.html">{e(y["baslik"])}</a> <span class="meta">{e(y["meta"])}</span></li>' for y in eski)
+    liste = "".join(f'<li><a href="kose/{e(y["slug"])}">{e(y["baslik"])}</a> <span class="meta">{e(y["meta"])}</span></li>' for y in eski)
     onceki = f'<h2>Önceki Köşe Yazıları</h2><ul class="kose-liste">{liste}</ul>' if eski else ""
-    open(os.path.join(base,"kose.html"),"w",encoding="utf-8").write(sayfa_kose("Köşe Yazıları", f'<h2>Köşe Yazıları</h2>{kartlar}{onceki}', ""))
+    open(os.path.join(base,"kose.html"),"w",encoding="utf-8").write(sayfa_kose("Köşe Yazıları", f'<h2>Köşe Yazıları</h2>{kartlar}{onceki}', "", "kose",
+        "Diojen News köşe yazıları. Son yazılar: " + "; ".join(y["baslik"] for y in yazilar[:3])))
+    sitemap_ekle("kose", guncel_tarih if guncel_tarih != "0000-00-00" else "", "kose.html")
 # ---- Dede Korkut Günlüğü: dedekorkut/bolumler.json -> dedekorkut.html ----
 if dk_bolumler:
     bl = []
     for b in dk_bolumler:
         pn = "".join(f'<figure class="dk-panel"><img src="{e(p["resim"])}" alt="{e(p.get("altyazi",""))}" loading="lazy"><figcaption>{e(p.get("altyazi",""))}</figcaption></figure>' for p in b["paneller"])
         bl.append(f'<article class="dk-bolum"><div class="meta">{e(b.get("hikaye",""))} · {e(str(b.get("bolum","")))}. Bölüm · {e(b.get("tarih",""))}</div><h3>{e(b.get("baslik",""))}</h3><div class="dk-izgara">{pn}</div></article>')
-    open(os.path.join(base,"dedekorkut.html"),"w",encoding="utf-8").write(sayfa_kose(DK_AD, f'<h2>{DK_AD}</h2><p class="dk-giris">Dede Korkut hikâyelerinden resimli, günlük bölümler. Her gün yeni bir bölüm.</p>{"".join(bl)}', "").replace('<div class="kose-sayfa">','<div class="kose-sayfa dk-sayfa">',1))
+    sitemap_ekle("dedekorkut", iso_tarih(dk_bolumler[0].get("tarih","")), "dedekorkut.html")
+    open(os.path.join(base,"dedekorkut.html"),"w",encoding="utf-8").write(sayfa_kose(DK_AD, f'<h2>{DK_AD}</h2><p class="dk-giris">Dede Korkut hikâyelerinden resimli, günlük bölümler. Her gün yeni bir bölüm.</p>{"".join(bl)}', "", "dedekorkut",
+        "Dede Korkut hikâyelerinden resimli, günlük bölümler. Son bölüm: " + dk_bolumler[0].get("baslik",""),
+        dk_bolumler[0]["paneller"][0].get("resim") or None).replace('<div class="kose-sayfa">','<div class="kose-sayfa dk-sayfa">',1))
 man = ""
 if manset:
     man = '<section class="manset"><h2>Manşet</h2>' + "".join(f'<div class="mkart"><div class="meta">{e(a)} · {e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p></div>' for a,h in manset[:3]) + '</section>'
@@ -202,14 +339,16 @@ def makale_sayfasi(y):
     kay = ""
     if y["kaynaklar"]:
         kay = '<section class="makale-kaynaklar"><h2>Kaynaklar</h2><ol>' + "".join(f'<li id="k{n}" value="{n}">{kaynak_satiri(s)}</li>' for n,s in y["kaynaklar"]) + '</ol></section>'
-    nav2 = '<a href="../DiojenNews.html">Ana Sayfa</a><a href="../kose.html">Köşe Yazıları</a>' + dk_nav("../") + '<a href="../arsiv/index.html" class="arsiv-link">📚 Arşiv</a>'
+    nav2 = '<a href="/">Ana Sayfa</a><a href="../kose">Köşe Yazıları</a>' + dk_nav("../") + '<a href="../arsiv/" class="arsiv-link">📚 Arşiv</a>'
+    myol = "makaleler/" + y["slug"]; miso = y["sirala"] if y["sirala"] != "0000-00-00" else ""
+    mres = ("gorseller/" + y["slug"] + ("-900.jpg" if y["resim900_var"] else ".jpg")) if y["resim_var"] else None
+    mld = jsonld_haber(y["baslik"], myol, miso, degisme_tarihi(myol + ".md", miso), y["yazar"], kisa_metin(y["spot"], 200), [mres] if mres else None, y["kategori"])
     return f'''<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="{e(y["spot"][:200])}">
-<title>{e(y["baslik"])} - Diojen News</title>
+{seo_head(y["baslik"], y["spot"], myol, "../", "article", mres, mld)}
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -217,14 +356,14 @@ def makale_sayfasi(y):
 <header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
 <nav class="navbar">{nav2}</nav>
 <article class="makale-sayfa">
-<p class="makale-geri"><a href="../DiojenNews.html">← Ana sayfaya dön</a> · <a href="../arsiv/index.html">📚 Arşiv</a></p>
+<p class="makale-geri"><a href="/">← Ana sayfaya dön</a> · <a href="../arsiv/">📚 Arşiv</a></p>
 <div class="meta">{meta}</div>
 <h1 class="makale-baslik">{e(y["baslik"])}</h1>
 {spot}
 {img}
 {pdf}<div class="makale-govde">{y["govde"]}</div>
 {kay}
-<p class="makale-geri alt"><a href="../DiojenNews.html">← Ana sayfaya dön</a> · <a href="../arsiv/index.html">📚 Arşiv</a></p>
+<p class="makale-geri alt"><a href="/">← Ana sayfaya dön</a> · <a href="../arsiv/">📚 Arşiv</a></p>
 </article>
 <footer class="footer"><p>&copy; {datetime.date.today().year} Diojen News. Tüm hakları saklıdır.</p></footer>
 </div>
@@ -232,13 +371,15 @@ def makale_sayfasi(y):
 </html>'''
 for y in makaleler:
     open(os.path.join(base,"makaleler",y["slug"]+".html"),"w",encoding="utf-8").write(makale_sayfasi(y))
+    _miso = y["sirala"] if y["sirala"] != "0000-00-00" else ""
+    sitemap_ekle("makaleler/" + y["slug"], degisme_tarihi("makaleler/" + y["slug"] + ".md", _miso), "makaleler/" + y["slug"] + ".html", y["baslik"], _miso)
 makale_html = ""
 if makaleler:
     kk = []
     for y in [m for m in makaleler if not m["dosya"]][:3]:
         img = f'<img class="makale-kucuk" src="gorseller/{e(y["slug"])}.jpg" alt="{e(y["baslik"])}">' if y["resim_var"] else ""
         by = f'Yazar: {e(y["yazar"])}' + (f' · {e(y["tarih"])}' if y["tarih"] else "")
-        kk.append(f'<article class="makale-kart">{img}<div class="makale-ozet"><div class="meta">{by}</div><h3><a href="makaleler/{e(y["slug"])}.html">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}.html">Makaleyi oku →</a></div></article>')
+        kk.append(f'<article class="makale-kart">{img}<div class="makale-ozet"><div class="meta">{by}</div><h3><a href="makaleler/{e(y["slug"])}">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}">Makaleyi oku →</a></div></article>')
     makale_html = '<section class="makale-bolum" id="makale"><h2>Köşe Yazısı / Makale</h2>' + "".join(kk) + '</section>'
 dosya_html = ""
 dosyalar = [m for m in makaleler if m["dosya"]]
@@ -247,7 +388,7 @@ if dosyalar:
     for y in dosyalar[:2]:
         by = f'Yazar: {e(y["yazar"])}' + (f' · {e(y["kategori"])}' if y["kategori"] else "") + (f' · {e(y["tarih"])}' if y["tarih"] else "")
         pdfl = f' · <a class="makale-oku" href="makaleler/{e(y["slug"])}.pdf" download>PDF indir</a>' if y["pdf_var"] else ""
-        dk.append(f'<article class="makale-kart dosya-kart"><div class="makale-ozet"><div class="meta"><span class="dosya-etiket">DOSYA HABER</span> {by}</div><h3><a href="makaleler/{e(y["slug"])}.html">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}.html">Dosyayı oku →</a>{pdfl}</div></article>')
+        dk.append(f'<article class="makale-kart dosya-kart"><div class="makale-ozet"><div class="meta"><span class="dosya-etiket">DOSYA HABER</span> {by}</div><h3><a href="makaleler/{e(y["slug"])}">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}">Dosyayı oku →</a>{pdfl}</div></article>')
     dosya_html = '<section class="makale-bolum dosya-bolum" id="dosya"><h2>Dosya Haber</h2>' + "".join(dk) + '</section>'
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
@@ -255,8 +396,8 @@ sayfa = f'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri">
-<title>Diojen News</title>
+{seo_head("Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri", VARSAYILAN_ACIKLAMA, "", "", "website", None,
+  [dict(jsonld_yayinci(), **{"@context":"https://schema.org"}), {"@context":"https://schema.org","@type":"WebSite","name":YAYIN_ADI,"url":SITE+"/","inLanguage":"tr","publisher":jsonld_yayinci()}], tam_baslik=True)}
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -276,4 +417,8 @@ sayfa = f'''<!DOCTYPE html>
 </body>
 </html>'''
 open(os.path.join(base,"DiojenNews.html"),"w",encoding="utf-8").write(sayfa)
+# "/" gercek ana sayfayi sunsun (eskiden meta-refresh idi); DiojenNews.html de calismaya devam eder, ikisinin canonical'i https://diojennews.com/
+open(os.path.join(base,"index.html"),"w",encoding="utf-8").write(sayfa)
+sitemap_ekle("", datetime.date.today().isoformat(), "DiojenNews.html")
+sitemaplari_yaz()
 print("uretildi")
