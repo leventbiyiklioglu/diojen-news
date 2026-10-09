@@ -2,9 +2,10 @@
  "yazar": "Selin",
  "guncelleme": "09.10.2026",
  "donem": "Filmler: 9–15 Ekim 2026 vizyonu · Diziler: 6–12 Ekim 2026",
- "aciklama": "Sinemada ve dijital platformlarda bu hafta başlayan film ve diziler. Afiş kullanılmaz; tür, platform ve kısa özet kaynaktan derlenir.",
+ "aciklama": "Sinemada ve dijital platformlarda bu hafta başlayan film ve diziler. Afiş kullanılmaz; tür, platform ve kısa özet kaynaktan derlenir. Her öğede benzersiz bir slug (ör. medeni-haller) bulunur; sayfada #yc-<slug> çapası olarak basılır, gişe satırındaki yeni_cikanlar_id bu slug'a bağlanır.",
  "ogeler": [
   {
+   "slug": "soy",
    "tur_ad": "film",
    "baslik": "Soy",
    "tur": "Korku",
@@ -15,6 +16,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/soy--2018526"
   },
   {
+   "slug": "medeni-haller",
    "tur_ad": "film",
    "baslik": "Medeni Haller",
    "tur": "Komedi, Romantik",
@@ -25,6 +27,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/medeni-haller--2018470"
   },
   {
+   "slug": "ates",
    "tur_ad": "film",
    "baslik": "Ateş",
    "tur": "Dram, Polisiye",
@@ -35,6 +38,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/ates--2015988"
   },
   {
+   "slug": "7-gunahin-laneti",
    "tur_ad": "film",
    "baslik": "7 Günahın Laneti",
    "tur": "Korku, Gerilim",
@@ -45,6 +49,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/7-gunahin-laneti--2018610"
   },
   {
+   "slug": "diger-anne",
    "tur_ad": "film",
    "baslik": "Diğer Anne (orijinal adı: Other Mommy)",
    "tur": "Korku, Gerilim",
@@ -55,6 +60,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/diger-anne--2017907"
   },
   {
+   "slug": "sonsuz",
    "tur_ad": "film",
    "baslik": "Sonsuz (orijinal adı: It Ends)",
    "tur": "Korku, Gerilim, Bilim-Kurgu",
@@ -65,6 +71,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/sonsuz--2018446"
   },
   {
+   "slug": "cilgin-hafta-sonu",
    "tur_ad": "film",
    "baslik": "Çılgın Hafta Sonu (orijinal adı: Spa Weekend)",
    "tur": "Komedi",
@@ -75,6 +82,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/cilgin-hafta-sonu--2018537"
   },
   {
+   "slug": "fall",
    "tur_ad": "film",
    "baslik": "Fall",
    "tur": "Gerilim, Aksiyon",
@@ -85,6 +93,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/film/fall--2018402"
   },
   {
+   "slug": "yeralti-2-sezon",
    "tur_ad": "dizi",
    "baslik": "Yeraltı (2. sezon)",
    "tur": "Dram",
@@ -95,6 +104,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/haber/bu-hafta-yayina-baslayacak-olan-diziler-6-12-ekim-2026--8115"
   },
   {
+   "slug": "carrie",
    "tur_ad": "dizi",
    "baslik": "Carrie",
    "tur": "Korku, Dram",
@@ -105,6 +115,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/haber/bu-hafta-yayina-baslayacak-olan-diziler-6-12-ekim-2026--8115"
   },
   {
+   "slug": "inside-the-circle",
    "tur_ad": "dizi",
    "baslik": "Inside The Circle (orijinal adı: El círculo)",
    "tur": "Gerilim",
@@ -115,6 +126,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/haber/bu-hafta-yayina-baslayacak-olan-diziler-6-12-ekim-2026--8115"
   },
   {
+   "slug": "below",
    "tur_ad": "dizi",
    "baslik": "Below",
    "tur": "Gerilim",
@@ -125,6 +137,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/haber/bu-hafta-yayina-baslayacak-olan-diziler-6-12-ekim-2026--8115"
   },
   {
+   "slug": "haunted-hotel-2-sezon",
    "tur_ad": "dizi",
    "baslik": "Haunted Hotel (2. sezon)",
    "tur": "Animasyon (yetişkin)",
@@ -135,6 +148,7 @@
    "kaynak_url": "https://boxofficeturkiye.com/haber/bu-hafta-yayina-baslayacak-olan-diziler-6-12-ekim-2026--8115"
   },
   {
+   "slug": "sevdam-karadeniz",
    "tur_ad": "dizi",
    "baslik": "Sevdam Karadeniz",
    "tur": "Dram",

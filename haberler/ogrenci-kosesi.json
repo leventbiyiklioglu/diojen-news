@@ -1,9 +1,10 @@
 {
  "yazar": "Selin",
- "aciklama": "Sinema ve televizyon bölümü öğrencilerinin yazıları. Her yazı: baslik, ogrenci, okul, tarih (GG.AA.YYYY), ozet, metin VEYA link, gorsel (isteğe bağlı, gorseller/ogrenci-kosesi/ altında).",
+ "aciklama": "Selin Arslan'ın sinema ve televizyon öğrencilerine yazdığı haftalık, öğretici köşe (çarşamba). Her yazı: baslik, yazar (görünür, zorunlu), tarih (GG.AA.YYYY), ozet, metin VEYA link, gorsel (isteğe bağlı). Metindeki http(s) adresleri otomatik tıklanabilir link olur; '1. ' ile başlayan satırlar ara başlık olarak basılır. ogrenci/okul alanları isteğe bağlıdır (konuk öğrenci yazısı için).",
  "yazilar": [
   {
    "baslik": "Takvimini şimdi kur: Ekim 2026 – Şubat 2027 arası öğrencilerin başvurabileceği 7 fırsat",
+   "yazar": "Selin Arslan",
    "ogrenci": "",
    "okul": "",
    "tarih": "14.10.2026",

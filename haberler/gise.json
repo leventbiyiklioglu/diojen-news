@@ -1,108 +1,129 @@
 {
  "yazar": "Selin",
  "guncelleme": "09.10.2026",
- "aciklama": "Haftalık gişe tabloları. Rakamlar kaynaktan olduğu gibi aktarılır; tahmini (estimated) değerler kaynakta düzeltilebilir.",
+ "aciklama": "Türkiye tablosu Box Office Türkiye HAFTALIK listesine dayanır (boxofficeturkiye.com/hafta/detay/<yıl>-<hafta>). Satır alanları: sira, film, hafta (vizyondaki hafta sayısı), seyirci_hafta, hasilat_hafta (TL), seyirci_toplam, hasilat_toplam, isteğe bağlı yorum ve yeni_cikanlar_id; isteğe bağlı hafta sonu alanları: seyirci_hafta_sonu, hasilat_hafta_sonu. Boş (null) sütunlar gösterilmez. Her tabloda kaynak, kaynak_url, donem zorunlu. Rakam uydurulmaz; veri yoksa satirlar boş bırakılır ve sayfada 'Veri alınamadı' yazar.",
  "tablolar": [
   {
    "id": "turkiye",
-   "baslik": "Türkiye Hafta Sonu Gişesi",
+   "baslik": "Türkiye Gişesi",
    "donem": "2026 40. hafta sonu, 02-04 Ekim 2026",
    "kaynak": "Box Office Türkiye",
    "kaynak_url": "https://boxofficeturkiye.com/hafta-sonu/detay/2026-40",
    "para": "TRY",
-   "not": "Sıralama kaynaktaki gibi hafta sonu seyirci sayısına göredir. İlk 10 film; hafta sonu toplamı 182.141 seyirci, 60.101.592 TL (39 film).",
+   "not": "Box Office Türkiye'nin 40. hafta (2-8 Ekim 2026) haftalık listesi henüz yayımlanmadı (09.10.2026 itibarıyla); geçici olarak 2-4 Ekim hafta sonu verisi gösteriliyor. Sıralama kaynaktaki gibi hafta sonu seyirci sayısına göredir. Toplam sütunları o hafta sonu itibarıyla kümülatiftir. Hafta sonu toplamı 182.141 seyirci, 60.101.592 TL (39 film).",
    "satirlar": [
     {
      "sira": 1,
      "film": "Resident Evil",
      "hafta": 3,
-     "hafta_sonu": 9183689,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 326859,
+     "hasilat_toplam": 68263196,
      "seyirci_hafta_sonu": 28053,
-     "toplam": 68263196,
-     "seyirci_toplam": 326859
+     "hasilat_hafta_sonu": 9183689
     },
     {
      "sira": 2,
      "film": "Vahşinin Kalbi",
      "hafta": 1,
-     "hafta_sonu": 8881747,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 37187,
+     "hasilat_toplam": 10592502,
      "seyirci_hafta_sonu": 25308,
-     "toplam": 10592502,
-     "seyirci_toplam": 37187
+     "hasilat_hafta_sonu": 8881747
     },
     {
      "sira": 3,
      "film": "Üç Harfliler: Mühür",
      "hafta": 2,
-     "hafta_sonu": 4227658,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 108830,
+     "hasilat_toplam": 16041929,
      "seyirci_hafta_sonu": 15085,
-     "toplam": 16041929,
-     "seyirci_toplam": 108830
+     "hasilat_hafta_sonu": 4227658
     },
     {
      "sira": 4,
      "film": "Avengers: Endgame",
      "hafta": 13,
-     "hafta_sonu": 5068281,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 2621034,
+     "hasilat_toplam": 72246107,
      "seyirci_hafta_sonu": 14564,
-     "toplam": 72246107,
-     "seyirci_toplam": 2621034
+     "hasilat_hafta_sonu": 5068281
     },
     {
      "sira": 5,
      "film": "Örümcek-Adam: Yepyeni Bir Gün",
      "hafta": 10,
-     "hafta_sonu": 4057856,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 2820004,
+     "hasilat_toplam": 772780342,
      "seyirci_hafta_sonu": 12459,
-     "toplam": 772780342,
-     "seyirci_toplam": 2820004
+     "hasilat_hafta_sonu": 4057856
     },
     {
      "sira": 6,
      "film": "Robu 404",
      "hafta": 1,
-     "hafta_sonu": 3302163,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 11451,
+     "hasilat_toplam": 3302163,
      "seyirci_hafta_sonu": 11451,
-     "toplam": 3302163,
-     "seyirci_toplam": 11451
+     "hasilat_hafta_sonu": 3302163
     },
     {
      "sira": 7,
      "film": "Verity: Gerçeğin Diğer Kıyısı",
      "hafta": 1,
-     "hafta_sonu": 3821344,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 9552,
+     "hasilat_toplam": 3821344,
      "seyirci_hafta_sonu": 9552,
-     "toplam": 3821344,
-     "seyirci_toplam": 9552
+     "hasilat_hafta_sonu": 3821344
     },
     {
      "sira": 8,
      "film": "İsyan",
      "hafta": 2,
-     "hafta_sonu": 2865134,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 83114,
+     "hasilat_toplam": 12054953,
      "seyirci_hafta_sonu": 9339,
-     "toplam": 12054953,
-     "seyirci_toplam": 83114
+     "hasilat_hafta_sonu": 2865134
     },
     {
      "sira": 9,
      "film": "Digger",
      "hafta": 1,
-     "hafta_sonu": 3479276,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 8420,
+     "hasilat_toplam": 3479276,
      "seyirci_hafta_sonu": 8420,
-     "toplam": 3479276,
-     "seyirci_toplam": 8420
+     "hasilat_hafta_sonu": 3479276
     },
     {
      "sira": 10,
      "film": "Unutulmuş Ada",
      "hafta": 1,
-     "hafta_sonu": 2457871,
+     "seyirci_hafta": null,
+     "hasilat_hafta": null,
+     "seyirci_toplam": 8078,
+     "hasilat_toplam": 2457871,
      "seyirci_hafta_sonu": 8078,
-     "toplam": 2457871,
-     "seyirci_toplam": 8078
+     "hasilat_hafta_sonu": 2457871
     }
-   ]
+   ],
+   "kaynak_haftalik_url": "https://boxofficeturkiye.com/hafta/detay/2026-40"
   },
   {
    "id": "abd",
@@ -116,72 +137,72 @@
     {
      "sira": 1,
      "film": "Verity",
-     "hafta_sonu": 32031011,
-     "toplam": 32031011,
-     "hafta": 1
+     "hafta": 1,
+     "hasilat_hafta_sonu": 32031011,
+     "hasilat_toplam": 32031011
     },
     {
      "sira": 2,
      "film": "Resident Evil",
-     "hafta_sonu": 12618839,
-     "toplam": 125013734,
-     "hafta": 3
+     "hafta": 3,
+     "hasilat_hafta_sonu": 12618839,
+     "hasilat_toplam": 125013734
     },
     {
      "sira": 3,
      "film": "Heart of the Beast",
-     "hafta_sonu": 10876713,
-     "toplam": 38275824,
-     "hafta": 2
+     "hafta": 2,
+     "hasilat_hafta_sonu": 10876713,
+     "hasilat_toplam": 38275824
     },
     {
      "sira": 4,
      "film": "Digger",
-     "hafta_sonu": 8001856,
-     "toplam": 8001856,
-     "hafta": 1
+     "hafta": 1,
+     "hasilat_hafta_sonu": 8001856,
+     "hasilat_toplam": 8001856
     },
     {
      "sira": 5,
      "film": "Primetime",
-     "hafta_sonu": 8000085,
-     "toplam": 34085832,
-     "hafta": 2
+     "hafta": 2,
+     "hasilat_hafta_sonu": 8000085,
+     "hasilat_toplam": 34085832
     },
     {
      "sira": 6,
      "film": "Forgotten Island",
-     "hafta_sonu": 7201655,
-     "toplam": 23632855,
-     "hafta": 2
+     "hafta": 2,
+     "hasilat_hafta_sonu": 7201655,
+     "hasilat_toplam": 23632855
     },
     {
      "sira": 7,
      "film": "Avengers Endgame: Encore 2026 Re-release",
-     "hafta_sonu": 4471524,
-     "toplam": 36298509,
-     "hafta": 2
+     "hafta": 2,
+     "hasilat_hafta_sonu": 4471524,
+     "hasilat_toplam": 36298509
     },
     {
      "sira": 8,
      "film": "Practical Magic 2",
-     "hafta_sonu": 2785993,
-     "toplam": 64827319,
-     "hafta": 4
+     "hafta": 4,
+     "hasilat_hafta_sonu": 2785993,
+     "hasilat_toplam": 64827319
     },
     {
      "sira": 9,
      "film": "Drishyam: The Conclusion",
-     "hafta_sonu": 2715000,
-     "toplam": 2715000,
-     "hafta": 1
+     "hafta": 1,
+     "hasilat_hafta_sonu": 2715000,
+     "hasilat_toplam": 2715000
     },
     {
      "sira": 10,
      "film": "Spider-Man: Brand New Day",
-     "hafta_sonu": 2501553,
-     "toplam": 954528523,
-     "hafta": 10
+     "hafta": 10,
+     "hasilat_hafta_sonu": 2501553,
+     "hasilat_toplam": 954528523
     }
    ]
   },
@@ -197,52 +218,52 @@
     {
      "sira": 1,
      "film": "Spider-Man: Brand New Day",
-     "toplam": 2506719628
+     "hasilat_toplam": 2506719628
     },
     {
      "sira": 2,
      "film": "The Odyssey",
-     "toplam": 1771960352
+     "hasilat_toplam": 1771960352
     },
     {
      "sira": 3,
      "film": "Toy Story 5",
-     "toplam": 1148032461
+     "hasilat_toplam": 1148032461
     },
     {
      "sira": 4,
      "film": "Michael",
-     "toplam": 1028703388
+     "hasilat_toplam": 1028703388
     },
     {
      "sira": 5,
      "film": "The Super Mario Galaxy Movie",
-     "toplam": 1012608467
+     "hasilat_toplam": 1012608467
     },
     {
      "sira": 6,
      "film": "The Devil Wears Prada 2",
-     "toplam": 693255651
+     "hasilat_toplam": 693255651
     },
     {
      "sira": 7,
      "film": "Project Hail Mary",
-     "toplam": 684489947
+     "hasilat_toplam": 684489947
     },
     {
      "sira": 8,
      "film": "Pegasus 3",
-     "toplam": 656459523
+     "hasilat_toplam": 656459523
     },
     {
      "sira": 9,
      "film": "Minions & Monsters",
-     "toplam": 526259745
+     "hasilat_toplam": 526259745
     },
     {
      "sira": 10,
      "film": "Obsession",
-     "toplam": 522197701
+     "hasilat_toplam": 522197701
     }
    ]
   }
