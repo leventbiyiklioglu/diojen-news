@@ -19,6 +19,9 @@ import subprocess
 SITE = "https://diojennews.com"
 YAYIN_ADI = "Diojen News"
 VARSAYILAN_ACIKLAMA = "Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri"
+# Turkce okunusla yazim ("Diyojen") aramalarda da bulunabilsin: ana sayfa aciklamasi ve Organization/WebSite alternateName
+ALTERNATIF_ADLAR = ["Diyojen News", "Diojen", "Diyojen"]
+ANA_SAYFA_ACIKLAMA = "Diojen News (Diyojen News): Dünya, ekonomi, spor, teknoloji ve kültür haberleri"
 def mutlak(yol):
     """Site kokune gore yol ('', 'kose', 'makaleler/x', 'gorseller/a.jpg') -> mutlak URL."""
     yol = (yol or "").lstrip("/")
@@ -396,8 +399,8 @@ sayfa = f'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{seo_head("Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri", VARSAYILAN_ACIKLAMA, "", "", "website", None,
-  [dict(jsonld_yayinci(), **{"@context":"https://schema.org"}), {"@context":"https://schema.org","@type":"WebSite","name":YAYIN_ADI,"url":SITE+"/","inLanguage":"tr","publisher":jsonld_yayinci()}], tam_baslik=True)}
+{seo_head("Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri", ANA_SAYFA_ACIKLAMA, "", "", "website", None,
+  [dict(jsonld_yayinci(), **{"@context":"https://schema.org","alternateName":ALTERNATIF_ADLAR}), {"@context":"https://schema.org","@type":"WebSite","name":YAYIN_ADI,"alternateName":ALTERNATIF_ADLAR,"url":SITE+"/","inLanguage":"tr","publisher":jsonld_yayinci()}], tam_baslik=True)}
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -409,7 +412,7 @@ sayfa = f'''<!DOCTYPE html>
 <aside class="sidebar"><h2>Kategoriler</h2><ul>{yan}</ul></aside>
 <main class="main-content">{man}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
-<footer class="footer"><p>&copy; {yil} Diojen News. Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
+<footer class="footer"><p>&copy; {yil} Diojen News (Diyojen News). Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
 </div>
 <script>
 {piyasa_js}
