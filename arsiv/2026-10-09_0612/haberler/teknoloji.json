@@ -1,0 +1,47 @@
+{
+  "yazar": "Tuna Yıldız",
+  "haberler": [
+    {
+      "baslik": "SpaceX, Starlink Mobile için 800 MHz spektrum alarak ABD'de büyük operatör olmayı hedefliyor",
+      "ozet": "SpaceX, Grain Management'tan ülke çapında 800 MHz bandında en fazla 14 megahertz eşleştirilmiş spektrum lisanslarını satın almak üzere anlaşmaya vardı; işlem FCC onayına bağlı. Şirket, düşük bant spektrumunun Starlink Mobile sinyalinin duvar ve bina içine nüfuz etmesini sağlayacağını, mevcut 2 GHz orta bant kapasitesini tamamlayacağını belirtti. FCC ayrıca Starlink Mobile için 15 bin adet ikinci nesil uydunun fırlatılmasına izin verdi. SpaceX, uydu ve karasal spektrumu birlikte kullanan ilk şebeke operatörü olmayı ve T-Mobile, AT&T ile Verizon'a rakip bir mobil hizmet sunmayı amaçladığını açıkladı.",
+      "kaynak": "The Verge",
+      "kaynak_url": "https://www.theverge.com/science/1008467/spacex-announces-plan-to-become-a-major-mobile-carrier",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Google, işletmelere yönelik birleşik Gemini ajanını tanıttı",
+      "ozet": "Google Cloud, Gemini at Work etkinliğinde soru yanıtlamakla sınırlı kalmayan, kullanıcının adına görevleri planlayıp tamamlayabilen birleşik bir Gemini ajanını duyurdu. Ajan Workspace, Microsoft 365, Slack, Jira ve veri sistemleri gibi kurumsal araçlara bağlanabiliyor; gerektiğinde Anthropic Claude dahil üçüncü taraf modelleri de seçebiliyor. Google, ajanı önce işletmelere sunacağını, tüketicilere daha sonra açacağını; güvenlik, ölçek ve performans sorunlarını bu sırayla çözeceğini belirtti. Erken denemelerde On, Shopify ve PayPal gibi şirketler yer aldı; Gemini'nin aylık bir milyar aktif kullanıcısı olduğu vurgulandı.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Anthropic, Claude kullanım politikasında seçim müdahalesi ve modele uzun süreli kötü muameleyi yasakladı",
+      "ozet": "Anthropic, Perşembe günü güncellediği kullanım politikasında seçimlere müdahale, silah yazılımı ve gözetim gibi alanlara yeni yasaklar getirdi. Dikkat çeken bir madde, modele yönelik uzun süreli ve ısrarlı sözlü kötü muameleyi açıkça yasaklıyor; şirket bunun yalnızca aşırı, amaçsız zulüm içeren durumlarda geçerli olacağını, sıradan hayal kırıklığı veya araştırma testlerini kapsamayacağını belirtti. Politika ayrıca sahte hesaplar veya uydurma haber siteleriyle aldatıcı kampanyalar yürütmeyi ve demokratik süreçleri baltalamayı da yasaklıyor. Claude Ağustos'tan bu yana ısrarlı zararlı etkileşimlerde sohbeti sonlandıracak şekilde eğitilmişti; yeni metin bu yasağı resmi politikaya taşıyor.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/08/anthropic-changes-usage-policy-to-ban-model-abuse-and-election-interference/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "OpenAI, Rusya ve İran kaynaklı 'sahte cephe' etki operasyonlarına ait hesapları yasakladı",
+      "ozet": "OpenAI, ChatGPT'yi kullanarak sahte gazeteci kimlikleri ve bir düşünce kuruluşu üzerinden jeopolitik mesaj yayan iki etki operasyonuna ait hesapları engellediğini açıkladı. Rusya kaynaklı 'Dark Clark' operasyonu Latin Amerika'da Ukrayna karşıtı ve yerel siyaseti hedefleyen faaliyetlerde bulundu; şirket buna ilişkin değerlendirmeyi etki ölçeğinde Kategori 5 olarak nitelendirdi. İran kaynaklı 'Bogus Bylines' ise yedi sahte muhabir kimliğiyle dünya çapında küçük ve orta ölçekli sitelere yaklaşık yüz makale yerleştirmeyi başardı. OpenAI, her iki operasyonun da yapay zekâyı klasik etki teknikleriyle birleştirdiğini ve bulguları yetkililerle paylaştığını bildirdi.",
+      "kaynak": "OpenAI",
+      "kaynak_url": "https://openai.com/index/disrupting-ai-enabled-false-front-operations",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Amazon, Fire markasını bırakıp Google Play'li Alexa tablet ailesini tanıttı",
+      "ozet": "Amazon, Alexa Tablet 12 Pro, 11 ve 8 modellerinden oluşan yeni tablet serisini duyurdu; cihazlar tam Android çalıştırıyor ve Google Play Store'a erişim sunuyor. Şirket, bunların Fire tabletlerin yeniden markalanması değil, yeni donanım ve işletim sistemiyle ayrı bir ürün hattı olduğunu belirtti. 12 Pro 499,99 dolardan, 11 model 329,99 dolardan, 8 model ise 229,99 dolardan başlıyor; hepsinde Alexa+ asistanı ve ekrandaki içeriğe göre yardım veren On-Screen Intelligence bulunuyor. Satışlar ABD, Meksika ve Kanada'da 14 Ekim'de, İngiltere ve bazı Avrupa ülkelerinde 19 Ekim'de başlayacak.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/08/amazon-unveils-new-alexa-tablets-with-alexa-and-google-play-store-access/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Nvidia, robotaksi ve humanoid robotlar için Halos güvenlik yığınını genişletiyor",
+      "ozet": "Nvidia, 2025'te otonom araçlar için başlattığı Halos güvenlik sistemini robotik alanına yayarak depo robotları, humanoidler ve cerrahi robotlarda kullanılabilir hale getirdiğini duyurdu. Sistem, güvenlik işleri için ayrı işlemci içeren IGX Thor donanımı, sürekli izleme yapan Halos işletim sistemi, sensör köprüsü ve sanal test simülasyonlarından oluşuyor. Agility Robotics Digit 5 humanoidinde Halos'u ilk uygulayan şirket oldu; Boston Dynamics, KION Group ve LG de ortaklar arasında. Nvidia yöneticisi Amit Goel, modeller ve donanım olgunlaşırken bir sonraki darboğazın güvenlik olacağını savundu.",
+      "kaynak": "Ars Technica",
+      "kaynak_url": "https://arstechnica.com/ai/2026/10/nvidias-big-bet-on-physical-ai-aims-for-safer-robotaxis-humanoid-robots/",
+      "tarih": "09.10.2026"
+    }
+  ]
+}
