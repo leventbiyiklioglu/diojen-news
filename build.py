@@ -119,6 +119,24 @@ def kaynak_satiri(s):
             parcalar.append(f'{e(m.group(1).strip())} — <a href="{e(url)}" target="_blank" rel="noopener">{e(alan)} ↗</a>')
         else: parcalar.append(e(par))
     return "<br>".join(parcalar)
+def _lj(renk, metin, sekil=""):
+    return f'<span class="lj"><i style="background:{renk}" class="{sekil}"></i>{metin}</span>'
+HARITA_LEJANT = ('<div class="lejant"><b>Lejant</b> · '
+  + _lj("#f5b7b1", "Borsada işlem gören şirket (hisse kodu)") + _lj("#f8c471", "Aracı kurum, banka, holding")
+  + _lj("#f9e79f", "Portföy yönetim şirketi (PYŞ)") + _lj("#abebc6", "Yatırım fonları") + _lj("#d2b4de", "Yurt dışı şirket")
+  + _lj("#d5d8dc", "Kamu kurumu / resmi işlem", "sekiz") + _lj("#aed6f1", "Ortak aile (şirket ortaklığı)", "elips")
+  + '<br><span class="lj"><i class="cizgi duz"></i>Düz çizgi: resmi kayıt (KAP, SPK, Companies House)</span>'
+  + '<span class="lj"><i class="cizgi kesik"></i>Kesikli çizgi: iddia (basın, savcılık dosyası aktarımı)</span>'
+  + '<span class="lj">Çizgi rengi: ilgili grubun rengi (Tera kırmızı, Pusula mavi, Hedef ve yurt dışı mor, Destek yeşil)</span>'
+  + '<br><em>Bir bağlantı suç ya da sorumluluk anlamına gelmez. Soruşturma sürüyor; kesinleşmiş yargı kararı yok. Haritada kişi yer almaz.</em></div>')
+def sekil_html(alt, src):
+    # ![açıklama](dosya.svg|jpg|png) -> figure; göreli dosyalar gorseller/dosya/ altından okunur
+    if not re.match(r"^(https?:)?//", src) and not src.startswith("../"):
+        src = "../gorseller/dosya/" + os.path.basename(src)
+    harita = "harita" in src
+    return (f'<figure class="sema{" harita" if harita else ""}"><a href="{e(src)}" target="_blank" rel="noopener"><img src="{e(src)}" alt="{e(alt)}" loading="lazy"></a>'
+            f'<figcaption>{satir_ici(alt)} <span class="buyut">(Tam boyut için şemaya tıklayın.)</span></figcaption>'
+            + (HARITA_LEJANT if harita else "") + '</figure>')
 def makale_oku(p):
     try: satirlar = open(p,encoding="utf-8").read().split("\n")
     except Exception: return None
@@ -138,7 +156,9 @@ def makale_oku(p):
             elif cf == "kaynaklar": mod = "kaynak"
             elif len(hm.group(1)) == 1 and not baslik: baslik = ad
             elif mod != "dur":
-                mod = "govde"; govde.append(f'<h2>{e(ad)}</h2>')
+                mod = "govde"
+                kutu = ad in ("Masumiyet karinesi", "Cevap hakkı", "Yatırım tavsiyesi değildir")
+                govde.append(f'<h2{" class=\"not-baslik\"" if kutu else ""}>{e(ad)}</h2>')
             continue
         if mod == "dur" or not l: 
             if mod == "govde": par_bitir(); liste_bitir()
@@ -148,6 +168,9 @@ def makale_oku(p):
             if km: kaynaklar.append((km.group(1), km.group(2)))
             elif kaynaklar: kaynaklar[-1] = (kaynaklar[-1][0], kaynaklar[-1][1] + " " + l)
             continue
+        fm = re.match(r"^!\[(.*)\]\((\S+)\)$", l)
+        if fm:
+            par_bitir(); liste_bitir(); govde.append(sekil_html(fm.group(1), fm.group(2))); continue
         if not meta and l.startswith("**") and l.endswith("**") and "|" in l:
             meta = l.strip("*").strip(); continue
         if not spot and not govde and re.match(r"^\*[^*].*[^*]\*$", l):
@@ -163,7 +186,7 @@ def makale_oku(p):
     yazar = re.sub(r"^Yazar:\s*", "", parts[0]) if parts and parts[0] else ""
     kat = parts[1] if len(parts) > 2 else ""
     slug = os.path.splitext(os.path.basename(p))[0]
-    return {"slug":slug,"baslik":baslik,"yazar":yazar,"kategori":kat,"tarih":tarih,"sirala":sirala,"spot":spot,"govde":"".join(govde),"kaynaklar":kaynaklar,
+    return {"dosya":baslik.casefold().startswith("dosya:"),"pdf_var":os.path.exists(os.path.join(base,"makaleler",slug+".pdf")),"slug":slug,"baslik":baslik,"yazar":yazar,"kategori":kat,"tarih":tarih,"sirala":sirala,"spot":spot,"govde":"".join(govde),"kaynaklar":kaynaklar,
             "resim_var":os.path.exists(os.path.join(base,"gorseller",slug+".jpg")),"resim900_var":os.path.exists(os.path.join(base,"gorseller",slug+"-900.jpg"))}
 makale_dosyalar = sorted(glob.glob(os.path.join(base,"makaleler","*.md")))
 makaleler = [y for y in (makale_oku(p) for p in makale_dosyalar) if y]
@@ -175,6 +198,7 @@ def makale_sayfasi(y):
         img = f'<figure class="makale-gorsel"><img src="../gorseller/{e(src)}" alt="{e(y["baslik"])}"></figure>'
     meta = " · ".join(x for x in (f'Yazar: {e(y["yazar"])}' if y["yazar"] else "", e(y["kategori"]), e(y["tarih"])) if x)
     spot = f'<p class="makale-spot">{satir_ici(y["spot"])}</p>' if y["spot"] else ""
+    pdf = f'<p class="makale-pdf"><a href="{e(y["slug"])}.pdf" download>📄 Dosyayı PDF olarak indir</a></p>' if (y["dosya"] and y["pdf_var"]) else ""
     kay = ""
     if y["kaynaklar"]:
         kay = '<section class="makale-kaynaklar"><h2>Kaynaklar</h2><ol>' + "".join(f'<li id="k{n}" value="{n}">{kaynak_satiri(s)}</li>' for n,s in y["kaynaklar"]) + '</ol></section>'
@@ -198,7 +222,7 @@ def makale_sayfasi(y):
 <h1 class="makale-baslik">{e(y["baslik"])}</h1>
 {spot}
 {img}
-<div class="makale-govde">{y["govde"]}</div>
+{pdf}<div class="makale-govde">{y["govde"]}</div>
 {kay}
 <p class="makale-geri alt"><a href="../DiojenNews.html">← Ana sayfaya dön</a> · <a href="../arsiv/index.html">📚 Arşiv</a></p>
 </article>
@@ -211,11 +235,20 @@ for y in makaleler:
 makale_html = ""
 if makaleler:
     kk = []
-    for y in makaleler[:3]:
+    for y in [m for m in makaleler if not m["dosya"]][:3]:
         img = f'<img class="makale-kucuk" src="gorseller/{e(y["slug"])}.jpg" alt="{e(y["baslik"])}">' if y["resim_var"] else ""
         by = f'Yazar: {e(y["yazar"])}' + (f' · {e(y["tarih"])}' if y["tarih"] else "")
         kk.append(f'<article class="makale-kart">{img}<div class="makale-ozet"><div class="meta">{by}</div><h3><a href="makaleler/{e(y["slug"])}.html">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}.html">Makaleyi oku →</a></div></article>')
     makale_html = '<section class="makale-bolum" id="makale"><h2>Köşe Yazısı / Makale</h2>' + "".join(kk) + '</section>'
+dosya_html = ""
+dosyalar = [m for m in makaleler if m["dosya"]]
+if dosyalar:
+    dk = []
+    for y in dosyalar[:2]:
+        by = f'Yazar: {e(y["yazar"])}' + (f' · {e(y["kategori"])}' if y["kategori"] else "") + (f' · {e(y["tarih"])}' if y["tarih"] else "")
+        pdfl = f' · <a class="makale-oku" href="makaleler/{e(y["slug"])}.pdf" download>PDF indir</a>' if y["pdf_var"] else ""
+        dk.append(f'<article class="makale-kart dosya-kart"><div class="makale-ozet"><div class="meta"><span class="dosya-etiket">DOSYA HABER</span> {by}</div><h3><a href="makaleler/{e(y["slug"])}.html">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}.html">Dosyayı oku →</a>{pdfl}</div></article>')
+    dosya_html = '<section class="makale-bolum dosya-bolum" id="dosya"><h2>Dosya Haber</h2>' + "".join(dk) + '</section>'
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
@@ -233,7 +266,7 @@ sayfa = f'''<!DOCTYPE html>
 {piyasa_html}
 <div class="content">
 <aside class="sidebar"><h2>Kategoriler</h2><ul>{yan}</ul></aside>
-<main class="main-content">{man}{makale_html}{"".join(bol)}</main>
+<main class="main-content">{man}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
 <footer class="footer"><p>&copy; {yil} Diojen News. Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
 </div>
