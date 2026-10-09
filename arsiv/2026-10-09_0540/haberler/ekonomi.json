@@ -1,0 +1,47 @@
+{
+  "yazar": "Emre Kaya",
+  "haberler": [
+    {
+      "baslik": "Dolar 49,22, avro 55,26 liradan güne başladı",
+      "ozet": "İstanbul serbest piyasasında perşembe sabahı dolar 49,2130 liradan alınıp 49,2150 liradan satıldı; avronun satış fiyatı 55,2590 lira oldu. Bir gün önce dolar 49,1980, avro ise 55,0340 liradan satılmıştı. Fed tutanaklarının ardından küresel piyasalarda doların seyri yakından izleniyor.",
+      "kaynak": "Haberler.com / AA",
+      "kaynak_url": "https://www.haberler.com/ekonomi/istanbul-serbest-piyasada-dolar-49-2150-avro-55-20308252-haberi/",
+      "tarih": "08.10.2026"
+    },
+    {
+      "baslik": "Borsa sert düşüşün ardından tepki alımıyla açıldı",
+      "ozet": "BIST 100 endeksi çarşamba gününü genele yayılan satışlarla yüzde 2,03 ve 251,32 puan kayıpla 12.122,94 puandan tamamlamıştı. Endeks perşembe seansına yüzde 0,32 yükselişle 12.161,68 puandan başladı. Hafta başında 12.440 puan civarına kadar çıkan endeksteki geri çekilme, destek seviyelerini yeniden gündeme taşıdı.",
+      "kaynak": "Halk TV",
+      "kaynak_url": "https://halktv.com.tr/ekonomi/8-ekim-2026-borsa-istanbul-endeksi-bist100-kac-puan-artanlar-azalanlar-1060234h",
+      "tarih": "08.10.2026"
+    },
+    {
+      "baslik": "Fed tutanakları: Yetkililerin çoğu yıl sonuna kadar bir faiz artışı daha bekliyor",
+      "ozet": "ABD Merkez Bankası'nın 15-16 Eylül toplantısına ait tutanaklar, politika faizini 25 baz puan artırarak yüzde 3,75-4,00 aralığına çeken kararın oybirliğiyle desteklendiğini gösterdi. Yetkililerin çoğu, yıl bitmeden bir artışın daha muhtemelen uygun olacağını değerlendirdi ve enflasyon risklerinin yukarı yönlü olduğuna dikkat çekti. Tutanaklarda ekim toplantısı için bir taahhüt bulunmazken, Fed Başkan Yardımcısı Jefferson ve New York Fed Başkanı Williams'ın acele edilmemesi gerektiği yönündeki sözlerinin ardından piyasalar ekimde artış beklentisini azaltmıştı.",
+      "kaynak": "Bloomberg HT",
+      "kaynak_url": "https://www.bloomberght.com/fed-tutanaklari-yetkililerin-cogu-2026-da-bir-faiz-artisi-daha-bekliyor-3790705",
+      "tarih": "07.10.2026"
+    },
+    {
+      "baslik": "Karahan: Arz baskıları sönümlenirse dezenflasyon hızlanacak",
+      "ozet": "TCMB Başkanı Fatih Karahan, yıllık enflasyonun nisandaki yüzde 32,4'ten eylülde yüzde 29,7'ye gerilediğini, enflasyonun ana eğiliminin ise yüzde 23,7'ye indiğini söyledi. Ana eğilimin yıllık enflasyonun yaklaşık 6 puan altında olmasının, arz yönlü baskılar azalırsa dezenflasyonun hızlanacağına işaret ettiğini belirtti. Karahan, enerji fiyatlarının belirleyici olmayı sürdürdüğünü vurgulayarak fiyat istikrarı sağlanana kadar sıkı para politikasının korunacağını ifade etti.",
+      "kaynak": "Yeni Şafak",
+      "kaynak_url": "https://www.yenisafak.com/ekonomi/karahandan-enflasyon-mesaji-enerji-fiyatlari-belirleyici-olacak-4862334",
+      "tarih": "07.10.2026"
+    },
+    {
+      "baslik": "Karahan TBMM'de: Fonlardan çıkan para büyük ölçüde mevduata geçti",
+      "ozet": "TCMB Başkanı Fatih Karahan, TBMM Plan ve Bütçe Komisyonu'ndaki sunumunda para piyasası ve benzeri fonlardan son dönemde çıkış yaşandığını, bu kaynakların önemli kısmının mevduata yöneldiğini anlattı. Fon piyasasının genel olarak sağlıklı işlediğini ve finansal sistemin bütününü etkileyen bir sorun görmediklerini belirten Karahan, fonlardan çıkışın son günlerde yavaşladığını ve yayılma riskinin şimdilik sınırlı kaldığını değerlendirdi.",
+      "kaynak": "TBMM",
+      "kaynak_url": "https://tbmm.gov.tr/Haber/Detay?Id=408af261-69ae-4a85-9ae0-01a111cde9ab",
+      "tarih": "06.10.2026"
+    },
+    {
+      "baslik": "Yıllık enflasyon Kasım 2021'den bu yana ilk kez yüzde 30'un altında",
+      "ozet": "TÜİK verilerine göre tüketici fiyatları eylülde aylık yüzde 1,84 arttı, yıllık enflasyon yüzde 29,73'e geriledi. Yurt içi üretici fiyatları ise aylık yüzde 2,07, yıllık yüzde 27,38 yükseldi. Gıda ve alkolsüz içeceklerde fiyatlar aylık bazda yüzde 0,2 düşerken eğitim harcamalarında okula dönüş etkisiyle yüzde 14,19'luk artış dikkat çekti.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/ekonomi/enflasyon-rakamlari-aciklandi/4078027",
+      "tarih": "05.10.2026"
+    }
+  ]
+}
