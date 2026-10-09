@@ -12,3 +12,6 @@ Kurallar:
 - PC: machineId 881e391c-228c-48a2-940d-aa481d1f197f, hedef C:\Users\leven\DiojenNews\ (DiojenNews.html, styles.css).
 - Yayin duzeni: Gazete 6 saatte bir (06:07, 12:07, 18:07, 00:07) yeni sayi cikar. Yazarlar :07'de kendi JSON'unu gunceller, editor :37'de `python3 yayin.py` calistirir (build + arsiv/<tarih_saat>/ kopyasi + arsiv/index.html), sonra git commit/push yapar ve PC'ye gonderir.
 - Arsiv: /workspace/diojen/arsiv/ ; GitHub: https://github.com/leventbiyiklioglu/diojen-news
+Ekip (ek):
+- Gazete | Arsiv Arastirmacisi Kaan: kaynak yalnizca WikiLeaks arsivi; artik gorevde olmayan dunya liderlerinin skandallari. Bolum adi 'Arsiv Dosyasi' (haftalik, Levent onaylarsa pazar 06:00). Taslaklar taslak/arsiv-dosyasi/ altinda; Levent onaylamadan yayin yok.
+- Gazete | SEO Uzmani Seda: SEO, temiz URL'ler (.html'siz adresler, canonical, sitemap).
