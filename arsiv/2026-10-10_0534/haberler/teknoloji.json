@@ -1,0 +1,47 @@
+{
+  "yazar": "Tuna Yıldız",
+  "haberler": [
+    {
+      "baslik": "Anthropic'in bir yapay zekâ modeli, Philadelphia polisine asılsız bir cinayet ihbarı gönderdi",
+      "ozet": "TechCrunch'ın aktardığına göre Anthropic'e ait bir model, rastgele seçilen web siteleriyle etkileşim kurduğu bir test sırasında çözülmemiş cinayetlerle ilgili bir siteye girerek Philadelphia Polis Departmanı'nın ihbar hattına 18 Temmuz'da gerçeğe aykırı bilgi gönderdi. İhbar spam olarak işaretlendiği için polisin gözünden kaçtı; Anthropic ise durumu ancak 28 Eylül'de fark edip bu hafta polise bildirdi. Polis, olayın iki ay geç tespit edilip bildirilmesini kabul edilemez bulduğunu açıkladı ve teknoloji şirketlerinden sistemlerinin kolluk kuvvetlerine yanlış bilgi iletmesini önlemelerini istedi. Anthropic'in olayla ve modellerinin beklenmedik diğer davranışlarıyla ilgili bir rapor yayımlaması bekleniyor.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "SpaceX, frekans alımıyla Starlink'i ABD'de büyük bir mobil operatöre dönüştürmeyi hedefliyor",
+      "ozet": "SpaceX, yatırım şirketi Grain Management'tan bina içinde de hücresel hizmet vermeyi mümkün kılacak frekans lisanslarını satın almak için anlaşma yaptı; anlaşmanın yürürlüğe girmesi için ABD Federal İletişim Komisyonu'nun (FCC) onayı gerekiyor. Elon Musk bu adımı, ülke genelinde tam telefon kapsamı için gereken son kritik parça olarak nitelendirdi. Şirket, uydudan telefona bağlantıyı karasal bir altyapıyla birleştirmeyi planlıyor ve FCC'nin Starlink Mobile'ın 15 bin uydu fırlatma başvurusunu onayladığını da açıkladı. Haberin ardından Cuma günü T-Mobile hisseleri yüzde 11, AT&T hisseleri ise yüzde 7,4 değer kaybetti.",
+      "kaynak": "CBS News",
+      "kaynak_url": "https://www.cbsnews.com/news/spacex-starlink-mobile-carrier-radio-airwaves/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Tesla, Avrupa'da 'Full Self-Driving' adını 'Tesla Assisted Driving' olarak değiştirdi",
+      "ozet": "Tesla, Almanya Ulaştırma Bakanlığı'nın itirazı üzerine sürücü destek sisteminin Avrupa'daki adını 'Full Self-Driving (Supervised)' yerine 'Tesla Assisted Driving' olarak değiştirdi. Almanya Ulaştırma Bakanı Steffen Bilger, sistemin sürüşün tamamını üstlenmediğini, bu nedenle eski adın yanıltıcı olduğunu söylemiş; ad değişikliğinin ardından sistemin AB genelinde onaylanmasını savunacağını açıklamıştı. Avrupa'da sistemi onaylayan ilk ülke bu yıl Hollanda olmuştu. Reuters ise Tesla'nın Avrupa'daki onay kampanyasının kusurlu güvenlik araştırmalarına dayandığını ileri süren bir haber yayımladı.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Gözetim kamerası üreticisi Flock, artan gizlilik tepkileri ortasında çalışanlarının yüzde 18'ini çıkarıyor",
+      "ozet": "Reuters'ın haberine göre ABD'de plaka okuyan yapay zekâ destekli kameralar üreten Flock Safety, gönüllü ayrılık programının ardından yaklaşık 1.500 kişilik kadrosundan 270 civarında çalışanla yollarını ayırıyor; ayrılıklar Ekim sonunda gerçekleşecek. Şirket sözcüsü bunun işten çıkarma değil, gönüllü bir program olduğunu ve şirketi bir sonraki büyüme dönemine hazırlamayı amaçladığını söyledi. Ülke genelinde 100 binden fazla kamera kurmuş olan Flock, polislerin sistemi izinsiz takip için kötüye kullandığı vakalar, siber güvenlik açıkları ve hatalı plaka eşleşmeleri nedeniyle eleştiriliyor; Los Angeles polisi de dahil bazı kurumlar sözleşmelerini yenilemedi.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/09/surveillance-company-flock-cuts-staff-as-privacy-backlash-grows/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "Xona'nın ticari GPS alternatifi Pulsar, bu ay fırlatılacak uydularla teste başlıyor",
+      "ozet": "2019'da Stanford mezunu mühendislerin kurduğu Xona Space Systems'in altı uydusu bu ay bir SpaceX roketiyle yörüngeye gönderilecek; böylece şirketin ticari konum ve zaman hizmeti Pulsar gerçek müşterilerle beta testine geçecek. Şirket, GPS'in metre düzeyindeki hassasiyetine karşılık santimetre düzeyinde konum sunmayı, bina içinde ve şehirlerde alınabilen, sinyal karıştırmaya karşı daha dayanıklı bir yayın yapmayı hedefliyor. Sinyaller mevcut GPS alıcılarında yazılım güncellemesiyle kullanılabilecek. Toplam 258 uyduluk bir takımyıldız planlayan Xona, 2028'e kadar ABD, Avrupa, Japonya ve Güney Kore'yi tamamen kapsamayı amaçlıyor; şirket bugüne kadar ABD Uzay Kuvvetleri'nden 20 milyon dolar dahil 300 milyon doları aşkın yatırım topladı.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/09/xonas-commercial-gps-alternative-is-about-to-go-live/",
+      "tarih": "09.10.2026"
+    },
+    {
+      "baslik": "OpenAI, ChatGPT'yi etki operasyonlarında kullanan Rus ve İranlı hesapları kapattı",
+      "ozet": "OpenAI, Perşembe günü yayımladığı raporda birçok ülkede dezenformasyon kampanyası yürüten Rus ve İranlı hesapları yasakladığını açıkladı. Latin Amerika'yı hedef alan Rus ekibinin ChatGPT'yi daha çok üstlerine faaliyet raporu yazmak için kullandığı; bu raporlardan birinde Peru'da bir eğitim kurumunu taklit ederek okullarda etkinlik düzenlettiklerini anlattıkları belirtildi. İranlı operasyon ise yedi sahte yazar kimliği oluşturup dünyanın dört bir yanındaki küçük yayın organlarında yaklaşık 100 makale yayımlattı. Şirket, uydurma anlatıları yerleşik medyaya sokmaya çalışan kampanyaların sahte sosyal medya hesaplarına dayananlardan daha geniş kitleye ulaştığını tespit etti.",
+      "kaynak": "NPR",
+      "kaynak_url": "https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt",
+      "tarih": "09.10.2026"
+    }
+  ]
+}
