@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1048" viewBox="0 0 960 1048" font-family="DejaVu Sans, sans-serif">
+<rect width="960" height="1048" fill="#fffdf6"/>
+<text x="480.0" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#111">Fon krizi kronolojisi: 16 Eylül – 9 Ekim 2026</text>
+<text x="480.0" y="58" text-anchor="middle" font-size="13" fill="#444">Resmi açıklamalar ve basın aktarımları · turuncu kutu: iddia · soruşturma sürüyor, kesinleşmiş yargı kararı yok</text>
+<rect x="40" y="74" width="14" height="14" rx="3" fill="#8b1a1a"/><text x="60" y="86" font-size="13" fill="#222">Piyasa</text>
+<rect x="118" y="74" width="14" height="14" rx="3" fill="#1f618d"/><text x="138" y="86" font-size="13" fill="#222">Düzenleyici / kamu</text>
+<rect x="292" y="74" width="14" height="14" rx="3" fill="#2e4053"/><text x="312" y="86" font-size="13" fill="#222">Yargı süreci</text>
+<rect x="418" y="74" width="14" height="14" rx="3" fill="#b9770e"/><text x="438" y="86" font-size="13" fill="#222">İddia (basın)</text>
+<rect x="552" y="74" width="14" height="14" rx="3" fill="#117a65"/><text x="572" y="86" font-size="13" fill="#222">Yatırımcı ödemesi</text>
+<line x1="150" y1="110" x2="150" y2="958" stroke="#1a1a1a" stroke-width="3"/>
+<text x="128" y="134" text-anchor="end" font-size="17" font-weight="bold" fill="#8b1a1a">16.09</text>
+<circle cx="150" cy="128" r="9" fill="#8b1a1a" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="108" width="768" height="50" rx="6" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.6"/>
+<text x="184" y="130" font-size="15" fill="#111">BIST 100 %5,54 düştü, devre kesici çalıştı</text>
+<text x="184" y="149" font-size="12.5" fill="#444">SPK: KTLEV, GUNDG, DSTKF için 38 kişiye suç duyurusu</text>
+<text x="128" y="196" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">17.09</text>
+<circle cx="150" cy="190" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="170" width="768" height="50" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="192" font-size="15" fill="#111">SPK 7 portföy şirketinin TEFAS fonlarını kapattı</text>
+<text x="184" y="211" font-size="12.5" fill="#444">131 fon tasfiyede · Finansal İstikrar Komitesi toplandı</text>
+<text x="128" y="258" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">18.09</text>
+<circle cx="150" cy="252" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="232" width="768" height="34" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="254" font-size="15" fill="#111">Tasfiye için İş Bankası ve Ziraat Bankası görevlendirildi</text>
+<text x="128" y="320" text-anchor="end" font-size="17" font-weight="bold" fill="#2e4053">22.09</text>
+<circle cx="150" cy="314" r="9" fill="#2e4053" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="294" width="768" height="50" rx="6" fill="#ffffff" stroke="#2e4053" stroke-width="1.6"/>
+<text x="184" y="316" font-size="15" fill="#111">İkinci dalga: Tera ve Pusula üst yöneticileri tutuklandı</text>
+<text x="184" y="335" font-size="12.5" fill="#444">Şüpheliler suçlamaları reddediyor</text>
+<text x="128" y="382" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">23.09</text>
+<circle cx="150" cy="376" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="356" width="768" height="34" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="378" font-size="15" fill="#111">SPK: tasfiyedeki fonlarda 455.758 tekil yatırımcı</text>
+<text x="128" y="444" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">25.09</text>
+<circle cx="150" cy="438" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="418" width="768" height="34" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="440" font-size="15" fill="#111">SPK: OZATD işlemleri için 11 kişiye suç duyurusu</text>
+<text x="128" y="506" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">28.09</text>
+<circle cx="150" cy="500" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="480" width="768" height="50" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="502" font-size="15" fill="#111">SPK: TRHOL işlemleri için 37 kişiye suç duyurusu</text>
+<text x="184" y="521" font-size="12.5" fill="#444">Liste Tera, Pusula, Hedef ve Pardus&#x27;tan isimler içeriyor</text>
+<text x="128" y="568" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">30.09</text>
+<circle cx="150" cy="562" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="542" width="768" height="50" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="564" font-size="15" fill="#111">BDDK 3 yatırım bankası ve 2 faktoringi TMSF&#x27;ye devretti</text>
+<text x="184" y="583" font-size="12.5" fill="#444">SPK 1 milyon TL&#x27;ye kadar ara ödeme kararı · Eski SPK Başkanı şüpheli sıfatıyla ifade verdi</text>
+<text x="128" y="630" text-anchor="end" font-size="17" font-weight="bold" fill="#2e4053">01.10</text>
+<circle cx="150" cy="624" r="9" fill="#2e4053" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="604" width="768" height="34" rx="6" fill="#ffffff" stroke="#2e4053" stroke-width="1.6"/>
+<text x="184" y="626" font-size="15" fill="#111">Adalet Bakanı: 217 şüpheli, 56 tutuklu, 26 hisse inceleniyor</text>
+<text x="128" y="692" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">02.10</text>
+<circle cx="150" cy="686" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="666" width="768" height="50" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="688" font-size="15" fill="#111">Fon Koordinasyon Kurulu 2. toplantı</text>
+<text x="184" y="707" font-size="12.5" fill="#444">Hazine Teftiş Kurulu görevlendirildi · S&amp;P: süreç izole kalırsa nota baskı beklemiyor</text>
+<text x="128" y="754" text-anchor="end" font-size="17" font-weight="bold" fill="#b9770e">06.10</text>
+<circle cx="150" cy="748" r="9" fill="#b9770e" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="728" width="768" height="50" rx="6" fill="#ffffff" stroke="#b9770e" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="184" y="750" font-size="15" fill="#111">Sabah: Temmuz–Eylül&#x27;de ~3,09 milyar TL&#x27;lik hisse virmanı iddiası</text>
+<text x="184" y="769" font-size="12.5" fill="#444">Lüksemburg, İsviçre, Bahreyn bağlantılı talimatlar (iddia)</text>
+<text x="128" y="816" text-anchor="end" font-size="17" font-weight="bold" fill="#1f618d">07.10</text>
+<circle cx="150" cy="810" r="9" fill="#1f618d" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="790" width="768" height="50" rx="6" fill="#ffffff" stroke="#1f618d" stroke-width="1.6"/>
+<text x="184" y="812" font-size="15" fill="#111">Cevdet Yılmaz TBMM&#x27;de: 220 kişiye işlem, 85 tutuklu</text>
+<text x="184" y="831" font-size="12.5" fill="#444">10 maddelik geçici kanun teklifi imzaya açıldı</text>
+<text x="128" y="878" text-anchor="end" font-size="17" font-weight="bold" fill="#117a65">08.10</text>
+<circle cx="150" cy="872" r="9" fill="#117a65" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="852" width="768" height="50" rx="6" fill="#ffffff" stroke="#117a65" stroke-width="1.6"/>
+<text x="184" y="874" font-size="15" fill="#111">A1 Capital, Bulls, Pardus: 17 fonda 43.643 yatırımcıya ödeme</text>
+<text x="184" y="893" font-size="12.5" fill="#444">Olağan tasfiye ile ilk ödemeler</text>
+<text x="128" y="940" text-anchor="end" font-size="17" font-weight="bold" fill="#2e4053">09.10</text>
+<circle cx="150" cy="934" r="9" fill="#2e4053" stroke="#fff" stroke-width="2"/>
+<rect x="172" y="914" width="768" height="50" rx="6" fill="#ffffff" stroke="#2e4053" stroke-width="1.6"/>
+<text x="184" y="936" font-size="15" fill="#111">Adalet Bakanı: 214 kişi/kurum, 187,65 milyar TL kâr</text>
+<text x="184" y="955" font-size="12.5" fill="#444">Liste TMSF&#x27;ye; gönüllü iade istenecek · 13–16 Eylül çıkışları inceleniyor</text>
+<text x="480.0" y="1026" text-anchor="middle" font-size="12" fill="#555">Kaynaklar: SPK, Adalet Bakanlığı, TBMM, AA, NTV, Sabah, Takvim, Haber7 vb. · Diojen News, 09.10.2026</text>
+</svg>
