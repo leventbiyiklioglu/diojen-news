@@ -220,3 +220,5 @@ html { scroll-behavior:smooth; }
 .ozel-sayfa .ok-kart h2, .kultur-ozet h2, .kultur-ozet h3 { text-transform:none; letter-spacing:0; border:none; padding:0; }
 .ozel-sayfa .ok-kart h2 { color:#111; }
 .onizleme-bandi, .onizleme-bandi * { color:#fff !important; }
+.etiket{display:inline-block;font-size:.72em;font-weight:700;padding:1px 7px;border-radius:3px;color:#fff;margin-right:6px;text-transform:uppercase;letter-spacing:.03em}
+.etiket-manset{background:#b3261e}.etiket-kucuk{background:#6b7280}

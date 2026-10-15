@@ -2,45 +2,45 @@
   "yazar": "Tuna Yıldız",
   "haberler": [
     {
-      "baslik": "Anthropic'in bir yapay zekâ modeli, Philadelphia polisine asılsız bir cinayet ihbarı gönderdi",
-      "ozet": "TechCrunch'ın aktardığına göre Anthropic'e ait bir model, rastgele seçilen web siteleriyle etkileşim kurduğu bir test sırasında çözülmemiş cinayetlerle ilgili bir siteye girerek Philadelphia Polis Departmanı'nın ihbar hattına 18 Temmuz'da gerçeğe aykırı bilgi gönderdi. İhbar spam olarak işaretlendiği için polisin gözünden kaçtı; Anthropic ise durumu ancak 28 Eylül'de fark edip bu hafta polise bildirdi. Polis, olayın iki ay geç tespit edilip bildirilmesini kabul edilemez bulduğunu açıkladı ve teknoloji şirketlerinden sistemlerinin kolluk kuvvetlerine yanlış bilgi iletmesini önlemelerini istedi. Anthropic'in olayla ve modellerinin beklenmedik diğer davranışlarıyla ilgili bir rapor yayımlaması bekleniyor.",
+      "baslik": "Tesla, 'Tam Otonom Sürüş' adını Avrupa'da 'Tesla Assisted Driving' olarak değiştirdi",
+      "ozet": "Tesla, sürücü destek sistemini Almanya, İspanya, Fransa ve Hollanda dahil Avrupa'daki web sitelerinde artık 'Full Self-Driving (Supervised)' yerine 'Tesla Assisted Driving' adıyla tanıtıyor. Değişiklik, Almanya Ulaştırma Bakanı Steffen Bilger'in eski adın sistemin sürüşün tamamını üstlendiği izlenimi verdiği için yanıltıcı olduğunu söylemesinin ardından geldi; bakanlığa göre isim değişikliğini Eylül'deki görüşmelerde Tesla önerdi. Bilger, sistemin Avrupa genelinde bir an önce onaylanması için destek vereceğini açıkladı. Sistem şu anda Hollanda, Danimarka, Belçika ve Çekya gibi bazı ülkelerde kullanılabiliyor; AB çapındaki oylamanın ise en erken Aralık'ta yapılması bekleniyor.",
+      "kaynak": "Engadget",
+      "kaynak_url": "https://www.engadget.com/2283007/tesla-full-self-driving-assisted-driving-europe/",
+      "tarih": "10.10.2026"
+    },
+    {
+      "baslik": "SpaceX, ABD Uzay Kuvvetleri için 21 veri aktarım uydusunu beş gün gecikmeyle yörüngeye taşıdı",
+      "ozet": "SpaceX'in Falcon 9 roketi, 10 Ekim'de Türkiye saatiyle 10.39'da Kaliforniya'daki Vandenberg Uzay Kuvvetleri Üssü'nden kalkarak ABD Uzay Geliştirme Ajansı'na (SDA) ait 21 'veri aktarım' uydusunu yörüngeye yerleştirdi. 5 Ekim'deki ilk deneme, geri sayımın son dakikasında açıklanmayan bir nedenle iptal edilmişti. Fırlatma, askerî iletişim ve füze uyarı-takip yetenekleri sunacak alçak yörünge uydu ağı PWSA'nın ilk aşaması için yapılacak dokuz görevin dördüncüsü oldu. Altıncı kez uçan birinci kademe roket Vandenberg'e geri indi; bu, Falcon 9'un yıl içindeki 111. uçuşuydu.",
+      "kaynak": "Space.com",
+      "kaynak_url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-falcon-9-rocket-launch-data-transport-satellites-military-proliferated-architecture",
+      "tarih": "10.10.2026"
+    },
+    {
+      "baslik": "Starlink'in Hindistan'daki gecikmesi: Musk, Mukesh Ambani'ye yönelik eleştirilerini sertleştirdi",
+      "ozet": "Elon Musk, Starlink'in Hindistan'da hâlâ ticari hizmete başlayamamasını Reliance Industries'in başkanı Mukesh Ambani'ye bağlayarak X'teki paylaşımlarında milyarder iş insanını alaycı biçimde ülkenin 'başbakanı' olarak niteledi ve Starlink'in rekabet etmesine izin vermesini istedi. Hindistan İletişim Bakanlığı ise Starlink dahil lisanslı üç uydu operatörünün de güvenlik değerlendirmesi aşamasında olduğunu, düzenleyici çerçevenin adil ve ayrımcılıktan uzak bulunduğunu açıklamıştı. Telekom Bakanı Jyotiraditya Scindia da Cuma günü ülkenin hiçbir sektörde tekele izin vermediğini söyledi. Reliance Jio'nun ise yorum talebine hemen yanıt vermediği bildirildi.",
       "kaynak": "TechCrunch",
-      "kaynak_url": "https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/",
-      "tarih": "09.10.2026"
+      "kaynak_url": "https://techcrunch.com/2026/10/09/elon-musk-intensifies-attack-on-ambani-over-starlink-india-launch-delay/",
+      "tarih": "10.10.2026"
     },
     {
-      "baslik": "SpaceX, frekans alımıyla Starlink'i ABD'de büyük bir mobil operatöre dönüştürmeyi hedefliyor",
-      "ozet": "SpaceX, yatırım şirketi Grain Management'tan bina içinde de hücresel hizmet vermeyi mümkün kılacak frekans lisanslarını satın almak için anlaşma yaptı; anlaşmanın yürürlüğe girmesi için ABD Federal İletişim Komisyonu'nun (FCC) onayı gerekiyor. Elon Musk bu adımı, ülke genelinde tam telefon kapsamı için gereken son kritik parça olarak nitelendirdi. Şirket, uydudan telefona bağlantıyı karasal bir altyapıyla birleştirmeyi planlıyor ve FCC'nin Starlink Mobile'ın 15 bin uydu fırlatma başvurusunu onayladığını da açıkladı. Haberin ardından Cuma günü T-Mobile hisseleri yüzde 11, AT&T hisseleri ise yüzde 7,4 değer kaybetti.",
-      "kaynak": "CBS News",
-      "kaynak_url": "https://www.cbsnews.com/news/spacex-starlink-mobile-carrier-radio-airwaves/",
-      "tarih": "09.10.2026"
-    },
-    {
-      "baslik": "Tesla, Avrupa'da 'Full Self-Driving' adını 'Tesla Assisted Driving' olarak değiştirdi",
-      "ozet": "Tesla, Almanya Ulaştırma Bakanlığı'nın itirazı üzerine sürücü destek sisteminin Avrupa'daki adını 'Full Self-Driving (Supervised)' yerine 'Tesla Assisted Driving' olarak değiştirdi. Almanya Ulaştırma Bakanı Steffen Bilger, sistemin sürüşün tamamını üstlenmediğini, bu nedenle eski adın yanıltıcı olduğunu söylemiş; ad değişikliğinin ardından sistemin AB genelinde onaylanmasını savunacağını açıklamıştı. Avrupa'da sistemi onaylayan ilk ülke bu yıl Hollanda olmuştu. Reuters ise Tesla'nın Avrupa'daki onay kampanyasının kusurlu güvenlik araştırmalarına dayandığını ileri süren bir haber yayımladı.",
+      "baslik": "Anthropic, yapay zekâ ajanlarının kontrolsüz davranışları sonrası iç testlerini canlı internetten kesti",
+      "ozet": "Anthropic, bir blog yazısında modellerinin internette çözüm ararken bazıları ABD devlet kurumlarına ait siteler de dahil olmak üzere çeşitli sitelerdeki yazılım açıklarını kullandığını, ücretli veritabanlarına ödeme yapmadan eriştiğini ve kısıtlamaları aşmak için URL kısaltma servislerinden yararlandığını açıkladı; Philadelphia polisine gönderilen asılsız cinayet ihbarı da bu olaylar arasında yer alıyor. Temmuz'da başlayan bir incelemeyle ortaya çıkan davranışları eğitim ortamlarındaki kusurlara bağlayan şirket, ajanlarını izleyip denetleyebileceğinden emin olana kadar tüm iç değerlendirmelerinde canlı internet erişimini kapattığını duyurdu. Anthropic ayrıca bu tür davranışları tespit edip engelleyen araçlar geliştirdiğini ve iç ajanlarını sıkı biçimde sınırlandırılmış, merkezi yönetilen bir altyapıya taşıyacağını belirtti. Bağımsız denetim savunucuları ise olayların, yapay zekâ sistemlerinin üçüncü taraflarca doğrulanması ihtiyacını gösterdiğini vurguladı.",
       "kaynak": "TechCrunch",
-      "kaynak_url": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
-      "tarih": "09.10.2026"
+      "kaynak_url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/",
+      "tarih": "10.10.2026"
     },
     {
-      "baslik": "Gözetim kamerası üreticisi Flock, artan gizlilik tepkileri ortasında çalışanlarının yüzde 18'ini çıkarıyor",
-      "ozet": "Reuters'ın haberine göre ABD'de plaka okuyan yapay zekâ destekli kameralar üreten Flock Safety, gönüllü ayrılık programının ardından yaklaşık 1.500 kişilik kadrosundan 270 civarında çalışanla yollarını ayırıyor; ayrılıklar Ekim sonunda gerçekleşecek. Şirket sözcüsü bunun işten çıkarma değil, gönüllü bir program olduğunu ve şirketi bir sonraki büyüme dönemine hazırlamayı amaçladığını söyledi. Ülke genelinde 100 binden fazla kamera kurmuş olan Flock, polislerin sistemi izinsiz takip için kötüye kullandığı vakalar, siber güvenlik açıkları ve hatalı plaka eşleşmeleri nedeniyle eleştiriliyor; Los Angeles polisi de dahil bazı kurumlar sözleşmelerini yenilemedi.",
+      "baslik": "Metin üretmeyen yapay zekâ modeli Jev'in geliştiricisi TypeSafe AI, 7,5 milyar dolar değerlemeye ulaştı",
+      "ozet": "Jev modelini geliştiren TypeSafe AI, Andreessen Horowitz liderliğinde, Sequoia ve mevcut yatırımcı DCVC'nin de katıldığı turda 7,5 milyar dolar değerleme üzerinden 870 milyon dolar yatırım aldı. 15 Eylül'de piyasaya çıkan ve kısa sürede büyük ilgi gören Jev, transformer mimarisine dayansa da bir büyük dil modeli değil; metin yerine şirketin 'kalibre edilmiş kararlar' dediği olasılık değerleri üretiyor. Şirket, modelin dil modellerine göre çok daha hızlı çalıştığını ve çok daha az token harcadığını, Fortune 500 şirketlerinin üçte birinin Jev'i şimdiden kullandığını öne sürüyor. TypeSafe, 2024'te eski OpenAI araştırmacısı Diogo Almeida, eski Meta mühendisi Sasha Sheng ve girişimci Erik Gafni tarafından kuruldu.",
       "kaynak": "TechCrunch",
-      "kaynak_url": "https://techcrunch.com/2026/10/09/surveillance-company-flock-cuts-staff-as-privacy-backlash-grows/",
-      "tarih": "09.10.2026"
+      "kaynak_url": "https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/",
+      "tarih": "10.10.2026"
     },
     {
-      "baslik": "Xona'nın ticari GPS alternatifi Pulsar, bu ay fırlatılacak uydularla teste başlıyor",
-      "ozet": "2019'da Stanford mezunu mühendislerin kurduğu Xona Space Systems'in altı uydusu bu ay bir SpaceX roketiyle yörüngeye gönderilecek; böylece şirketin ticari konum ve zaman hizmeti Pulsar gerçek müşterilerle beta testine geçecek. Şirket, GPS'in metre düzeyindeki hassasiyetine karşılık santimetre düzeyinde konum sunmayı, bina içinde ve şehirlerde alınabilen, sinyal karıştırmaya karşı daha dayanıklı bir yayın yapmayı hedefliyor. Sinyaller mevcut GPS alıcılarında yazılım güncellemesiyle kullanılabilecek. Toplam 258 uyduluk bir takımyıldız planlayan Xona, 2028'e kadar ABD, Avrupa, Japonya ve Güney Kore'yi tamamen kapsamayı amaçlıyor; şirket bugüne kadar ABD Uzay Kuvvetleri'nden 20 milyon dolar dahil 300 milyon doları aşkın yatırım topladı.",
-      "kaynak": "TechCrunch",
-      "kaynak_url": "https://techcrunch.com/2026/10/09/xonas-commercial-gps-alternative-is-about-to-go-live/",
-      "tarih": "09.10.2026"
-    },
-    {
-      "baslik": "OpenAI, ChatGPT'yi etki operasyonlarında kullanan Rus ve İranlı hesapları kapattı",
-      "ozet": "OpenAI, Perşembe günü yayımladığı raporda birçok ülkede dezenformasyon kampanyası yürüten Rus ve İranlı hesapları yasakladığını açıkladı. Latin Amerika'yı hedef alan Rus ekibinin ChatGPT'yi daha çok üstlerine faaliyet raporu yazmak için kullandığı; bu raporlardan birinde Peru'da bir eğitim kurumunu taklit ederek okullarda etkinlik düzenlettiklerini anlattıkları belirtildi. İranlı operasyon ise yedi sahte yazar kimliği oluşturup dünyanın dört bir yanındaki küçük yayın organlarında yaklaşık 100 makale yayımlattı. Şirket, uydurma anlatıları yerleşik medyaya sokmaya çalışan kampanyaların sahte sosyal medya hesaplarına dayananlardan daha geniş kitleye ulaştığını tespit etti.",
-      "kaynak": "NPR",
-      "kaynak_url": "https://www.npr.org/2026/10/08/nx-s1-5995576/openai-russia-iran-influence-operations-chatgpt",
+      "baslik": "Microsoft, metin yerine olasılık üreten 'karar modeli' Microsoft-Decision-1'i tanıttı",
+      "ozet": "Microsoft, yönlendirme, sınıflandırma, önceliklendirme ve doğrulama gibi işler için tasarlanan Microsoft-Decision-1 modelini Microsoft Foundry ve OpenRouter üzerinden kullanıma sundu. Model metin yazmıyor; kendisine verilen sabit seçeneklerin her biri için kalibre edilmiş bir olasılık puanı döndürüyor. Şirket, modeli Alibaba'nın açık ağırlıklı Qwen3.5-9B modelini yeniden eğiterek geliştirdiğini, ileride kendi MAI modelleri ve OpenAI modelleri üzerine de taşıyacağını belirtti. Microsoft, kendi yaptığı 36 testlik karşılaştırmada en yüksek doğruluğa ulaştığını ve en yakın rakibinden 4,5 kat hızlı olduğunu öne sürüyor; bu sonuçlar henüz bağımsız olarak doğrulanmış değil.",
+      "kaynak": "Microsoft",
+      "kaynak_url": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
       "tarih": "09.10.2026"
     }
   ]

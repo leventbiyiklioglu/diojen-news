@@ -2,7 +2,7 @@
 """Diojen News: haberler/*.json dosyalarindan DiojenNews.html uretir."""
 import re, json, html, os, glob, datetime
 import ozel_sayfalar  # Ogrenci Kosesi, Gise & Yeni Cikanlar, Arsiv Dosyasi (bolum/index.html duzeni)
-KAT = [("dunya","Dünya"),("ekonomi","Ekonomi"),("spor","Spor"),("teknoloji","Teknoloji"),("kultur","Kültür & Sanat"),("projectsyndicate","Project Syndicate"),("kimnedi","Kim Ne Dedi"),("sirket","Şirket Haberleri"),("bist30","BIST 30 Şirketleri")]
+KAT = [("dunya","Dünya"),("ekonomi","Ekonomi"),("spor","Spor"),("teknoloji","Teknoloji"),("kultur","Kültür & Sanat"),("projectsyndicate","Project Syndicate"),("kimnedi","Kim Ne Dedi"),("sirket","Şirket Haberleri"),("bist30","BIST 30 Şirketleri"),("agos","Agos'tan")]
 base = os.path.dirname(os.path.abspath(__file__))
 def yukle(slug):
     p = os.path.join(base,"haberler",slug+".json")
@@ -142,7 +142,7 @@ KONU = [("askeri",["uçak gemisi","donanma","askeri","savaş gemisi","füze","hu
 ("futbol",["futbol","maç","süper lig","galatasaray","fenerbahçe","beşiktaş","trabzonspor","real madrid","barcelona","gol ","portekiz","milli takım"]),
 ("banka",["merkez banka","faiz","ppk","fed ","rezerv"]),("enflasyon",["enflasyon","tüfe","fiyat artış"]),("borsa",["borsa","bist","hisse","endeks"]),
 ("altin",["altın","dolar","döviz"]),("ucak",["uçak","havayolu","flydubai","havalimanı"]),("diplomasi",["diplomatik","büyükelçi","zirve","müzakere","ateşkes","anlaşma","g7","nato","ilişkiler"])]
-KONU_VARSAYILAN = {"dunya":"diplomasi","ekonomi":"borsa","spor":"futbol","teknoloji":"bilgisayar","kultur":"tiyatro","projectsyndicate":"diplomasi","kimnedi":"diplomasi","sirket":"banka","bist30":"borsa"}
+KONU_VARSAYILAN = {"dunya":"diplomasi","ekonomi":"borsa","spor":"futbol","teknoloji":"bilgisayar","kultur":"tiyatro","projectsyndicate":"diplomasi","kimnedi":"diplomasi","sirket":"banka","bist30":"borsa","agos":"diplomasi"}
 def konu_resmi(slug, h):
     for alan in (h.get("baslik",""), h.get("ozet","")):
         t = alan.lower().replace("i̇","i")
@@ -177,7 +177,7 @@ for s,ad in KAT:
             kaynak = f'<span class="kaynak">Kaynak: {e(h["kaynak"])}</span>'
             if h.get("kaynak_url"): kaynak = f'<a class="kaynak" href="{e(h["kaynak_url"])}" target="_blank" rel="noopener">Kaynak: {e(h["kaynak"])}</a>'
         kr = konu_resmi(s,h); resim = f'<img class="haber-resim" src="gorseller/konu/{kr}.jpg" alt="" loading="lazy">' if kr else ""
-        kart.append(f'<article class="card{" resimli" if resim else ""}">{resim}<div class="meta">{e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p>{kaynak}</article>')
+        kart.append(f'<article class="card{" resimli" if resim else ""}">{resim}<div class="meta">{({"manset":'<span class="etiket etiket-manset">Manşet</span> ',"kucuk":'<span class="etiket etiket-kucuk">Küçük Haber</span> '}.get(h.get("tur",""),"") if s=="agos" else "")}{e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p>{kaynak}</article>')
         if i==0: manset.append((ad,h))
     if not kart: kart = ['<p class="bos">Bu bölümün yazarı henüz haber girmedi.</p>']
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
