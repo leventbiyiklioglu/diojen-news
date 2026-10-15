@@ -12,7 +12,7 @@ Ertesi gün Hazine ve Maliye Bakanı Mehmet Şimşek başkanlığında toplanan 
 
 ## Rakamlar ve etkisi
 
-Reuters'ın aktardığına göre tasfiye edilen fonların yönettiği varlık 890 milyar lirayı, yani yaklaşık 18,3 milyar doları aştı.[5] SPK, bu fonlarda 455.758 bireysel yatırımcı bulunduğunu açıkladı.[6] Tasfiye süreçleri için Tera Portföy fonlarında Türkiye İş Bankası, diğer altı şirketin fonlarında Ziraat Bankası görevlendirildi.[1][11] Tasfiye için tanınan süre üç aydan altı aya çıkarıldı; SPK, sürenin mutlaka bu kadar uzamayacağını da belirtti.[3]
+Reuters'ın aktardığına göre tasfiye edilen fonların yönettiği varlık 890 milyar lirayı, yani yaklaşık 18,3 milyar doları aştı.[5] SPK, bu fonlarda 455.758 tekil yatırımcı bulunduğunu açıkladı.[6] Tasfiye süreçleri için Tera Portföy fonlarında Türkiye İş Bankası, diğer altı şirketin fonlarında Ziraat Bankası görevlendirildi.[1][11] Tasfiye için tanınan süre üç aydan altı aya çıkarıldı; SPK, sürenin mutlaka bu kadar uzamayacağını da belirtti.[3]
 
 Yatırımcılar için en somut gelişme 30 Eylül'de geldi. SPK, mutabakatı tamamlanan katılma payı sahiplerine, nihai tasfiye tutarından mahsup edilmek üzere her fon için en fazla 1 milyon liraya kadar ara ödeme yapılacağını duyurdu; uygulama para piyasası fonlarıyla başlayacak.[3][4] Sigorta cephesinde Türkiye Sigorta Birliği, tasfiye edilen fonlar arasında en büyük payın serbest fonlara ait olduğunu, bunların BES fonları arasında yer almadığını ve emeklilik fonlarında likidite sorunu yaşanmadığını belirtti.[2]
 

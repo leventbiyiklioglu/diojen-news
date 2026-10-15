@@ -12,7 +12,7 @@ Ertesi gün Hazine ve Maliye Bakanı Mehmet Şimşek başkanlığında toplanan 
 
 ## Rakamlar ve etkisi
 
-Reuters'ın aktardığına göre tasfiye edilen fonların yönettiği varlık 890 milyar lirayı, yani yaklaşık 18,3 milyar doları aştı.[5] SPK, bu fonlarda 455.758 bireysel yatırımcı bulunduğunu açıkladı.[6] Tasfiye süreçleri için Tera Portföy fonlarında Türkiye İş Bankası, diğer altı şirketin fonlarında Ziraat Bankası görevlendirildi.[1][11] Tasfiye için tanınan süre üç aydan altı aya çıkarıldı; SPK, sürenin mutlaka bu kadar uzamayacağını da belirtti.[3]
+Reuters'ın aktardığına göre tasfiye edilen fonların yönettiği varlık 890 milyar lirayı, yani yaklaşık 18,3 milyar doları aştı.[5] SPK, bu fonlarda 455.758 tekil yatırımcı bulunduğunu açıkladı (bir kişi birden fazla fonda pay sahibiyse bir kez sayılır).[14] Tasfiye süreçleri için Tera Portföy fonlarında Türkiye İş Bankası, diğer altı şirketin fonlarında Ziraat Bankası görevlendirildi.[1][11] Tasfiye için tanınan süre üç aydan altı aya çıkarıldı; SPK, sürenin mutlaka bu kadar uzamayacağını da belirtti.[3]
 
 Yatırımcılar için en somut gelişme 30 Eylül'de geldi. SPK, mutabakatı tamamlanan katılma payı sahiplerine, nihai tasfiye tutarından mahsup edilmek üzere her fon için en fazla 1 milyon liraya kadar ara ödeme yapılacağını duyurdu; uygulama para piyasası fonlarıyla başlayacak.[3][4] Sigorta cephesinde Türkiye Sigorta Birliği, tasfiye edilen fonlar arasında en büyük payın serbest fonlara ait olduğunu, bunların BES fonları arasında yer almadığını ve emeklilik fonlarında likidite sorunu yaşanmadığını belirtti.[2]
 
@@ -53,3 +53,4 @@ Fon krizinin asıl sınavı, yargı sürecinin yanında kayıpların nasıl payl
 11. Anadolu Ajansı, "SPK, tasfiye edilen yatırım fonlarının tasfiye sürecine ilişkin usul ve esasları belirledi": https://mobile.aa.com.tr/tr/ekonomi/spk-tasfiye-edilen-yatirim-fonlarinin-tasfiye-surecine-iliskin-usul-ve-esaslari-belirledi/4060721
 12. Ankara Net Haber, "Fon soruşturmasında 4 tutuklama daha" (02.10.2026): https://www.ankaranethaber.com/fon-sorusturmasinda-4-tutuklama-daha-bakan-yardimcisinin-damadi-da-cezaevine-gonderildi ; NTV, "Fon soruşturmasında son durum": https://www.ntv.com.tr/gundem/galeri-fon-sorusturmasinda-son-durum-56-kisi-tutuklandi-luks-araclar-jetler-ve-villalara-el-konuldu-1744152
 13. ParaAnaliz, "Fon skandalı dünyanın dilinde: Bloomberg krizin anatomisini çıkardı": https://paraanaliz.com/haberler/fon-skandali-dunyanin-dilinde-bloomberg-krizin-anatomisini-cikardi
+14. SPK, "Tasfiye Konusu Fonlardaki Yatırımcı Sayısına İlişkin Açıklama" (23.09.2026): https://spk.gov.tr/duyurular/basin-duyurulari/2026/tasfiye-konusu-fonlardaki-yatirimci-sayisina-iliskin-aciklama
