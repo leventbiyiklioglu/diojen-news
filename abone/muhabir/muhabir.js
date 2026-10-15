@@ -1,12 +1,12 @@
 (async function(){
 const $ = id => document.getElementById(id), {esc, durumRozet, DEMO, sb} = DN;
-const u = await DN.oturum("muhabir", $);
+const u = await DN.oturum(["muhabir","editor"], $);
 if (u === null) { $("giris").hidden = false; DN.girisBagla($); return; }
 if (!u) return;
 $("panel").hidden = false;
 async function listele(){
   const rows = DEMO ? (await (await fetch("../demo-panel.json")).json()).filter(r => r.sahip === "demo")
-    : (await sb.from("abone_yazilar").select("id,slug,baslik,tur,kategori,durum,editor_notu,guncelleme,dosya_yolu").order("guncelleme",{ascending:false})).data || [];
+    : (await sb.from("abone_yazilar").select("id,slug,baslik,tur,kategori,durum,editor_notu,guncelleme,dosya_yolu").eq("sahip", u.id).order("guncelleme",{ascending:false})).data || [];
   $("liste").innerHTML = rows.map(r => `<div class="kart"><div class="kart-ic">${durumRozet(r.durum)}
     <h3>${esc(r.baslik || r.dosya_yolu?.split("/").pop() || "(işleniyor)")}</h3>
     <div class="ust-bilgi">${esc(r.tur)} · ${esc(r.kategori||"—")} · ${esc((r.guncelleme||"").slice(0,16).replace("T"," "))}</div>

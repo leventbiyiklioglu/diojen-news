@@ -10,7 +10,8 @@ window.DN = (function(){
     const { data: { session } } = await sb.auth.getSession();
     if (!session) return null;
     const { data } = await sb.rpc("rolum");
-    if (data !== rolGerekli) { $("durum").textContent = `Bu sayfa için "${rolGerekli}" yetkisi gerekiyor.`; return false; }
+    const izinli = [].concat(rolGerekli);  // tek rol ya da rol listesi
+    if (!izinli.includes(data)) { $("durum").textContent = `Bu sayfa için "${izinli.join(" / ")}" yetkisi gerekiyor.`; return false; }
     return session.user;
   }
   function girisBagla($){
