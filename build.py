@@ -22,6 +22,19 @@ YAYIN_ADI = "Diojen News"
 VARSAYILAN_ACIKLAMA = "Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri"
 # Turkce okunusla yazim ("Diyojen") aramalarda da bulunabilsin: ana sayfa aciklamasi ve Organization/WebSite alternateName
 ALTERNATIF_ADLAR = ["Diyojen News", "Diojen", "Diyojen"]
+# Resmi sosyal medya hesaplari. Yeni hesap (TikTok, X, LinkedIn, Threads) acildikca buraya eklenir;
+# hem JSON-LD sameAs hem de ana sayfa alt bilgisi bu listeden uretilir.
+SOSYAL_HESAPLAR = [
+    {"ad": "Facebook", "url": "https://www.facebook.com/profile.php?id=61595673140073"},
+    {"ad": "Instagram", "url": "https://www.instagram.com/diojen.news/"},
+]
+
+
+def sosyal_linkler_html():
+    if not SOSYAL_HESAPLAR:
+        return ""
+    linkler = " · ".join(f'<a href="{h["url"]}" rel="me noopener" target="_blank">{h["ad"]}</a>' for h in SOSYAL_HESAPLAR)
+    return f'<p class="sosyal-linkler">Bizi takip edin: {linkler}</p>'
 ANA_SAYFA_ACIKLAMA = "Diojen News (Diyojen News): Dünya, ekonomi, spor, teknoloji ve kültür haberleri"
 def mutlak(yol):
     """Site kokune gore yol ('', 'kose', 'makaleler/x', 'gorseller/a.jpg') -> mutlak URL."""
@@ -463,7 +476,7 @@ sayfa = f'''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {seo_head("Diojen News - Dünya, ekonomi, spor, teknoloji ve kültür haberleri", ANA_SAYFA_ACIKLAMA, "", "", "website", None,
-  [dict(jsonld_yayinci(), **{"@context":"https://schema.org","alternateName":ALTERNATIF_ADLAR}), {"@context":"https://schema.org","@type":"WebSite","name":YAYIN_ADI,"alternateName":ALTERNATIF_ADLAR,"url":SITE+"/","inLanguage":"tr","publisher":jsonld_yayinci()}], tam_baslik=True)}
+  [dict(jsonld_yayinci(), **{"@context":"https://schema.org","alternateName":ALTERNATIF_ADLAR,"sameAs":[h["url"] for h in SOSYAL_HESAPLAR]}), {"@context":"https://schema.org","@type":"WebSite","name":YAYIN_ADI,"alternateName":ALTERNATIF_ADLAR,"url":SITE+"/","inLanguage":"tr","publisher":jsonld_yayinci()}], tam_baslik=True)}
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -473,7 +486,7 @@ sayfa = f'''<!DOCTYPE html>
 <div class="content yt-content">
 <main class="main-content">{ozel_haber_html}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
-<footer class="footer"><p>&copy; {yil} Diojen News (Diyojen News). Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
+<footer class="footer"><p>&copy; {yil} Diojen News (Diyojen News). Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p>{sosyal_linkler_html()}</footer>
 </div>
 <script>
 {piyasa_js}
