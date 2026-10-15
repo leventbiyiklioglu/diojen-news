@@ -278,3 +278,18 @@ body{background:#f4ede0}
  .yt-bant{margin:4px 40px 30px}.yt-bant-resim{min-height:150px}.yt-bant-yazi{padding:20px 28px}
  .yt-content{padding:0 40px}
 }
+/* ===== mobil hamburger menu ===== */
+.yt-kapat,.yt-perde{display:none}
+@media(max-width:768px){
+ .yt-nav{display:none}
+ .yt-header{position:sticky;top:0;z-index:50;background:#faf5ea;border-bottom:2px solid #a01c1c;transition:padding .2s}
+ .kaydi .yt-header{padding:8px 14px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+ .kaydi .yt-ad{font-size:1.35rem}.kaydi .yt-amblem{width:34px;height:34px;font-size:1.2rem}
+ .yt-menu{display:block!important;position:fixed;top:0;left:0;bottom:0;width:82%;max-width:320px;z-index:100;overflow-y:auto;padding:56px 20px 30px;border:0;box-shadow:4px 0 20px rgba(0,0,0,.3);transform:translateX(-105%);transition:transform .25s}
+ .menu-acik .yt-menu{transform:none}
+ .yt-menu a{display:block;padding:12px 0}
+ .yt-menu-baslik{margin-top:14px}
+ .yt-kapat{display:block;position:absolute;top:12px;right:14px;background:none;border:0;font-size:1.6rem;cursor:pointer;color:#a01c1c}
+ .menu-acik .yt-perde{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90}
+ .menu-acik{overflow:hidden}
+}

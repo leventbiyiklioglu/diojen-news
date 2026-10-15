@@ -420,7 +420,7 @@ def svg(k): return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 ADLAR = dict(KAT_NAV)
 yt_nav = '<a href="#ust" class="aktif">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(ADLAR[s])}</a>' for s in ANA_KAT)
 _diger = [(s,a) for s,a in KAT_NAV if s not in ANA_KAT]
-yt_menu = '<div class="yt-menu-baslik">Bölümler</div>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/">Arşiv (eski sayılar)</a>'
+yt_menu = '<div class="yt-menu-baslik">Diğer Bölümler</div>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in _diger) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/">Arşiv (eski sayılar)</a>'
 yt_hero = ""
 if _tum:
     _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
@@ -440,7 +440,7 @@ if _secilen:
     kucuk = "".join(f'<a class="yt-kucuk" href="#{s}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
     yt_grid = f'<section class="yt-grid">{buyuk}<div class="yt-kucukler">{kucuk}</div></section>'
 yt_bant = f'<a class="yt-bant" href="#kultur"><div class="yt-bant-resim" style="background-image:url(\'gorseller/konu/tiyatro.jpg\')"><span>Keşfet<br>Öğren<br>Paylaş</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("kultur")}</span><div><strong>Kültür &amp; Sanat</strong><small>Sahne, sinema, sergi ve öğrenci köşesi</small></div><span class="yt-ok">→</span></div></a>'
-yt_ust = f'''<header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav><div class="yt-menu">{yt_menu}</div>'''
+yt_ust = f'''<header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav><div class="yt-perde" onclick="document.body.classList.remove('menu-acik')"></div><div class="yt-menu" role="dialog" aria-label="Menü"><button class="yt-kapat" aria-label="Kapat" onclick="document.body.classList.remove('menu-acik')">✕</button><div class="yt-menu-baslik">Kategoriler</div><a href="#ust" onclick="document.body.classList.remove('menu-acik')">Ana Sayfa</a>{"".join(f'<a href="#{s}" onclick="document.body.classList.remove(\'menu-acik\')">{e(ADLAR[s])}</a>' for s in ANA_KAT)}{yt_menu}</div><script>addEventListener('scroll',function(){{document.body.classList.toggle('kaydi',scrollY>60)}},{{passive:true}});document.addEventListener('keydown',function(v){{if(v.key==='Escape')document.body.classList.remove('menu-acik')}});</script>'''
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
