@@ -5,13 +5,15 @@
 1. **Köprü ve haraç** — [yayında, 04.10.2026] Dumrul kuru çayın üstüne köprü yaptırır, geçenlerden haraç alır, kuru yataktan geçenleri tehdit eder; böbürlenir, obadan yas sesleri gelir.
 2. **Azrail'le karşılaşma ve Dumrul'un meydan okuması** — Yas tutulan obada ölen genci gören Dumrul, canı alanı ("Azrail") bulup onunla savaşmak ister; meydan okur.
 3. **Dumrul'un canına kıyılması tehdidi / can pazarlığı** — [yayında, 10.10.2026] Azrail Dumrul'un canına kıymak üzere gelir; Dumrul can pazarlığına girişir, korkuyla yalvarmaya başlar.
-4. **Allah'a yalvarış ve ana-babadan can istemesi** — Dumrul Allah'a yalvarır; ona "canına karşılık can bul" denir. Dumrul anasına ve babasına gider, ama onlar canlarını vermek istemez.
+4. **Allah'a yalvarış ve ana-babadan can istemesi** — [yayında, 15.10.2026] Dumrul Allah'a yalvarır; ona "canına karşılık can bul" denir. Dumrul anasına ve babasına gider, ama onlar canlarını vermek istemez.
 5. **Dumrul'un karısının canını verme önerisi ve mutlu son / ödül** — Karısı canını vermeyi önerir; Dumrul bunu kabul etmez, ikisi de ölümü göze alınca Allah'ın merhametiyle can bağışlanır, mutlu son ve ödül.
+
+> 5. bölüm görselleri hazır: deli-dumrul-5-1..6.jpg. Sırasıyla: karısıyla dertleşme; karısının canını önermesi; Dumrul'un Azrail'e karşı karısını koruması; ikisinin birlikte el ele dua etmesi; Azrail'in ışığa dönüşüp gitmesi ve sarılmaları; Dede Korkut'un kopuz çaldığı şölen. Son bölüm olduğu için (Devamı yarın) notu yok.
 
 ## Biçim kuralları
 - Her bölüm tam 6 panel (resim + altyazı). Son bölümün (her bölümün) son panelinde altyazı sonunda `(Devamı yarın)` yazılır; serinin son bölümünde bu not yazılmaz.
 - Panellerde ve altyazıda sıra numarası (1., 2. …) KULLANILMAZ.
-- Resim stili: sepya, eski gazete gravürü; 16:9; genişlik 1000 px.
+- Resim stili: canlı, doygun renkli, Türk minyatürü esintili; 16:9; genişlik 1000 px.
 
 ## Yeni bölüm ekleme tarifi
 1. Görselleri `gorseller/dedekorkut/` altına koy. Ad biçimi: `<hikaye-slug>-<bolum>-<panel>.jpg` (ör. `deli-dumrul-2-1.jpg` … `-2-6.jpg`). Genişlik 1000 px'e indirilir (JPEG, kalite ~85).
