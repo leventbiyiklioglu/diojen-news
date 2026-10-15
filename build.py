@@ -134,7 +134,7 @@ def sitemaplari_yaz():
         "# build.py tarafindan uretilir\nUser-agent: *\nAllow: /\nDisallow: /taslak/\nDisallow: /onizleme/\nDisallow: /koseyazilari/\nDisallow: /worker/\nDisallow: /YONERGE\n"
         "# arsiv/ engellenmez: arsiv sayfalarinda <meta name=\"robots\" content=\"noindex,follow\"> var, taranabilmeleri gerekir.\n\n"
         f"Sitemap: {SITE}/sitemap.xml\nSitemap: {SITE}/news-sitemap.xml\n")
-KONU = [("askeri",["uçak gemisi","donanma","askeri","savaş gemisi","füze","husi","saldırı","savaş"]),("petrol",["petrol","dizel","varil","akaryakıt","brent","doğalgaz"]),
+KONU = [("protesto",["protesto","gözaltı","gösteri","eylem","barikat"]),("askeri",["uçak gemisi","donanma","askeri","savaş gemisi","füze","husi","saldırı","savaş"]),("petrol",["petrol","dizel","varil","akaryakıt","brent","doğalgaz"]),
 ("yapayzeka",["yapay zek","openai","anthropic","gemini","chatgpt","ajan platformu","modeli","parametre"]),("uzay",["uzay","uydu","veri merkezi","nasa","spacex"]),
 ("bilgisayar",["apple","macos","windows","yazılım","siber","iphone","android","telefon","teknoloji"]),
 ("tiyatro",["tiyatro","sahne","opera","bale"]),("film",["film","sinema","dizi","yönetmen","oscar"]),("muzik",["müzik","konser","orkestra","senfoni","albüm","şarkı","iş sanat"]),
