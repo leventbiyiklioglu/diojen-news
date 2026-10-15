@@ -425,7 +425,7 @@ yt_menu = '<div class="yt-menu-baslik">Diğer Bölümler</div>' + "".join(f'<a h
 yt_hero = ""
 if _tum:
     _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
-    yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(10,10,20,.85) 0%,rgba(10,10,20,.55) 50%,rgba(10,10,20,.05) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><p>{e(kisa_metin(hh.get("ozet",""),200))}</p><a class="yt-buton" href="#{hs}">Haberi oku →</a></div></section>'''
+    yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(10,10,20,.85) 0%,rgba(10,10,20,.55) 50%,rgba(10,10,20,.05) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><a class="yt-buton" href="#{hs}">Haberi oku →</a></div></section>'''
 yt_ikon = '<nav class="yt-ikonlar" aria-label="Kategoriler">' + "".join(f'<a href="#{s}" class="kat-{s}"><span class="yt-ikon">{svg(s)}</span><span>{e(ADLAR[s])}</span></a>' for s in ANA_KAT) + (f'<a href="kose" class="kat-kose"><span class="yt-ikon">{svg("kose")}</span><span>Köşe Yazıları</span></a>' if "kose" in ADLAR else "") + (f'<a href="dedekorkut" class="kat-dedekorkut"><span class="yt-ikon">{svg("dedekorkut")}</span><span>Dede Korkut</span></a>' if dk_bolumler else "") + '</nav>'
 _secilen=[]; _gor=set()
 for t,s,a,h in _tum[1:]:
@@ -437,7 +437,7 @@ def _meta(h): return f'<div class="yt-meta"><span>🗓 {e(h.get("tarih",""))}</s
 yt_grid = ""
 if _secilen:
     s,a,h = _secilen[0]
-    buyuk = f'<a class="yt-buyuk" href="#{s}" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85) 100%),url(\'{_img(s,h)}\')"><span class="yt-kat kat-{s}">{e(a)}</span><div class="yt-buyuk-alt"><h3>{e(h.get("baslik",""))}</h3><p>{e(kisa_metin(h.get("ozet",""),130))}</p>{_meta(h)}</div></a>'
+    buyuk = f'<a class="yt-buyuk" href="#{s}" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85) 100%),url(\'{_img(s,h)}\')"><span class="yt-kat kat-{s}">{e(a)}</span><div class="yt-buyuk-alt"><h3>{e(h.get("baslik",""))}</h3>{_meta(h)}</div></a>'
     kucuk = "".join(f'<a class="yt-kucuk" href="#{s}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat kat-{s}">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
     yt_grid = f'<section class="yt-grid">{buyuk}<div class="yt-kucukler">{kucuk}</div></section>'
 yt_bant = f'<a class="yt-bant kat-kultur" href="#kultur"><div class="yt-bant-resim" style="background-image:url(\'gorseller/konu/tiyatro.jpg\')"><span>Keşfet<br>Öğren<br>Paylaş</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("kultur")}</span><div><strong>Kültür &amp; Sanat</strong><small>Sahne, sinema, sergi ve öğrenci köşesi</small></div><span class="yt-ok">→</span></div></a>'
