@@ -396,6 +396,51 @@ if dosyalar:
         pdfl = f' · <a class="makale-oku" href="makaleler/{e(y["slug"])}.pdf" download>PDF indir</a>' if y["pdf_var"] else ""
         dk.append(f'<article class="makale-kart dosya-kart"><div class="makale-ozet"><div class="meta"><span class="dosya-etiket">DOSYA HABER</span> {by}</div><h3><a href="makaleler/{e(y["slug"])}">{e(y["baslik"])}</a></h3><p>{e(y["spot"])}</p><a class="makale-oku" href="makaleler/{e(y["slug"])}">Dosyayı oku →</a>{pdfl}</div></article>')
     dosya_html = '<section class="makale-bolum dosya-bolum" id="dosya"><h2>Dosya Haber</h2>' + "".join(dk) + '</section>'
+# --- YENI TASARIM (onizleme) ---
+def _tk(h):
+    m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", h.get("tarih",""))
+    return (m.group(3),m.group(2),m.group(1)) if m else ("0","0","0")
+def _dk(h): return max(1, round(len((h.get("baslik","")+" "+h.get("ozet","")).split())/200))
+ANA_KAT = ["dunya","ekonomi","spor","teknoloji","kultur"]
+_tum = []
+for s,ad in KAT:
+    for h in yukle(s).get("haberler",[])[:6]: _tum.append((_tk(h), s, ad, h))
+_tum.sort(key=lambda x:x[0], reverse=True)
+def _img(s,h):
+    kr = konu_resmi(s,h); return f'gorseller/konu/{kr}.jpg' if kr else ""
+IKON = {
+ "dunya":'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+ "ekonomi":'<path d="M4 20V14M9 20V10M14 20v-4M19 20V6"/><path d="M4 10l5-4 5 4 6-6"/>',
+ "spor":'<circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/>',
+ "teknoloji":'<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
+ "kultur":'<path d="M4 5h7v9a3.5 3.5 0 0 1-7 0zM13 5h7v9a3.5 3.5 0 0 1-7 0z"/><path d="M6 9h1M8.5 9h.5M15 9h1M17.5 9h.5M6 13c1 1 2 1 3 0M15 14c1-1 2-1 3 0"/>',
+ "kose":'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
+}
+def svg(k): return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{IKON[k]}</svg>'
+ADLAR = dict(KAT_NAV)
+yt_nav = '<a href="#ust" class="aktif">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(ADLAR[s])}</a>' for s in ANA_KAT)
+_diger = [(s,a) for s,a in KAT_NAV if s not in ANA_KAT]
+yt_menu = '<div class="yt-menu-baslik">Bölümler</div>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in KAT_NAV) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/">Arşiv (eski sayılar)</a>'
+yt_hero = ""
+if _tum:
+    _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
+    yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(15,8,6,.92) 0%,rgba(15,8,6,.75) 55%,rgba(15,8,6,.35) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><p>{e(kisa_metin(hh.get("ozet",""),200))}</p><a class="yt-buton" href="#{hs}">Haberi oku →</a></div></section>'''
+yt_ikon = '<nav class="yt-ikonlar" aria-label="Kategoriler">' + "".join(f'<a href="#{s}"><span class="yt-ikon">{svg(s)}</span><span>{e(ADLAR[s])}</span></a>' for s in ANA_KAT) + (f'<a href="kose"><span class="yt-ikon">{svg("kose")}</span><span>Köşe Yazıları</span></a>' if "kose" in ADLAR else "") + '</nav>'
+_secilen=[]; _gor=set()
+for t,s,a,h in _tum[1:]:
+    if s in ANA_KAT and s not in _gor: _secilen.append((s,a,h)); _gor.add(s)
+for t,s,a,h in _tum[1:]:
+    if len(_secilen)>=5: break
+    if (s,a,h) not in _secilen: _secilen.append((s,a,h))
+def _meta(h): return f'<div class="yt-meta"><span>🗓 {e(h.get("tarih",""))}</span><span>{_dk(h)} dk okuma</span></div>'
+yt_grid = ""
+if _secilen:
+    s,a,h = _secilen[0]
+    buyuk = f'<a class="yt-buyuk" href="#{s}" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85) 100%),url(\'{_img(s,h)}\')"><span class="yt-kat">{e(a)}</span><div class="yt-buyuk-alt"><h3>{e(h.get("baslik",""))}</h3><p>{e(kisa_metin(h.get("ozet",""),130))}</p>{_meta(h)}</div></a>'
+    kucuk = "".join(f'<a class="yt-kucuk" href="#{s}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
+    yt_grid = f'<section class="yt-grid">{buyuk}<div class="yt-kucukler">{kucuk}</div></section>'
+yt_bant = f'<a class="yt-bant" href="#kultur"><div class="yt-bant-resim" style="background-image:url(\'gorseller/konu/tiyatro.jpg\')"><span>Keşfet<br>Öğren<br>Paylaş</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("kultur")}</span><div><strong>Kültür &amp; Sanat</strong><small>Sahne, sinema, sergi ve öğrenci köşesi</small></div><span class="yt-ok">→</span></div></a>'
+yt_ust = f'''<header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav><div class="yt-menu">{yt_menu}</div>'''
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
@@ -408,12 +453,10 @@ sayfa = f'''<!DOCTYPE html>
 </head>
 <body>
 <div class="container" id="ust">
-<header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>
-{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar">{nav}</nav>
-{piyasa_html}
-<div class="content">
-<aside class="sidebar"><h2>Kategoriler</h2><ul>{yan}</ul></aside>
-<main class="main-content">{ozel_haber_html}{man}{dosya_html}{makale_html}{"".join(bol)}</main>
+{yt_ust}
+{yt_hero}{yt_ikon}{yt_grid}{yt_bant}
+<div class="content yt-content">
+<main class="main-content">{ozel_haber_html}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
 <footer class="footer"><p>&copy; {yil} Diojen News. Tüm hakları saklıdır. Son güncelleme: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</p></footer>
 </div>
