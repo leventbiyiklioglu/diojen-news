@@ -27,7 +27,8 @@ if not KOPYASIZ:
     if os.path.isdir(os.path.join(base, "dedekorkut")): shutil.copytree(os.path.join(base, "dedekorkut"), os.path.join(hedef, "dedekorkut"), dirs_exist_ok=True)
     # arsiv/<sayi>/ icindeki sayfalarin "Arsiv" baglantisi arsiv/index.html'e (bir ust dizine) gitmeli
     for ad in ("kose.html", "dedekorkut.html", "DiojenNews.html"):
-        degistir(os.path.join(hedef, ad), [('href="arsiv/index.html"', 'href="../index.html"'), ('href="arsiv/"', 'href="../"')])
+        degistir(os.path.join(hedef, ad), [('href="arsiv/index.html"', 'href="../index.html"'), ('href="arsiv/"', 'href="../"'),
+                                           ('href="haber/', 'href="../../haber/')])  # kalici haber sayfalari arsive kopyalanmaz, canli surume gider
     if os.path.isdir(os.path.join(base, "gorseller")): shutil.copytree(os.path.join(base, "gorseller"), os.path.join(hedef, "gorseller"), dirs_exist_ok=True)
     for klasor in ("gorseller", "makaleler"):
         if os.path.isdir(os.path.join(base, klasor)): shutil.copytree(os.path.join(base, klasor), os.path.join(hedef, klasor), dirs_exist_ok=True)
@@ -75,4 +76,10 @@ yaz(os.path.join(base, "arsiv", "index.html"),
 try:
     import ozel_sayfalar; ozel_sayfalar.ana_arsiv_index_ekle(base)
 except Exception as hata: print("bolum arsivleri linki atlandi:", hata)
+# ---- Kalici haber sayfalari: yeni uretilen haber/ dosyalari git'e eklenir (sitemap'te var, canliya da cikmali) ----
+if not KOPYASIZ:
+    try:
+        r = subprocess.run(["git", "add", "haber/"], cwd=base, capture_output=True, text=True, timeout=30)
+        print("haber/ git'e eklendi (commit'e dahil edin)" if r.returncode == 0 else "UYARI: git add haber/ basarisiz: " + r.stderr.strip())
+    except Exception as hata: print("UYARI: git add haber/ calismadi:", hata)
 print("yeni sayi:", "(kopya alinmadi, --kopyasiz)" if KOPYASIZ else sayi)

@@ -110,8 +110,9 @@ def seo_head(baslik, aciklama, yol, kok="", og_tur="website", resim=None, jsonld
     return "\n".join(s)
 SITEMAP = []   # (yol, lastmod_iso, kaynak_html_rel)
 HABERLER_SM = []  # (yol, baslik, yayin_iso)
-def sitemap_ekle(yol, lastmod, kaynak_rel, haber_baslik=None, yayin_iso=None):
-    if not yayinda_mi(kaynak_rel): print("sitemap: canlida degil, atlandi:", kaynak_rel); return
+def sitemap_ekle(yol, lastmod, kaynak_rel, haber_baslik=None, yayin_iso=None, zorla=False):
+    # zorla=True: bu build'de uretilen ve yayin.py'nin git'e ekledigi sayfalar (haber/). Commit'ten once de sitemap'e girer.
+    if not zorla and not yayinda_mi(kaynak_rel): print("sitemap: canlida degil, atlandi:", kaynak_rel); return
     SITEMAP.append((yol, lastmod, kaynak_rel))
     if haber_baslik and yayin_iso: HABERLER_SM.append((yol, haber_baslik, yayin_iso))
 def iso_tarih(gg_aa_yyyy):
@@ -169,6 +170,12 @@ if dk_bolumler: KAT_NAV = KAT_NAV + [("dedekorkut",DK_AD)]
 SAYFA = {"kose":"kose","dedekorkut":"dedekorkut"}
 nav = '<a href="#ust">Ana Sayfa</a>' + "".join((ozel_sayfalar.kultur_menu("", "#kultur") if s=="kultur" else f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>') for s,a in KAT_NAV) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/" class="arsiv-link">📚 Arşiv</a>'
 yan = "".join(f'<li><a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>{ozel_sayfalar.yan_alt() if s=="kultur" else ""}</li>' for s,a in KAT_NAV) + f'<li>{ozel_sayfalar.arsiv_dosyasi_link()}</li><li><a href="arsiv/">📚 Arşiv (eski sayılar)</a></li>'
+# ---- Kalici haber sayfalari (haber_sayfalari.py): kayit once guncellenir ki ana sayfa kartlari haber sayfasina baglansin ----
+import haber_sayfalari
+HABER_YOL = haber_sayfalari.kayitlari_guncelle(base, KAT, yukle)
+def hy(s, h, kok=""):
+    y = haber_sayfalari.haber_yolu(HABER_YOL, s, h)
+    return kok + y if y else None
 bol = []
 manset = []
 for s,ad in KAT:
@@ -180,7 +187,7 @@ for s,ad in KAT:
             kaynak = f'<span class="kaynak">Kaynak: {e(h["kaynak"])}</span>'
             if h.get("kaynak_url"): kaynak = f'<a class="kaynak" href="{e(h["kaynak_url"])}" target="_blank" rel="noopener">Kaynak: {e(h["kaynak"])}</a>'
         kr = konu_resmi(s,h); resim = f'<img class="haber-resim" src="gorseller/konu/{kr}.jpg" alt="" loading="lazy">' if kr else ""
-        kart.append(f'<article class="card{" resimli" if resim else ""}">{resim}<div class="meta">{({"manset":'<span class="etiket etiket-manset">Manşet</span> ',"kucuk":'<span class="etiket etiket-kucuk">Küçük Haber</span> '}.get(h.get("tur",""),"") if s=="agos" else "")}{e(h.get("tarih",""))}</div><h3>{e(h.get("baslik",""))}</h3><p>{e(h.get("ozet",""))}</p>{kaynak}</article>')
+        kart.append(f'<article class="card{" resimli" if resim else ""}">{resim}<div class="meta">{({"manset":'<span class="etiket etiket-manset">Manşet</span> ',"kucuk":'<span class="etiket etiket-kucuk">Küçük Haber</span> '}.get(h.get("tur",""),"") if s=="agos" else "")}{e(h.get("tarih",""))}</div><h3>{(f'<a href="{e(hy(s,h))}">{e(h.get("baslik",""))}</a>' if hy(s,h) else e(h.get("baslik","")))}</h3><p>{e(h.get("ozet",""))}</p>{kaynak}</article>')
         if i==0: manset.append((ad,h))
     if not kart: kart = ['<p class="bos">Bu bölümün yazarı henüz haber girmedi.</p>']
     yaz = f'<span class="yazar">Yazar: {e(d["yazar"])}</span>' if d.get("yazar") else ""
@@ -428,7 +435,7 @@ yt_menu = '<div class="yt-menu-baslik">Diğer Bölümler</div>' + "".join(f'<a h
 yt_hero = ""
 if _tum:
     _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
-    yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(10,10,20,.85) 0%,rgba(10,10,20,.55) 50%,rgba(10,10,20,.05) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><a class="yt-buton" href="#{hs}">Haberi oku →</a></div></section>'''
+    yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(10,10,20,.85) 0%,rgba(10,10,20,.55) 50%,rgba(10,10,20,.05) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><a class="yt-buton" href="{e(hy(hs,hh) or "#"+hs)}">Haberi oku →</a></div></section>'''
 yt_ikon = '<nav class="yt-ikonlar" aria-label="Kategoriler">' + "".join(f'<a href="#{s}" class="kat-{s}"><span class="yt-ikon">{svg(s)}</span><span>{e(ADLAR[s])}</span></a>' for s in ANA_KAT) + (f'<a href="kose" class="kat-kose"><span class="yt-ikon">{svg("kose")}</span><span>Köşe Yazıları</span></a>' if "kose" in ADLAR else "") + (f'<a href="dedekorkut" class="kat-dedekorkut"><span class="yt-ikon">{svg("dedekorkut")}</span><span>Dede Korkut</span></a>' if dk_bolumler else "") + '</nav>'
 _secilen=[]; _gor=set()
 for t,s,a,h in _tum[1:]:
@@ -440,8 +447,8 @@ def _meta(h): return f'<div class="yt-meta"><span>🗓 {e(h.get("tarih",""))}</s
 yt_grid = ""
 if _secilen:
     s,a,h = _secilen[0]
-    buyuk = f'<a class="yt-buyuk" href="#{s}" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85) 100%),url(\'{_img(s,h)}\')"><span class="yt-kat kat-{s}">{e(a)}</span><div class="yt-buyuk-alt"><h3>{e(h.get("baslik",""))}</h3>{_meta(h)}</div></a>'
-    kucuk = "".join(f'<a class="yt-kucuk" href="#{s}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat kat-{s}">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
+    buyuk = f'<a class="yt-buyuk" href="{e(hy(s,h) or "#"+s)}" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85) 100%),url(\'{_img(s,h)}\')"><span class="yt-kat kat-{s}">{e(a)}</span><div class="yt-buyuk-alt"><h3>{e(h.get("baslik",""))}</h3>{_meta(h)}</div></a>'
+    kucuk = "".join(f'<a class="yt-kucuk" href="{e(hy(s,h) or "#"+s)}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat kat-{s}">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
     yt_grid = f'<section class="yt-grid">{buyuk}<div class="yt-kucukler">{kucuk}</div></section>'
 yt_bant = f'<a class="yt-bant kat-kultur" href="#kultur"><div class="yt-bant-resim" style="background-image:url(\'gorseller/konu/tiyatro.jpg\')"><span>Keşfet<br>Öğren<br>Paylaş</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("kultur")}</span><div><strong>Kültür &amp; Sanat</strong><small>Sahne, sinema, sergi ve öğrenci köşesi</small></div><span class="yt-ok">→</span></div></a>'
 yt_dk = ""
@@ -478,5 +485,6 @@ open(os.path.join(base,"DiojenNews.html"),"w",encoding="utf-8").write(sayfa)
 open(os.path.join(base,"index.html"),"w",encoding="utf-8").write(sayfa)
 sitemap_ekle("", datetime.date.today().isoformat(), "DiojenNews.html")
 ozel_sayfalar.uret(base, makaleler, globals())
+haber_sayfalari.uret(base, KAT, globals())
 sitemaplari_yaz()
 print("uretildi")
