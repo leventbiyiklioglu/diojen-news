@@ -293,3 +293,4 @@ body{background:#f4ede0}
  .menu-acik .yt-perde{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90}
  .menu-acik{overflow:hidden}
 }
+.container:not(:has(.yt-header)){padding:20px 14px}
