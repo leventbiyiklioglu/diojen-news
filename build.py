@@ -414,6 +414,7 @@ IKON = {
  "spor":'<circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 5h-5L8 10z"/>',
  "teknoloji":'<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
  "kultur":'<path d="M4 5h7v9a3.5 3.5 0 0 1-7 0zM13 5h7v9a3.5 3.5 0 0 1-7 0z"/><path d="M6 9h1M8.5 9h.5M15 9h1M17.5 9h.5M6 13c1 1 2 1 3 0M15 14c1-1 2-1 3 0"/>',
+ "dedekorkut":'<path d="M5 4h9a5 5 0 0 1 5 5v11H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/>',
  "kose":'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
 }
 def svg(k): return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{IKON[k]}</svg>'
@@ -425,7 +426,7 @@ yt_hero = ""
 if _tum:
     _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
     yt_hero = f'''<section class="yt-hero" style="background-image:linear-gradient(90deg,rgba(15,8,6,.92) 0%,rgba(15,8,6,.75) 55%,rgba(15,8,6,.35) 100%),url('{bg}')"><div class="yt-hero-ic"><span class="yt-etiket">Günün Öne Çıkanı</span><div class="yt-hero-kat">{e(ha)} · {e(hh.get("tarih",""))}</div><h2>{e(hh.get("baslik",""))}</h2><p>{e(kisa_metin(hh.get("ozet",""),200))}</p><a class="yt-buton" href="#{hs}">Haberi oku →</a></div></section>'''
-yt_ikon = '<nav class="yt-ikonlar" aria-label="Kategoriler">' + "".join(f'<a href="#{s}"><span class="yt-ikon">{svg(s)}</span><span>{e(ADLAR[s])}</span></a>' for s in ANA_KAT) + (f'<a href="kose"><span class="yt-ikon">{svg("kose")}</span><span>Köşe Yazıları</span></a>' if "kose" in ADLAR else "") + '</nav>'
+yt_ikon = '<nav class="yt-ikonlar" aria-label="Kategoriler">' + "".join(f'<a href="#{s}"><span class="yt-ikon">{svg(s)}</span><span>{e(ADLAR[s])}</span></a>' for s in ANA_KAT) + (f'<a href="kose"><span class="yt-ikon">{svg("kose")}</span><span>Köşe Yazıları</span></a>' if "kose" in ADLAR else "") + (f'<a href="dedekorkut"><span class="yt-ikon">{svg("dedekorkut")}</span><span>Dede Korkut</span></a>' if dk_bolumler else "") + '</nav>'
 _secilen=[]; _gor=set()
 for t,s,a,h in _tum[1:]:
     if s in ANA_KAT and s not in _gor: _secilen.append((s,a,h)); _gor.add(s)
@@ -440,7 +441,11 @@ if _secilen:
     kucuk = "".join(f'<a class="yt-kucuk" href="#{s}"><img src="{_img(s,h)}" alt="" loading="lazy"><div><span class="yt-kat">{e(a)}</span><h4>{e(h.get("baslik",""))}</h4>{_meta(h)}</div></a>' for s,a,h in _secilen[1:5])
     yt_grid = f'<section class="yt-grid">{buyuk}<div class="yt-kucukler">{kucuk}</div></section>'
 yt_bant = f'<a class="yt-bant" href="#kultur"><div class="yt-bant-resim" style="background-image:url(\'gorseller/konu/tiyatro.jpg\')"><span>Keşfet<br>Öğren<br>Paylaş</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("kultur")}</span><div><strong>Kültür &amp; Sanat</strong><small>Sahne, sinema, sergi ve öğrenci köşesi</small></div><span class="yt-ok">→</span></div></a>'
-yt_ust = f'''<header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav><div class="yt-perde" onclick="document.body.classList.remove('menu-acik')"></div><div class="yt-menu" role="dialog" aria-label="Menü"><button class="yt-kapat" aria-label="Kapat" onclick="document.body.classList.remove('menu-acik')">✕</button><div class="yt-menu-baslik">Kategoriler</div><a href="#ust" onclick="document.body.classList.remove('menu-acik')">Ana Sayfa</a>{"".join(f'<a href="#{s}" onclick="document.body.classList.remove(\'menu-acik\')">{e(ADLAR[s])}</a>' for s in ANA_KAT)}{yt_menu}</div><script>addEventListener('scroll',function(){{document.body.classList.toggle('kaydi',scrollY>60)}},{{passive:true}});document.addEventListener('keydown',function(v){{if(v.key==='Escape')document.body.classList.remove('menu-acik')}});</script>'''
+yt_dk = ""
+if dk_bolumler:
+    _b = dk_bolumler[0]; _r = _b["paneller"][0].get("resim","")
+    yt_dk = f'<a class="yt-bant yt-dk" href="dedekorkut"><div class="yt-bant-resim" style="background-image:url(\'{e(_r)}\')"><span>{e(DK_AD)}</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("dedekorkut")}</span><div><strong>{e(_b.get("baslik",""))}</strong><small>{e(str(_b.get("bolum","")))}. bölüm · {e(_b.get("tarih",""))} · Resimli günlük hikâye</small></div><span class="yt-ok">→</span></div></a>'
+yt_ust = f'''<div class="yt-sabit" id="yt-sabit"><header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav></div><div class="yt-perde" onclick="document.body.classList.remove('menu-acik')"></div><div class="yt-menu" role="dialog" aria-label="Menü"><button class="yt-kapat" aria-label="Kapat" onclick="document.body.classList.remove('menu-acik')">✕</button><div class="yt-menu-baslik">Kategoriler</div><a href="#ust" onclick="document.body.classList.remove('menu-acik')">Ana Sayfa</a>{"".join(f'<a href="#{s}" onclick="document.body.classList.remove(\'menu-acik\')">{e(ADLAR[s])}</a>' for s in ANA_KAT)}{yt_menu}</div><script>(function(){{var u=document.getElementById('yt-sabit');function b(){{document.body.style.paddingTop=u.offsetHeight+'px'}}b();addEventListener('load',b);addEventListener('resize',b);addEventListener('scroll',function(){{document.body.classList.toggle('kaydi',scrollY>60)}},{{passive:true}})}})();document.addEventListener('keydown',function(v){{if(v.key==='Escape')document.body.classList.remove('menu-acik')}});</script>'''
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
@@ -454,7 +459,7 @@ sayfa = f'''<!DOCTYPE html>
 <body>
 <div class="container" id="ust">
 {yt_ust}
-{yt_hero}{yt_ikon}{yt_grid}{yt_bant}
+{yt_hero}{yt_ikon}{yt_grid}{yt_dk}{yt_bant}
 <div class="content yt-content">
 <main class="main-content">{ozel_haber_html}{dosya_html}{makale_html}{"".join(bol)}</main>
 </div>
