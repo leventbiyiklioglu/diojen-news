@@ -88,7 +88,15 @@ LINK_BETIGI = ('<script>(function(k){var L=location;if(L.protocol==="file:"){doc
   'if(p===""||p.slice(-1)==="/")p+="index.html";else if(!/\\.[a-z0-9]+$/i.test(p.split("/").pop()))p+=".html";}'
   'a[i].setAttribute("href",p+r);}});}else if(/^https?:$/.test(L.protocol)&&/\\.html$/.test(L.pathname)&&history.replaceState){'
   'var p=L.pathname==="/DiojenNews.html"?"/":L.pathname.replace(/\\/index\\.html$/,"/").replace(/\\.html$/,"");'
-  'history.replaceState(null,"",p+L.search+L.hash);}})("{KOK}");</script>')
+  'history.replaceState(null,"",p+L.search+L.hash);}'
+  'function S(h){var id=h.slice(1);try{id=decodeURIComponent(id);}catch(x){}var t=id&&document.getElementById(id);'
+  'if(!t&&id!==""&&id!=="ust"&&id!=="top")return false;if(t)t.scrollIntoView({behavior:"smooth",block:"start"});'
+  'else window.scrollTo({top:0,behavior:"smooth"});return true;}'
+  'document.addEventListener("click",function(v){if(v.defaultPrevented||v.button||v.metaKey||v.ctrlKey||v.shiftKey||v.altKey)return;'
+  'var a=v.target&&v.target.closest&&v.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href");'
+  'if(h.charAt(0)!=="#")return;if(S(h))v.preventDefault();});'
+  'if(L.hash)window.addEventListener("load",function(){if(S(L.hash)&&history.replaceState)history.replaceState(null,"",L.pathname+L.search);});'
+  '})("{KOK}");</script>')
 def seo_head(baslik, aciklama, yol, kok="", og_tur="website", resim=None, jsonld=None, robots="index,follow,max-image-preview:large", tam_baslik=False):
     """<head> icine: description, robots, canonical, OG, Twitter, JSON-LD, PC/uzantisiz link betigi.
     yol: uzantisiz kanonik yol ('' ana sayfa). kok: sayfanin site kokune goreli yolu ('', '../'). resim: kok-goreli yol."""
