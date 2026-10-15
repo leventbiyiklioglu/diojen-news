@@ -312,7 +312,7 @@ body,body:has(.yt-sabit){background:#fffdf8;color:#111}
 .yt-kucuk{padding:10px;border-bottom:0}
 .yt-buyuk{box-shadow:0 8px 24px rgba(0,0,0,.22)}
 .yt-meta{color:#555}.yt-kucuk h4{color:#000}
-img{filter:saturate(1.1)}
+
 .kat-dunya{--k:#1e6fd9}.kat-ekonomi{--k:#12a150}.kat-spor{--k:#f57c00}.kat-teknoloji{--k:#7b2ff7}.kat-kultur{--k:#e91e63}.kat-dedekorkut{--k:#e0a100}.kat-kose{--k:#d0021b}
 .yt-kat[class*="kat-"]{background:var(--k)}
 .yt-ikonlar a[class*="kat-"] .yt-ikon{background:var(--k);color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.18)}
