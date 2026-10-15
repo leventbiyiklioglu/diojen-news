@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abonelere Özel - Diojen News</title><meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="modern.css">
+</head><body>
+<header class="ust"><a class="logo" href="../">Diojen <b>News</b></a><span class="rozet">ABONELERE ÖZEL</span></header>
+<section class="hero"><div><div class="ust-yazi">Diojen News Premium</div>
+<h1>Haberin derinindeki hikâye</h1>
+<p>Muhabir yazıları, köşe yazıları ve iş dünyası için haber, makale ve analizler.</p></div></section>
+<main class="sayfa">
+<div id="durum" class="oturum"></div>
+<section id="giris" class="kutu" hidden>
+  <h2>Giriş yap</h2><p>E-posta adresini yaz, sana bir giriş bağlantısı gönderelim. Şifre gerekmez.</p>
+  <input id="eposta" type="email" placeholder="ornek@eposta.com" autocomplete="email">
+  <button class="btn" id="gonder">Giriş bağlantısı gönder</button><p id="giris-mesaj" class="oturum"></p>
+  <div class="fiyat">Abone ol — <big>aylık 15 $</big><br><small>Online ödeme yakında iyzico ile.</small></div>
+  <p class="kvkk"><b>KVKK aydınlatma metni (taslak):</b> Diojen News, abonelik hizmetini sunmak amacıyla yalnızca e-posta adresinizi işler. Verileriniz Supabase altyapısında (AB – Frankfurt) saklanır; bu durum yurt dışına aktarım niteliğindedir. Verileriniz yapay zekâ hizmetlerine gönderilmez. KVKK md. 11 talepleriniz için: [iletişim e-postası eklenecek]. Bu metin hukuki inceleme sonrası kesinleşecektir.</p>
+</section>
+<section id="abone-ol" class="kutu" hidden>
+  <h2>Aboneliğin henüz aktif değil</h2>
+  <div class="fiyat">Abone ol — <big>aylık 15 $</big><br><small>Yakında iyzico ile online ödeme.</small></div>
+  <p class="oturum">Giriş: <span id="kim"></span> · <a href="#" class="cikis">Çıkış</a></p>
+</section>
+<section id="liste" hidden>
+  <p class="oturum">Giriş: <span id="kim2"></span> · <a href="#" class="cikis">Çıkış</a></p>
+  <div class="filtre" id="filtre"></div><div class="izgara" id="yazilar"></div>
+</section>
+<article id="yazi" class="yazi" hidden></article>
+</main>
+<footer class="alt">© Diojen News · Fotoğraflar: Unsplash (<a href="img/KAYNAKLAR.md">kaynaklar</a>)</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script><script src="abone.js"></script>
+</body></html>

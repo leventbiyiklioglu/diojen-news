@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editör Masası - Diojen News</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="../modern.css">
+<style>.masa{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:26px}.sira .kart{margin-bottom:14px;cursor:pointer}.sira .kart.secili{outline:3px solid #3a86ff}
+.onizle{background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(60,30,10,.08)}textarea{width:100%;min-height:80px;border:2px solid #e2d6c8;border-radius:12px;padding:12px;font:inherit;margin:10px 0}
+.eylem{display:flex;gap:10px;flex-wrap:wrap}.btn.yesil{background:linear-gradient(90deg,#0aa37f,#057a5f)}.btn.gri{background:#6c757d}@media(max-width:800px){.masa{grid-template-columns:1fr}}</style></head><body>
+<header class="ust"><a class="logo" href="../">Diojen <b>News</b></a><span class="rozet" style="background:linear-gradient(90deg,#3a86ff,#7b2ff7)">EDİTÖR MASASI</span></header>
+<main class="sayfa"><div id="durum" class="oturum"></div>
+<section id="giris" class="kutu" style="margin-top:20px" hidden><h2>Editör girişi</h2><input id="eposta" type="email" placeholder="editor@diojennews.com"><button class="btn" id="gonder">Giriş bağlantısı gönder</button><p id="giris-mesaj" class="oturum"></p></section>
+<section id="panel" hidden><div class="filtre" id="filtre"></div><div class="masa"><div class="sira" id="sira"></div><div class="onizle" id="onizle"><p class="ozet">Soldan bir yazı seç.</p></div></div></section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../config.js"></script><script src="../ortak.js"></script><script src="editor.js"></script></body></html>

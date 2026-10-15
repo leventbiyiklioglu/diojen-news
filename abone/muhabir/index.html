@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhabir Paneli - Diojen News</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="../modern.css"></head><body>
+<header class="ust"><a class="logo" href="../">Diojen <b>News</b></a><span class="rozet" style="background:linear-gradient(90deg,#e63946,#ff7a18)">MUHABİR PANELİ</span></header>
+<main class="sayfa">
+<div id="durum" class="oturum"></div>
+<section id="giris" class="kutu" style="margin-top:20px" hidden><h2>Muhabir girişi</h2><p>Kayıtlı muhabir e-postanı yaz.</p>
+ <input id="eposta" type="email" placeholder="muhabir@diojennews.com"><button class="btn" id="gonder">Giriş bağlantısı gönder</button><p id="giris-mesaj" class="oturum"></p></section>
+<section id="panel" hidden>
+ <div class="kart" style="padding:26px;margin-bottom:28px"><h2 style="font-family:Georgia,serif;margin:0 0 8px">Yeni yazı gönder</h2>
+  <p class="ozet">Word (.docx) dosyanı yükle. Sistem dönüştürür, yapay zekâ ile tasnif eder ve editöre iletir. En fazla 10 MB.</p>
+  <input type="file" id="dosya" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="margin:10px 0">
+  <select id="tur" style="padding:10px;border-radius:10px;margin:0 8px 10px 0"><option value="muhabir">Muhabir haberi</option><option value="kose">Köşe yazısı</option><option value="is-dunyasi">İş dünyası analizi</option></select>
+  <button class="btn" id="yukle" style="width:auto">Yükle ve editöre gönder</button><p id="yukle-mesaj" class="oturum"></p></div>
+ <h2 style="font-family:Georgia,serif">Gönderilerim</h2><div class="izgara" id="liste"></div>
+</section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../config.js"></script><script src="../ortak.js"></script><script src="muhabir.js"></script></body></html>
