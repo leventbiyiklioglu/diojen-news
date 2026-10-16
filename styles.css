@@ -347,3 +347,6 @@ body,body:has(.yt-sabit){background:#fffdf8;color:#111}
 .yt-mgrup[open] summary::after{content:"–"}
 .yt-mgrup a{padding-left:18px!important;font-weight:normal!important}
 .yt-mgrup.kat-ekonomi summary{border-left-color:#1e9e4a}.yt-mgrup.kat-teknoloji summary{border-left-color:#7b3fe4}.yt-mgrup.kat-kultur summary{border-left-color:#e0337a}.yt-mgrup.kat-dunya summary{border-left-color:#1565c0}.yt-mgrup.yt-diger summary{border-left-color:#888}
+/* alt sayfa navbar: Diger sagda acilsin */
+.navbar .nav-diger .alt-menu{left:auto;right:0}
+@media(min-width:769px){.navbar>a,.navbar .nav-acilir summary{padding:12px 13px;letter-spacing:.5px;font-size:.85rem}}

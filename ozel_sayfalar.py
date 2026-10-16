@@ -83,6 +83,29 @@ def kultur_menu(kok="", kultur_href="/#kultur"):
             f'<a href="{kok}{GISE_DIR}/">Gişe &amp; Yeni Çıkanlar</a></div></details>')
 def arsiv_dosyasi_link(kok=""): return f'<a href="{kok}{AD_DIR}/" class="nav-ad">Arşiv Dosyası</a>'
 def nav_linkleri(kok=""): return kultur_menu(kok) + arsiv_dosyasi_link(kok)
+
+# ---- Ortak is dunyasi menusu (ana sayfa + tum alt sayfalar ayni listeden) ----
+MENU_GRUP = [
+ ("Ekonomi &amp; Piyasa", "kat-ekonomi", [("#ekonomi","Ekonomi"),("#bist30","BIST 30 Şirketleri"),("#sirket","Şirket Haberleri"),("#projectsyndicate","Project Syndicate")]),
+ ("Teknoloji &amp; Yapay Zekâ", "kat-teknoloji", [("#teknoloji","Teknoloji &amp; Yapay Zekâ haberleri")]),
+ ("Yaratıcı Endüstriler", "kat-kultur", [("#kultur","Kültür &amp; Sanat"),(OK_DIR+"/","Sinema-TV Öğrenci Köşesi"),(GISE_DIR+"/","Gişe &amp; Yeni Çıkanlar")]),
+ ("Raporlar &amp; Analiz", "kat-kose", [("kose","Köşe Yazıları"),(AD_DIR+"/","Arşiv Dosyası"),("#ozel-haber","Özel Haber")]),
+ ("Dünya", "kat-dunya", [("#dunya","Dünya")]),
+]
+MENU_DIGER = [("#spor","Spor"),("#kimnedi","Kim Ne Dedi"),("#agos","Agos&#x27;tan"),("dedekorkut","Dede Korkut Günlüğü"),("arsiv/","📚 Arşiv (eski sayılar)")]
+def menu_href(h, kok, ana=False):
+    if h.startswith("#"): return h if ana else (kok or "./") + h
+    return kok + h
+def menu_gruplari(kok="", ana=False):
+    g = [(ad, sn, [(menu_href(h,kok,ana),a) for h,a in al]) for ad,sn,al in MENU_GRUP]
+    return g, [(menu_href(h,kok,ana),a) for h,a in MENU_DIGER]
+def alt_nav(kok=""):
+    """Alt sayfa navbar'i: ayni gruplar, mevcut .nav-acilir acilir yapisiyla (mobilde ☰ Menü icinde calisir)."""
+    g, d = menu_gruplari(kok)
+    def tek(ad, sn, og):
+        if len(og)==1: return f'<a href="{og[0][0]}" class="{sn}">{ad}</a>'
+        return f'<details class="nav-acilir {sn}"><summary>{ad}</summary><div class="alt-menu">' + "".join(f'<a href="{h}">{a}</a>' for h,a in og) + '</div></details>'
+    return f'<a href="{kok or "./"}">Ana Sayfa</a>' + "".join(tek(*x) for x in g) + tek("Diğer", "nav-diger", d)
 def yan_alt(kok=""):
     return (f'<ul class="yan-alt"><li><a href="{kok}{OK_DIR}/">↳ Sinema-TV Öğrenci Köşesi</a></li>'
             f'<li><a href="{kok}{GISE_DIR}/">↳ Gişe &amp; Yeni Çıkanlar</a></li></ul>')
@@ -104,9 +127,7 @@ def yaz_sayfa(base, rel_html, yol, baslik, aciklama, govde, jsonld=None, og_tur=
     kw = {"tam_baslik": tam}
     if robots: kw["robots"] = robots
     head = H["seo_head"](t, acik, yol, kok, og_tur, resim, jsonld, **kw)
-    dk = f'<a href="{kok}dedekorkut">Dede Korkut Günlüğü</a>' if os.path.exists(os.path.join(base, "dedekorkut.html")) else ""
-    nav = (f'<a href="/">Ana Sayfa</a>{kultur_menu(kok)}<a href="{kok}kose">Köşe Yazıları</a>{dk}'
-           f'{arsiv_dosyasi_link(kok)}<a href="{kok}arsiv/" class="arsiv-link">📚 Arşiv</a>')
+    nav = alt_nav(kok)
     sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
 <head>

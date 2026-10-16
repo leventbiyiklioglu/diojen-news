@@ -198,7 +198,7 @@ kose_html = ""
 def sayfa_kose(baslik, icerik, kok, yol="", aciklama="", resim=None, jsonld=None, og_tur="website"):
     return f'''<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 {seo_head(baslik, aciklama, yol, kok, og_tur, resim, jsonld)}
-<link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar"><a href="/">Ana Sayfa</a><a href="{kok}kose">Köşe Yazıları</a>{dk_nav(kok)}{ozel_sayfalar.nav_linkleri(kok)}<a href="{kok}arsiv/" class="arsiv-link">📚 Arşiv</a></nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
+<link rel="stylesheet" href="{kok}styles.css"></head><body><div class="container"><header class="header"><h1>Diojen <span>News</span></h1><div class="logo">D</div></header>{ozel_sayfalar.MOBIL_DUGME}<nav class="navbar">{ozel_sayfalar.alt_nav(kok)}</nav><div class="kose-sayfa"><section class="bolum">{icerik}</section></div></div></body></html>'''
 def kose_oku(p):
     try: satirlar = [l.strip() for l in open(p,encoding="utf-8").read().split("\n") if l.strip()]
     except Exception: return None
@@ -351,7 +351,7 @@ def makale_sayfasi(y):
     kay = ""
     if y["kaynaklar"]:
         kay = '<section class="makale-kaynaklar"><h2>Kaynaklar</h2><ol>' + "".join(f'<li id="k{n}" value="{n}">{kaynak_satiri(s)}</li>' for n,s in y["kaynaklar"]) + '</ol></section>'
-    nav2 = '<a href="/">Ana Sayfa</a><a href="../kose">Köşe Yazıları</a>' + dk_nav("../") + ozel_sayfalar.nav_linkleri("../") + '<a href="../arsiv/" class="arsiv-link">📚 Arşiv</a>'
+    nav2 = ozel_sayfalar.alt_nav("../")
     myol = "makaleler/" + y["slug"]; miso = y["sirala"] if y["sirala"] != "0000-00-00" else ""
     mres = ("gorseller/" + y["slug"] + ("-900.jpg" if y["resim900_var"] else ".jpg")) if y["resim_var"] else None
     mld = jsonld_haber(y["baslik"], myol, miso, degisme_tarihi(myol + ".md", miso), y["yazar"], kisa_metin(y["spot"], 200), [mres] if mres else None, y["kategori"])
@@ -430,23 +430,9 @@ IKON = {
 def svg(k): return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{IKON[k]}</svg>'
 ADLAR = dict(KAT_NAV)
 # ---- Is dunyasi menusu (menu-is-dunyasi): gruplu sekmeler + Diger acilir menusu; adresler degismedi ----
-_OS = ozel_sayfalar
-def _h(s): return SAYFA.get(s, "#"+s)
-MENU_GRUP = [
- ("Ekonomi &amp; Piyasa", "kat-ekonomi", [("ekonomi","Ekonomi"),("bist30",None),("sirket",None),("projectsyndicate",None)]),
- ("Teknoloji &amp; Yapay Zekâ", "kat-teknoloji", [("teknoloji","Teknoloji &amp; Yapay Zekâ haberleri")]),
- ("Yaratıcı Endüstriler", "kat-kultur", [("kultur",None),("@"+_OS.OK_DIR+"/","Sinema-TV Öğrenci Köşesi"),("@"+_OS.GISE_DIR+"/","Gişe &amp; Yeni Çıkanlar")]),
- ("Raporlar &amp; Analiz", "kat-kose", [("kose",None),("@"+_OS.AD_DIR+"/","Arşiv Dosyası"),("@#ozel-haber","Özel Haber")]),
- ("Dünya", "kat-dunya", [("dunya","Dünya")]),
-]
-_ana_kullanilan = {s for _,_,al in MENU_GRUP for s,_ in al}
-def _ogeler(al):
-    r=[]
-    for s,a in al:
-        if s.startswith("@"): r.append((s[1:], a))
-        elif s in ADLAR: r.append((_h(s), a or e(ADLAR[s])))
-    return r
-DIGER = [(_h(s), e(a)) for s,a in KAT_NAV if s not in _ana_kullanilan] + [("arsiv/","📚 Arşiv (eski sayılar)")]
+_MG, DIGER = ozel_sayfalar.menu_gruplari("", ana=True)
+MENU_GRUP = [(ad,sn,og) for ad,sn,og in _MG]
+def _ogeler(og): return og
 def _acilir(ad, sinif, og):
     if len(og)==1: return f'<a href="{og[0][0]}" class="{sinif}">{ad}</a>'
     return f'<details class="yt-acilir {sinif}"><summary>{ad}</summary><div class="yt-alt">' + "".join(f'<a href="{h}">{a}</a>' for h,a in og) + '</div></details>'
