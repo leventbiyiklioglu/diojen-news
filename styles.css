@@ -319,3 +319,11 @@ body,body:has(.yt-sabit){background:#fffdf8;color:#111}
 .yt-bant{background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.10)}
 .yt-bant[class*="kat-"] .yt-ikon{background:var(--k);color:#fff}.yt-bant[class*="kat-"] .yt-ok{background:var(--k)}
 .yt-bant-yazi small{color:#444}
+/* Haber başlık linkleri: açık mavi, ~%15 küçük (1.7rem -> 1.45rem), okununca renk değişir */
+.card h3 { font-size:1.45rem; }
+.card h3 a { color:#2b7bd6; text-decoration:none; transition:color .15s; }
+.card h3 a:visited { color:#7a6a9a; }
+.card h3 a:hover, .card h3 a:visited:hover { color:#d0021b; text-decoration:underline; }
+/* haber/ hub bölüm başlıkları: varsayılan mavi yerine bölümün kırmızısı */
+.bolum h2 a { color:inherit; text-decoration:none; }
+.bolum h2 a:hover { text-decoration:underline; }
