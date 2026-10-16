@@ -327,3 +327,23 @@ body,body:has(.yt-sabit){background:#fffdf8;color:#111}
 /* haber/ hub bölüm başlıkları: varsayılan mavi yerine bölümün kırmızısı */
 .bolum h2 a { color:inherit; text-decoration:none; }
 .bolum h2 a:hover { text-decoration:underline; }
+
+/* ===== is dunyasi menusu: acilir sekmeler ===== */
+.yt-nav{overflow:visible;flex-wrap:wrap}
+.yt-acilir{position:relative}
+.yt-acilir summary{list-style:none;cursor:pointer;color:#fff;text-transform:uppercase;font:700 .78rem Arial,sans-serif;letter-spacing:.04em;padding:14px 14px;white-space:nowrap;border-bottom:3px solid transparent}
+.yt-acilir summary::-webkit-details-marker,.yt-mgrup summary::-webkit-details-marker{display:none}
+.yt-acilir summary::after{content:" ▾";font-size:.7em}
+.yt-acilir[open] summary{border-bottom-color:#fff;background:rgba(0,0,0,.12)}
+.yt-alt{position:absolute;top:100%;left:0;z-index:60;min-width:230px;background:#fff;border-top:3px solid #d0021b;box-shadow:0 8px 22px rgba(0,0,0,.18);display:flex;flex-direction:column}
+.yt-nav .yt-alt a{color:#1a1a1a;text-transform:none;font:700 .9rem Arial,sans-serif;letter-spacing:0;padding:11px 16px;border-bottom:1px solid #eee}
+.yt-nav .yt-alt a:hover{background:#fff4e8;color:#d0021b}
+.yt-diger .yt-alt{left:auto;right:0}
+.yt-acilir.kat-ekonomi .yt-alt{border-top-color:#1e9e4a}.yt-acilir.kat-teknoloji .yt-alt{border-top-color:#7b3fe4}.yt-acilir.kat-kultur .yt-alt{border-top-color:#e0337a}.yt-acilir.kat-kose .yt-alt{border-top-color:#d0021b}
+@media(min-width:900px){.yt-acilir summary{padding:15px 22px;font-size:.85rem}.yt-nav a{padding:15px 22px}}
+.menu-acik .yt-menu .yt-mgrup,.yt-mgrup{grid-column:1/-1}
+.yt-mgrup summary{cursor:pointer;list-style:none;font:700 .95rem Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#1a1a1a;padding:12px 0;border-bottom:1px solid #eee;border-left:4px solid #d0021b;padding-left:10px}
+.yt-mgrup summary::after{content:"+";float:right;color:#d0021b}
+.yt-mgrup[open] summary::after{content:"–"}
+.yt-mgrup a{padding-left:18px!important;font-weight:normal!important}
+.yt-mgrup.kat-ekonomi summary{border-left-color:#1e9e4a}.yt-mgrup.kat-teknoloji summary{border-left-color:#7b3fe4}.yt-mgrup.kat-kultur summary{border-left-color:#e0337a}.yt-mgrup.kat-dunya summary{border-left-color:#1565c0}.yt-mgrup.yt-diger summary{border-left-color:#888}

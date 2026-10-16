@@ -429,9 +429,30 @@ IKON = {
 }
 def svg(k): return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{IKON[k]}</svg>'
 ADLAR = dict(KAT_NAV)
-yt_nav = '<a href="#ust" class="aktif">Ana Sayfa</a>' + "".join(f'<a href="#{s}">{e(ADLAR[s])}</a>' for s in ANA_KAT)
-_diger = [(s,a) for s,a in KAT_NAV if s not in ANA_KAT]
-yt_menu = '<div class="yt-menu-baslik">Diğer Bölümler</div>' + "".join(f'<a href="{SAYFA.get(s,"#"+s)}">{e(a)}</a>' for s,a in _diger) + ozel_sayfalar.arsiv_dosyasi_link() + '<a href="arsiv/">Arşiv (eski sayılar)</a>'
+# ---- Is dunyasi menusu (menu-is-dunyasi): gruplu sekmeler + Diger acilir menusu; adresler degismedi ----
+_OS = ozel_sayfalar
+def _h(s): return SAYFA.get(s, "#"+s)
+MENU_GRUP = [
+ ("Ekonomi &amp; Piyasa", "kat-ekonomi", [("ekonomi","Ekonomi"),("bist30",None),("sirket",None),("projectsyndicate",None)]),
+ ("Teknoloji &amp; Yapay Zekâ", "kat-teknoloji", [("teknoloji","Teknoloji &amp; Yapay Zekâ haberleri")]),
+ ("Yaratıcı Endüstriler", "kat-kultur", [("kultur",None),("@"+_OS.OK_DIR+"/","Sinema-TV Öğrenci Köşesi"),("@"+_OS.GISE_DIR+"/","Gişe &amp; Yeni Çıkanlar")]),
+ ("Raporlar &amp; Analiz", "kat-kose", [("kose",None),("@"+_OS.AD_DIR+"/","Arşiv Dosyası"),("@#ozel-haber","Özel Haber")]),
+ ("Dünya", "kat-dunya", [("dunya","Dünya")]),
+]
+_ana_kullanilan = {s for _,_,al in MENU_GRUP for s,_ in al}
+def _ogeler(al):
+    r=[]
+    for s,a in al:
+        if s.startswith("@"): r.append((s[1:], a))
+        elif s in ADLAR: r.append((_h(s), a or e(ADLAR[s])))
+    return r
+DIGER = [(_h(s), e(a)) for s,a in KAT_NAV if s not in _ana_kullanilan] + [("arsiv/","📚 Arşiv (eski sayılar)")]
+def _acilir(ad, sinif, og):
+    if len(og)==1: return f'<a href="{og[0][0]}" class="{sinif}">{ad}</a>'
+    return f'<details class="yt-acilir {sinif}"><summary>{ad}</summary><div class="yt-alt">' + "".join(f'<a href="{h}">{a}</a>' for h,a in og) + '</div></details>'
+yt_nav = '<a href="#ust" class="aktif">Ana Sayfa</a>' + "".join(_acilir(ad,sn,_ogeler(al)) for ad,sn,al in MENU_GRUP) + _acilir("Diğer","yt-diger",DIGER)
+_kapa = ' onclick="document.body.classList.remove(\'menu-acik\')"'
+yt_menu = "".join(f'<details class="yt-mgrup {sn}"><summary>{ad}</summary>' + "".join(f'<a href="{h}"{_kapa}>{a}</a>' for h,a in _ogeler(al)) + '</details>' for ad,sn,al in MENU_GRUP) + '<details class="yt-mgrup yt-diger"><summary>Diğer</summary>' + "".join(f'<a href="{h}"{_kapa}>{a}</a>' for h,a in DIGER) + '</details>'
 yt_hero = ""
 if _tum:
     _,hs,ha,hh = _tum[0]; bg = _img(hs,hh)
@@ -455,7 +476,7 @@ yt_dk = ""
 if dk_bolumler:
     _b = dk_bolumler[0]; _r = _b["paneller"][0].get("resim","")
     yt_dk = f'<a class="yt-bant yt-dk kat-dedekorkut" href="dedekorkut"><div class="yt-bant-resim" style="background-image:url(\'{e(_r)}\')"><span>{e(DK_AD)}</span></div><div class="yt-bant-yazi"><span class="yt-ikon">{svg("dedekorkut")}</span><div><strong>{e(_b.get("baslik",""))}</strong><small>{e(str(_b.get("bolum","")))}. bölüm · {e(_b.get("tarih",""))} · Resimli günlük hikâye</small></div><span class="yt-ok">→</span></div></a>'
-yt_ust = f'''<div class="yt-sabit" id="yt-sabit"><header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav></div><div class="yt-perde" onclick="document.body.classList.remove('menu-acik')"></div><div class="yt-menu" role="dialog" aria-label="Menü"><button class="yt-kapat" aria-label="Kapat" onclick="document.body.classList.remove('menu-acik')">✕</button><div class="yt-menu-baslik">Kategoriler</div><a href="#ust" onclick="document.body.classList.remove('menu-acik')">Ana Sayfa</a>{"".join(f'<a href="#{s}" onclick="document.body.classList.remove(\'menu-acik\')">{e(ADLAR[s])}</a>' for s in ANA_KAT)}{yt_menu}</div><script>(function(){{var u=document.getElementById('yt-sabit');function b(){{document.body.style.paddingTop=u.offsetHeight+'px'}}b();addEventListener('load',b);addEventListener('resize',b);addEventListener('scroll',function(){{document.body.classList.toggle('kaydi',scrollY>60)}},{{passive:true}})}})();document.addEventListener('keydown',function(v){{if(v.key==='Escape')document.body.classList.remove('menu-acik')}});</script>'''
+yt_ust = f'''<div class="yt-sabit" id="yt-sabit"><header class="yt-header"><button class="yt-ham" aria-label="Menü" onclick="document.body.classList.toggle('menu-acik')"><span></span><span></span><span></span></button><div class="yt-logo"><div class="yt-ad">Diojen <b>News</b></div><div class="yt-amblem">D</div></div><a class="yt-ara" href="arsiv/" aria-label="Ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a></header><div class="yt-slogan"><span>Daha iyi yarın için, doğru haber</span></div><nav class="yt-nav">{yt_nav}</nav></div><div class="yt-perde" onclick="document.body.classList.remove('menu-acik')"></div><div class="yt-menu" role="dialog" aria-label="Menü"><button class="yt-kapat" aria-label="Kapat" onclick="document.body.classList.remove('menu-acik')">✕</button><div class="yt-menu-baslik">Kategoriler</div><a href="#ust" onclick="document.body.classList.remove('menu-acik')">Ana Sayfa</a>{yt_menu}</div><script>(function(){{var u=document.getElementById('yt-sabit');function b(){{document.body.style.paddingTop=u.offsetHeight+'px'}}b();addEventListener('load',b);addEventListener('resize',b);addEventListener('scroll',function(){{document.body.classList.toggle('kaydi',scrollY>60)}},{{passive:true}})}})();document.addEventListener('keydown',function(v){{if(v.key==='Escape')document.body.classList.remove('menu-acik')}});document.addEventListener('click',function(v){{document.querySelectorAll('.yt-nav details[open]').forEach(function(d){{if(!d.contains(v.target))d.removeAttribute('open')}})}});</script>'''
 yil = datetime.date.today().year
 sayfa = f'''<!DOCTYPE html>
 <html lang="tr">
