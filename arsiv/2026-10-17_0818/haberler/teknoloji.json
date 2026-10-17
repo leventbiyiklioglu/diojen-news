@@ -1,0 +1,47 @@
+{
+  "yazar": "Tuna Yıldız",
+  "haberler": [
+    {
+      "baslik": "Çin, yapay zekâ teknolojilerini ihracat kontrol listesine almaya hazırlanıyor",
+      "ozet": "Çin Ticaret Bakanlığı ile Bilim ve Teknoloji Bakanlığı, 16 Ekim'de yayımladıkları ortak duyuruyla yasaklı ve kısıtlı ihracat teknolojileri listesine yapay zekâ, biyotıp ve güneş enerjisi alanlarından toplam 40 teknolojinin eklenmesini önerdi. Bunların 23'ü büyük modeller, yapay zekâ ajanları, hesaplama kümeleri ve bilgi işleme gibi yapay zekâ alanlarını kapsıyor; açık kaynak ya da akademik yayın yoluyla kamuya açılmış teknolojiler ise kapsam dışında tutuluyor. Taslak için kamuoyu görüşü 15 Kasım'a kadar toplanacak. Liste resmen yürürlüğe girene kadar, bu teknolojileri yurt dışına satmak, lisanslamak ya da kontrolünü yabancı bir tarafa devretmek isteyen şirketlerin işlem öncesinde bakanlığın çevrim içi sistemine kayıt yaptırması zorunlu olacak; başlamış ama tamamlanmamış işlemler de buna dahil.",
+      "kaynak": "Çin Ticaret Bakanlığı (MOFCOM)",
+      "kaynak_url": "https://www.mofcom.gov.cn/zcfb/blgg/gg/2026/art/2026/art_05e2643a8ca04eb9adf9dd0542991fe4.html",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Disney, iflas eden Character.AI'dan 66 çalışanı yılda 60 milyon dolarla bünyesine katıyor",
+      "ozet": "Character.AI'ın ana şirketinin sunduğu iflas (Chapter 11) belgelerine göre Disney, yapay zekâ sohbet botu girişiminden 66 çalışana iş teklif etti ve bu ekip için yıllık yaklaşık 60 milyon dolarlık ücret öngörüyor. Şirket ayrıca çalışanları elde tutmak için 30 milyon dolarlık bir havuz ayırdı ve üç yıllık toplam maliyeti 180 milyon dolar civarında hesaplıyor. Teklif alanlardan 56'sı girişimden ayrıldı, 10'u ise ABD çalışma vizelerinin güncellenmesini bekliyor. Disney, Character.AI'ın bazı fikri mülkiyet ve teknoloji varlıkları için de 20 milyon dolar ödemeyi kabul etti; rakip teklifler 20 Kasım'a kadar sunulabilecek ve süreç iflas mahkemesinin denetiminde yürüyecek.",
+      "kaynak": "Business Insider",
+      "kaynak_url": "https://www.businessinsider.com/disney-pays-60-million-characterai-employees-tech-layoffs-karandeep-anand-2026-10",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Nvidia'nın RTX Spark işlemcili ilk Windows dizüstüleri satışa çıktı",
+      "ozet": "Nvidia, Blackwell RTX grafik birimi ile Grace işlemciyi tek bir yongada birleştiren RTX Spark platformuna sahip dizüstü bilgisayarların ASUS, Dell, HP, Lenovo, Microsoft ve MSI üzerinden dünya genelinde satışa sunulduğunu açıkladı. Şirkete göre sistemler 128 GB'a kadar birleşik bellek ve 1 petaflop'a kadar FP4 yapay zekâ performansı sunarak büyük dil modellerinin ve yapay zekâ ajanlarının bilgisayarda yerel olarak çalıştırılmasını hedefliyor; işlemci tasarımında MediaTek ile iş birliği yapıldı. İlk modeller arasında Dell XPS 16, Microsoft Surface Laptop Ultra, Lenovo Yoga Pro 9n ve ASUS ProArt P14/P16 bulunuyor. Fiyatlar 2.599 dolardan başlıyor, ancak bölgeye göre değişiyor.",
+      "kaynak": "NVIDIA Newsroom",
+      "kaynak_url": "https://nvidianews.nvidia.com/news/nvidia-rtx-spark-pcs-available-today-a-new-beginning-for-windows-pcs",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Apple'ın katlanabilir telefonu iPhone Duo için ön siparişler başladı",
+      "ozet": "Apple, ilk katlanabilir iPhone'u olan iPhone Duo için ön siparişleri 16 Ekim'de açtı; cihaz 23 Ekim'den itibaren satışta olacak. Şirkete göre açıldığında bugüne kadarki en ince iPhone olan modelin iç ekranı iPhone 18 Pro Max'inkinden yüzde 50 daha büyük, 5,4 inçlik dış ekranı ise kapalıyken telefonun cepte taşınabilmesini sağlıyor. A20 Pro işlemci, çift batarya mimarisi, 48 megapiksellik ana ve ultra geniş kameralar ile IP68 dayanıklılık sunan cihaz, yeniden tasarlanan iOS 27 ve Apple Intelligence destekli yeni Siri AI ile geliyor. ABD'de Apple Upgrade kiralama programında 24 aylık kira ücreti aylık 57,99 dolardan başlıyor.",
+      "kaynak": "Apple Newsroom",
+      "kaynak_url": "https://www.apple.com/newsroom/2026/10/open-up-to-new-possibilities-with-iphone-duo/",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Tesla, SpaceX iticili yeni Roadster'ı tanıttı: Üretim 2028'de başlayacak",
+      "ozet": "Tesla, yıllardır ertelenen ikinci nesil Roadster'ı Teksas'ın Waco kenti yakınlarındaki SpaceX test sahasında düzenlenen etkinlikte tanıttı; gösteride otomobil, fanlar ve soğuk gaz iticileri yardımıyla ters bir rampada ilerleyip havada dönerek yere kontrollü biçimde indi. Elon Musk, aracın 2028'de üretime gireceğini söyledi ancak fiyat açıklamadı. Tesla aracı 'Performance', 'Thrust' ve 'Rocket' adlı üç donanımla sunacak; şirkete göre üç versiyon da 300 mil menzile ve saatte 230 milin üzerinde hıza sahip olacak, iticili Thrust ise 0'dan 60 mil hıza bir saniyenin altında çıkabilecek. Şirketin sitesinde rezervasyon bedeli Performance için 50 bin, Thrust için 250 bin dolar olarak gösterilirken Rocket yalnızca davetle satılacak.",
+      "kaynak": "TechCrunch",
+      "kaynak_url": "https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Meta, açık ağırlıklı yeni yapay zekâ modeli Muse Spark Open'ı yayımladı",
+      "ozet": "Meta, geliştiricilerin model ağırlıklarını indirip değiştirebildiği açık ağırlıklı Muse Spark Open modelini kullanıma sundu. Şirketin yapay zekâ yöneticisi Alexandr Wang, modeli ABD'de bugüne kadar geliştirilen en yetenekli açık ağırlıklı model olarak nitelendirdi; Meta, kodlama ve yapay zekâ ajanı işleri için tasarlanan modelin bazı alanlarda Alibaba'nın Qwen'i gibi Çinli rakiplerine denk ya da onlardan iyi olduğunu öne sürüyor. Model, Apple'ın M5 Ultra çipleri için optimize edildi ve iki M5 Ultra'lı Mac Studio üzerinde çalıştırılabiliyor. Lansman, Meta'nın birkaç gün önce yeni kapalı modelini duyurmasının ardından geldi.",
+      "kaynak": "The Guardian (AFP)",
+      "kaynak_url": "https://www.theguardian.com/technology/2026/oct/16/meta-releases-muse-spark-open-a-new-open-weight-ai-model",
+      "tarih": "16.10.2026"
+    }
+  ]
+}

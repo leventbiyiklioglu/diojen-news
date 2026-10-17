@@ -1,0 +1,47 @@
+{
+  "yazar": "Emre Kaya",
+  "haberler": [
+    {
+      "baslik": "Fed Başkanı Warsh ekim toplantısı için sinyal vermedi: \"Bu işi artık yapmıyoruz\"",
+      "ozet": "Fed Başkanı Kevin Warsh, Bangkok'taki IMF-Dünya Bankası Yıllık Toplantıları'nda IMF Başkanı Kristalina Georgieva ile yaptığı söyleşide 27-28 Ekim'deki FOMC toplantısında yeni bir faiz artışı olup olmayacağına dair ipucu vermedi; toplantıların sonucunu önceden yargılamadığını ve ileriye dönük yönlendirme yapmayacaklarını söyledi. Warsh, dünya genelinde merkez bankalarının eş zamanlı olarak para politikasını sıkılaştırdığına dikkat çekti, yapay zekânın ekonomileri daha verimli kılacağını ancak bu sürecin çok sarsıntılı olabileceğini belirtti. Fed, eylülde faizi 2023'ten bu yana ilk kez artırarak yüzde 3,75-4 aralığına çekmişti; CNBC'nin aktardığı CME FedWatch verisine göre piyasalar ekimde faizin sabit tutulmasına yüzde 72,3 olasılık veriyor.",
+      "kaynak": "CNBC",
+      "kaynak_url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "BIST 100 sert düştü, haftayı yüzde 4,44 kayıpla kapattı",
+      "ozet": "Borsa İstanbul'da BIST 100 endeksi cuma gününü 348,45 puan ve yüzde 2,89 düşüşle 11.721,72 puandan tamamladı; işlem hacmi 116,2 milyar lira oldu. Tüm sektör endekslerinin gerilediği günde BIST 30 yüzde 2,86, bankacılık endeksi yüzde 1,87, holding endeksi yüzde 2,46 değer kaybetti; en sert düşüş yüzde 5,72 ile finansal kiralama ve faktoring endeksinde yaşandı. Endeks, 9 Ekim kapanışına göre haftalık bazda yüzde 4,44 geriledi.",
+      "kaynak": "Finans Gündem",
+      "kaynak_url": "https://finansgundem.com.tr/piyasalarda-gun-sonu-haftanin-son-islem-gunu",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "MSCI, Türk hisselerine ilişkin bazı endeks değişikliklerini dondurdu",
+      "ozet": "Endeks sağlayıcısı MSCI, Türk hisse senetleri için halka açıklık faktörü ve hisse sayısı artışlarını, MSCI Türkiye endeksine yeni eklemeleri ve büyüklük segmentleri arasındaki yukarı geçişleri ikinci bir duyuruya kadar durdurdu. Kararın gerekçesi olarak kurumsal yatırımcıların bazı küçük şirketlerle bağlantılı fon varlıkları üzerinden koordineli işlem yapıldığına dair endişeleri ve halka açıklık tahminlerinin güvenilirliği gösterildi. MSCI, Haziran 2027'ye kadar yeterli ilerleme görülmezse Türkiye'nin Gelişen Piyasa statüsünden Sınır veya Bağımsız Piyasa statüsüne geçirilmesi için danışma süreci başlatılabileceğini bildirdi.",
+      "kaynak": "Investing.com Türkiye",
+      "kaynak_url": "https://tr.investing.com/news/company-news/msci-turk-hisse-senetlerinde-endeks-degisikliklerini-dondurdu-93CH-4105874",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "TCMB anketi: Yıl sonu enflasyon beklentisi yüzde 29,63'e çıktı",
+      "ozet": "Merkez Bankası'nın 71 katılımcıyla yaptığı ekim ayı Piyasa Katılımcıları Anketi'nde yıl sonu TÜFE beklentisi yüzde 29,61'den yüzde 29,63'e, 12 ay sonrası beklentisi yüzde 23,70'ten yüzde 23,89'a yükseldi; ekim ayı için aylık enflasyon beklentisi yüzde 2,11 oldu. Yıl sonu dolar/TL beklentisi 51,5471'e gerilerken cari yıl büyüme beklentisi yüzde 3'ten yüzde 2,9'a indi. Katılımcılar ilk Para Politikası Kurulu toplantısında politika faizinin yüzde 36 olmasını bekliyor.",
+      "kaynak": "Anadolu Ajansı",
+      "kaynak_url": "https://www.aa.com.tr/tr/ekonomi/tcmbnin-ekim-ayi-piyasa-katilimcilari-anketi-yayimlandi/4090688",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "Kapalıçarşı'da gram altın günü 6.642 liradan kapattı",
+      "ozet": "Kapalıçarşı'da gram altın cuma gününü yüzde 0,90 yükselişle 6.642 liradan tamamladı. Aynı piyasada dolar/TL kuru da yüzde 0,26 artışla 49,43 liradan günü kapattı.",
+      "kaynak": "Bigpara",
+      "kaynak_url": "https://bigpara.hurriyet.com.tr/haberler/araci-kurum-raporlari/kapali-carsida-altin-ve-dolar-tl-kuru-gunu-p_ID102271108/",
+      "tarih": "16.10.2026"
+    },
+    {
+      "baslik": "TCMB gösterge kurunda dolar 49,45, avro 55,62 lira",
+      "ozet": "Türkiye Cumhuriyet Merkez Bankası'nın 16 Ekim saat 15.30'da belirlediği gösterge niteliğindeki kurlara göre ABD doları döviz satışı 49,4463, avro döviz satışı 55,6180 lira oldu. Doların efektif satış kuru 49,5204, avronun efektif satış kuru 55,7014 lira olarak açıklandı; İngiliz sterlininin döviz satış kuru ise 66,0056 lira seviyesinde belirlendi.",
+      "kaynak": "En Son Dakika / AA",
+      "kaynak_url": "https://www.ensondakika.com.tr/tcmb-doviz-kurlari-16-ekim-2026/720326/",
+      "tarih": "16.10.2026"
+    }
+  ]
+}
